@@ -15,7 +15,8 @@
 * php artisan key:generate
 * php artisan migrate
 * php artisan db:seed (если ошибка composer dump-autoload)
-* npm run dev (каждый раз после выгрузки последней версии из репозитория)
+* npm run dev (каждый раз после выгрузки последней версии из репозитория) или
+* npm run watch
 * php artisan storage:link
 
 ## Настройка почты ##

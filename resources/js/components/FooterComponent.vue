@@ -11,5 +11,11 @@ export default {
 </script>
 
 <style scoped>
-
+footer {
+    background: #333;
+    height: 50px;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+}
 </style>
