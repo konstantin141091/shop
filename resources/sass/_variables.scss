@@ -1,10 +1,18 @@
 // Body
-$body-bg: #f8fafc;
+$body-bg: #ccc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$font-family-sans-serif: "Fira Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji";
+$font-size-base: 1.6rem;
+$line-height-base: 1.2;
+
+//fz small 14, основной 16, на слайдере 36, заголовки 32, цена 28, скидка 18, преимущества 24,
+
+
+// Colors
+$color-text: #333333;
+$grey: #808080;
+$color-btn: #1f7d63;
 
 // Colors
 $blue: #3490dc;
