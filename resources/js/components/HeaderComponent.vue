@@ -10,13 +10,13 @@
                         <router-link to="/about" class="menu__link">О компании</router-link>
                     </li>
                     <li class="menu__item">
-                        <router-link to="/admin" class="menu__link">Контакты</router-link>
+                        <router-link to="/contacts" class="menu__link">Контакты</router-link>
                     </li>
                     <li class="menu__item">
-                        <router-link to="/admin" class="menu__link">Доставка</router-link>
+                        <router-link to="/delivery" class="menu__link">Доставка</router-link>
                     </li>
                     <li class="menu__item">
-                        <router-link to="/admin" class="menu__link">Оплата</router-link>
+                        <router-link to="/payment" class="menu__link">Оплата</router-link>
                     </li>
                     <li class="menu__item">
                         <router-link to="/admin" class="menu__link">Личный кабинет</router-link>
@@ -135,13 +135,14 @@ a:hover{text-decoration: none;}
 
     &-input {
         border-radius: 15px 0 0 15px;
+        border: 1px solid #808080;
         border-right: none;
         min-width: 150px;
         width: 100%;
         height: 50px;
         padding: 0 10px;
         outline: none;
-        border: 1px solid #808080;
+
 
         &:focus {
             outline: none;
