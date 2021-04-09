@@ -31,23 +31,23 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .benefit-list {
     padding-bottom: 3rem;
-}
 
-.benefit-list__title {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 3rem;
-}
+    &__title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 3rem;
+    }
 
-.benefit-list__box {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    grid-gap: 1rem;
+    &__box {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        grid-gap: 1rem;
+    }
 }
 
 article {
