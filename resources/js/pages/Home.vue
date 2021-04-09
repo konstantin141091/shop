@@ -1,14 +1,12 @@
 <template>
     <div>
-        <Carousel />
+        <Carousel/>
 
         <section>
             <h2>Новое поступление</h2>
         </section>
 
-        <section>
-            <h2>Наши плюсы</h2>
-        </section>
+        <BenefitListComponent />
 
         <section>
             <h2>Акции</h2>
@@ -26,11 +24,12 @@
 </template>
 
 <script>
-import Carousel from "../components/CarouselComponent";
+import Carousel from "../components/home-components/CarouselComponent";
+import BenefitListComponent from "../components/home-components/BenefitListComponent";
 
 export default {
     name: "Home",
-    components: {Carousel}
+    components: {BenefitListComponent, Carousel}
 }
 </script>
 
