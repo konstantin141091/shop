@@ -32,7 +32,7 @@
         <div class="header__bottom">
             <div class="header__logo">
                 <router-link to="/" class="navbar-brand">
-                    <img src="storage/images/markom_logo.svg" alt="Logo">
+                    <img src="storage/images/logo.png" alt="Logo">
                 </router-link>
             </div>
             <div class="header__search">
@@ -97,7 +97,7 @@ a:hover{text-decoration: none;}
         text-decoration: none;
 
         &:hover {
-            color: #1f7d63;
+            color: #b63334;
         }
     }
 }
@@ -122,6 +122,11 @@ a:hover{text-decoration: none;}
 
 .header__logo {
     margin-right: 50px;
+    width: 250px;
+
+    & img {
+        width: 100%;
+    }
 }
 
 .header__search {
@@ -143,7 +148,6 @@ a:hover{text-decoration: none;}
         padding: 0 10px;
         outline: none;
 
-
         &:focus {
             outline: none;
         }
@@ -161,7 +165,7 @@ a:hover{text-decoration: none;}
         white-space: nowrap;
         vertical-align: middle;
         user-select: none;
-        background: #1f7d63;
+        background: #b63334;
         outline: none;
         padding: 0 15px;
 
@@ -196,8 +200,9 @@ a:hover{text-decoration: none;}
         background-color: #ff4100;
     }
     &-text {
-        color: #1f7d63;
+        color: #b63334;
         font-size: 18px;
+        font-weight: bold;
     }
 }
 
