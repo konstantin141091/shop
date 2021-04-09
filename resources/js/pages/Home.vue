@@ -6,16 +6,7 @@
             <h2>Новое поступление</h2>
         </section>
 
-        <section>
-            <h2>Наши плюсы</h2>
-
-            <article>
-                <img src="" alt="">
-                <h4>Широкий ассортимент</h4>
-                <p>Мы закупаем колбасы от производителя. Более 400 видов колбасы
-                    представлены на наших прилавках.</p>
-            </article>
-        </section>
+        <BenefitListComponent />
 
         <section>
             <h2>Акции</h2>
@@ -33,11 +24,12 @@
 </template>
 
 <script>
-import Carousel from "../components/CarouselComponent";
+import Carousel from "../components/home-components/CarouselComponent";
+import BenefitListComponent from "../components/home-components/BenefitListComponent";
 
 export default {
     name: "Home",
-    components: {Carousel}
+    components: {BenefitListComponent, Carousel}
 }
 </script>
 
