@@ -4,6 +4,7 @@
 
         <section>
             <h2>Новое поступление</h2>
+            <CarouselProductComponent />
         </section>
 
         <BenefitListComponent />
@@ -24,10 +25,11 @@ import Carousel from "../components/home-components/CarouselComponent";
 import BenefitListComponent from "../components/home-components/BenefitListComponent";
 import ReviewsComponent from "../components/home-components/ReviewsComponent";
 import FeedbackComponent from "../components/home-components/FeedbackComponent";
+import CarouselProductComponent from "../components/CarouselProductsComponent"
 
 export default {
     name: "Home",
-    components: {FeedbackComponent, ReviewsComponent, BenefitListComponent, Carousel}
+    components: {FeedbackComponent, ReviewsComponent, BenefitListComponent, Carousel, CarouselProductComponent}
 }
 </script>
 

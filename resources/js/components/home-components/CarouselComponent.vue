@@ -1,5 +1,5 @@
 <template>
-    <hooper :progress="true" :autoPlay="false" :playSpeed="8000" style="height: auto; outline: none">
+    <hooper :progress="true" :autoPlay="true" :playSpeed="8000" style="height: auto; outline: none">
         <slide>
             <!--            в url картинку для слайдера-->
             <div class="slider__container">
