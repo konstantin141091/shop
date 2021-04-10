@@ -1,59 +1,61 @@
 <template>
     <header class="header">
-        <div class="header__top">
-            <nav class="header__navbar">
-                <ul class="header__menu">
-                    <li class="menu__item">
-                        <router-link to="/" class="menu__link">Каталог</router-link>
-                    </li>
-                    <li class="menu__item">
-                        <router-link to="/about" class="menu__link">О компании</router-link>
-                    </li>
-                    <li class="menu__item">
-                        <router-link to="/admin" class="menu__link">Контакты</router-link>
-                    </li>
-                    <li class="menu__item">
-                        <router-link to="/admin" class="menu__link">Доставка</router-link>
-                    </li>
-                    <li class="menu__item">
-                        <router-link to="/admin" class="menu__link">Оплата</router-link>
-                    </li>
-                    <li class="menu__item">
-                        <router-link to="/admin" class="menu__link">Личный кабинет</router-link>
-                    </li>
-                </ul>
-            </nav>
-            <p class="header__work-time">Доставка с 8:00 до 18:00</p>
-            <div class="header__phone">
-                <a class="header__phone-value" href="tel:+78008008080">+7(3519)46-66-11</a>
+        <div class="container">
+            <div class="header__top">
+                <nav class="header__navbar">
+                    <ul class="header__menu">
+                        <li class="menu__item">
+                            <router-link to="/" class="menu__link">Каталог</router-link>
+                        </li>
+                        <li class="menu__item">
+                            <router-link to="/about" class="menu__link">О компании</router-link>
+                        </li>
+                        <li class="menu__item">
+                            <router-link to="/admin" class="menu__link">Контакты</router-link>
+                        </li>
+                        <li class="menu__item">
+                            <router-link to="/admin" class="menu__link">Доставка</router-link>
+                        </li>
+                        <li class="menu__item">
+                            <router-link to="/admin" class="menu__link">Оплата</router-link>
+                        </li>
+                        <li class="menu__item">
+                            <router-link to="/admin" class="menu__link">Личный кабинет</router-link>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="header__work-time">Доставка с 8:00 до 18:00</p>
+                <div class="header__phone">
+                    <a class="header__phone-value" href="tel:+78008008080">+7(3519)46-66-11</a>
+                </div>
             </div>
-        </div>
 
-        <div class="header__bottom">
-            <div class="header__logo">
-                <router-link to="/" class="navbar-brand">
-                    <img src="storage/images/markom_logo.svg" alt="Logo">
-                </router-link>
-            </div>
-            <div class="header__search">
-                <form class="header__search-form">
-                    <input type="text" class="header__search-input" placeholder="Поиск">
-                    <button class="header__search-btn">
-                        <img src="storage/icons/search_white.svg" alt="найти">
-                    </button>
-                </form>
-            </div>
-            <div class="header__controls">
-                <router-link to="/">
-                    <img src="storage/icons/person_black.svg" alt="Аккаунт">
-                </router-link>
-                <router-link to="/">
+            <div class="header__bottom">
+                <div class="header__logo">
+                    <router-link to="/" class="navbar-brand">
+                        <img src="storage/images/markom_logo.svg" alt="Logo">
+                    </router-link>
+                </div>
+                <div class="header__search">
+                    <form class="header__search-form">
+                        <input type="text" class="header__search-input" placeholder="Поиск">
+                        <button class="header__search-btn">
+                            <img src="storage/icons/search_white.svg" alt="найти">
+                        </button>
+                    </form>
+                </div>
+                <div class="header__controls">
+                    <router-link to="/">
+                        <img src="storage/icons/person_black.svg" alt="Аккаунт">
+                    </router-link>
+                    <router-link to="/">
                     <span class="header__cart">
                         <img src="storage/icons/shopping_cart_black.svg" alt="Аккаунт">
                         <span class="header__cart-badge">15</span>
                     </span>
-                    <span class="header__cart-text">0&nbsp;руб</span>
-                </router-link>
+                        <span class="header__cart-text">0&nbsp;руб</span>
+                    </router-link>
+                </div>
             </div>
         </div>
     </header>

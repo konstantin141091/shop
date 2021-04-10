@@ -11060,3 +11060,7 @@ h6 {
   flex-grow: 1;
 }
 
+.container {
+  max-width: 1408px;
+}
+
