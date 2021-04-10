@@ -1,58 +1,107 @@
 <template>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100"
-                     src="https://static-sl.insales.ru/r/nlEYOkOZekE/fit/1408/0/ce/1/plain/files/1/2110/14641214/original/slider.jpg@webp"
-                     alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h2>Премиум продукты высокого качества</h2>
+    <hooper :progress="true" :autoPlay="false" :playSpeed="8000" style="height: auto; outline: none">
+        <slide>
+            <!--            в url картинку для слайдера-->
+            <div class="slider__container">
+                <img class="slider__img" src="https://static-sl.insales.ru/r/nlEYOkOZekE/fit/1408/0/ce/1/plain/files/1/2110/14641214/original/slider.jpg@webp" alt="">
+                <div class="slider__text">
+                    <p>slider text/ About</p>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img class="d-block w-100"
-                     src="https://static-sl.insales.ru/r/nlEYOkOZekE/fit/1408/0/ce/1/plain/files/1/2110/14641214/original/slider.jpg@webp"
-                     alt="Second slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Премиум продукты высокого качества</h3>
+        </slide>
+        <slide>
+            <div class="slider__container">
+                <img class="slider__img" src="https://static-sl.insales.ru/r/nlEYOkOZekE/fit/1408/0/ce/1/plain/files/1/2110/14641214/original/slider.jpg@webp" alt="">
+                <div class="slider__text">
+                    <p>slider text/ About</p>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img class="d-block w-100"
-                     src="https://static-sl.insales.ru/r/nlEYOkOZekE/fit/1408/0/ce/1/plain/files/1/2110/14641214/original/slider.jpg@webp"
-                     alt="Second slide">
+        </slide>
+        <slide>
+            <div class="slider__container">
+                <img class="slider__img" src="https://static-sl.insales.ru/r/nlEYOkOZekE/fit/1408/0/ce/1/plain/files/1/2110/14641214/original/slider.jpg@webp" alt="">
+                <div class="slider__text">
+                    <p>slider text/ About</p>
+                </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
+        </slide>
+
+        <hooper-navigation slot="hooper-addons">
+            <svg slot="hooper-prev" class="icon icon-arrowLeft" viewBox="0 0 24 24" width="50px" height="50px">
+                <title>Arrow Left</title>
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path>
+            </svg>
+
+            <svg slot="hooper-next" class="icon icon-arrowRight" viewBox="0 0 24 24" width="50px" height="50px">
+                <title>Arrow Right</title>
+                <path d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg>
+        </hooper-navigation>
+    </hooper>
 </template>
 
 <script>
-export default {
-    name: 'CarouselComponent'
-}
+  import { Hooper, Slide, Navigation as HooperNavigation} from "hooper";
+  import 'hooper/dist/hooper.css';
+  export default {
+    name: 'CarouselComponent',
+    components: {
+      Hooper,
+      Slide,
+      HooperNavigation
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
-.carousel-caption {
-    bottom: 50%;
-    padding-top: 0;
-    padding-bottom: 0;
+/*.carousel-caption {*/
+/*    bottom: 50%;*/
+/*    padding-top: 0;*/
+/*    padding-bottom: 0;*/
 
-    & > h2 {
-        margin-bottom: 0;
+/*    & > h2 {*/
+/*        margin-bottom: 0;*/
+/*    }*/
+/*}*/
+.slider {
+    &__container {
+        height: 100%;
+        max-height: 420px;
+        position: relative;
+    }
+    &__img {
+        width: 100%;
+        height: auto;
+    }
+    &__text {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        text-align: center;
+        & p {
+            font-size: 3rem;
+            color: #ffffff;
+            margin: 0;
+        }
+    }
+    .svg {
+        width: 46px;
+        height: 46px;
     }
 }
+
+    @media screen and (max-width: 767px) {
+        .slider {
+            &__text {
+
+                & p {
+                    font-size: 18px;
+                    padding: 10px 3.5rem;
+                }
+            }
+        }
+    }
+
+
 </style>
