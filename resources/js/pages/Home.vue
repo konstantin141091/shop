@@ -1,36 +1,33 @@
 <template>
     <div>
-        <Carousel />
+        <Carousel/>
 
         <section>
             <h2>Новое поступление</h2>
         </section>
 
-        <section>
-            <h2>Наши плюсы</h2>
-        </section>
+        <BenefitListComponent />
 
         <section>
             <h2>Акции</h2>
         </section>
 
-        <section>
-            <h2>Отзывы клиентов</h2>
-        </section>
+        <ReviewsComponent />
 
-        <section>
-            <h2>Обратная связь</h2>
-        </section>
+        <FeedbackComponent />
     </div>
 
 </template>
 
 <script>
-import Carousel from "../components/CarouselComponent";
+import Carousel from "../components/home-components/CarouselComponent";
+import BenefitListComponent from "../components/home-components/BenefitListComponent";
+import ReviewsComponent from "../components/home-components/ReviewsComponent";
+import FeedbackComponent from "../components/home-components/FeedbackComponent";
 
 export default {
     name: "Home",
-    components: {Carousel}
+    components: {FeedbackComponent, ReviewsComponent, BenefitListComponent, Carousel}
 }
 </script>
 
