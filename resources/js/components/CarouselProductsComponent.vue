@@ -1,37 +1,16 @@
 <template>
     <hooper :settings="hooperSettings">
-    <slide>
+    <slide v-for="product in products" :key="product.id">
         <div class="product">
-            <img src="https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg" alt="">
-            <h3>product</h3>
-        </div>
-    </slide>
-    <slide>
-        <div class="product">
-            <img src="https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg" alt="">
-            <h3>product</h3>
-        </div>
-    </slide>
-    <slide>
-        <div class="product">
-            <img src="https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg" alt="">
-            <h3>product</h3>
-        </div>
-    </slide>
-    <slide>
-        <div class="product">
-            <img src="https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg" alt="">
-            <h3>product</h3>
-        </div>
-    </slide>
-    <slide>
-        <div class="product">
-            <img src="https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg" alt="">
-            <h3>product</h3>
+            <img class="product__img" style="width: 100%" :src="product.img" alt="product">
+            <div class="product__text">
+                <h3>{{product.title}}, {{product.count}}</h3>
+                <p class="product__price">{{product.price}}</p>
+                <button class="product__btn">В корзину</button>
+            </div>
         </div>
     </slide>
 </hooper>
-
 </template>
 
 <script>
@@ -51,58 +30,109 @@
           centerMode: true,
           autoPlay: false,
           playSpeed: 3500,
-          breakpoints: {
-            2400: {
-              itemsToShow: 5
-            },
-            1800: {
-              itemsToShow: 4
-            },
-            1500: {
-              itemsToShow: 3
-            },
-            1100: {
-              itemsToShow: 2.5
-            },
-            0: {
-              itemsToShow: 1.5
-            }
-          }
-        }
+          itemsToShow: 4
+          // breakpoints: {
+          //   2400: {
+          //     itemsToShow: 5
+          //   },
+          //   1800: {
+          //     itemsToShow: 4
+          //   },
+          //   1500: {
+          //     itemsToShow: 3
+          //   },
+          //   1100: {
+          //     itemsToShow: 2.5
+          //   },
+          //   0: {
+          //     itemsToShow: 1.5
+          //   }
+          // }
+        },
+        products: [
+          {
+            id: 1,
+            title: "product",
+            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+            price: 1300,
+            count: "1 кг"
+          },
+          {
+            id: 2,
+            title: "product2",
+            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+            price: 1300,
+            count: "1 кг"
+          },
+          {
+            id: 3,
+            title: "product3",
+            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+            price: 1300,
+            count: "1 кг"
+          },
+          {
+            id: 4,
+            title: "product4",
+            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+            price: 1300,
+            count: "1 кг"
+          },
+          {
+            id: 5,
+            title: "product5",
+            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+            price: 1300,
+            count: "1 кг"
+          },
+          {
+            id: 6,
+            title: "product5",
+            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+            price: 1300,
+            count: "1 кг"
+          },
+          {
+            id: 7,
+            title: "product5",
+            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+            price: 1300,
+            count: "1 кг"
+          },
+          {
+            id: 8,
+            title: "product5",
+            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+            price: 1300,
+            count: "1 кг"
+          },
+
+        ]
       }
     }
   }
 </script>
 
-<style scoped>
+<style type="scss" scoped>
     .product {
-        height: 70vh;
         display: flex;
         align-items: center;
-        justify-content: center;
+        flex-direction: column;
         border-radius: 20px;
         margin: 0 15px;
         border: solid 2px #8e8787;
-    }
-    .img1 {
-        background: salmon;
-    }
-    .img2 {
-        background: lightblue;
-    }
-    .img3 {
-        background: coral;
-    }
-    .img4 {
-        background: lightgreen;
-    }
-    .img5 {
-        background: pink;
-    }
-    h2 {
-        color: #fff
+        max-width: 230px;
+        padding-bottom: 8px;
+        &__img {
+            margin: 13px 6px;
+        }
+
     }
     .hooper {
-        height: 100vh;
+        height: auto;
+        max-height: 367px;
+        &-slide {
+            width: 230px;
+        }
     }
 </style>
