@@ -113,27 +113,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -150,24 +129,74 @@ __webpack_require__.r(__webpack_exports__);
         centerMode: true,
         autoPlay: false,
         playSpeed: 3500,
-        breakpoints: {
-          2400: {
-            itemsToShow: 5
-          },
-          1800: {
-            itemsToShow: 4
-          },
-          1500: {
-            itemsToShow: 3
-          },
-          1100: {
-            itemsToShow: 2.5
-          },
-          0: {
-            itemsToShow: 1.5
-          }
-        }
-      }
+        itemsToShow: 4 // breakpoints: {
+        //   2400: {
+        //     itemsToShow: 5
+        //   },
+        //   1800: {
+        //     itemsToShow: 4
+        //   },
+        //   1500: {
+        //     itemsToShow: 3
+        //   },
+        //   1100: {
+        //     itemsToShow: 2.5
+        //   },
+        //   0: {
+        //     itemsToShow: 1.5
+        //   }
+        // }
+
+      },
+      products: [{
+        id: 1,
+        title: "product",
+        img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+        price: 1300,
+        count: "1 кг"
+      }, {
+        id: 2,
+        title: "product2",
+        img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+        price: 1300,
+        count: "1 кг"
+      }, {
+        id: 3,
+        title: "product3",
+        img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+        price: 1300,
+        count: "1 кг"
+      }, {
+        id: 4,
+        title: "product4",
+        img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+        price: 1300,
+        count: "1 кг"
+      }, {
+        id: 5,
+        title: "product5",
+        img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+        price: 1300,
+        count: "1 кг"
+      }, {
+        id: 6,
+        title: "product5",
+        img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+        price: 1300,
+        count: "1 кг"
+      }, {
+        id: 7,
+        title: "product5",
+        img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+        price: 1300,
+        count: "1 кг"
+      }, {
+        id: 8,
+        title: "product5",
+        img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
+        price: 1300,
+        count: "1 кг"
+      }]
     };
   }
 });
@@ -204,6 +233,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -765,7 +796,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "ul[data-v-153bfd55], p[data-v-153bfd55] {\n  margin: 0;\n}\na[data-v-153bfd55], a[data-v-153bfd55]:visited {\n  text-decoration: none;\n}\na[data-v-153bfd55]:hover {\n  text-decoration: none;\n}\n.header__top[data-v-153bfd55] {\n  display: flex;\n  justify-content: space-between;\n  padding: 5px 40px;\n  background: #f7f7f7;\n}\n.header__navbar[data-v-153bfd55] {\n  overflow: hidden;\n  margin-right: 15px;\n}\n.header__menu[data-v-153bfd55] {\n  list-style-type: none;\n  display: flex;\n  grid-column-gap: 15px;\n}\n.header__menu .menu__link[data-v-153bfd55] {\n  color: #333333;\n  white-space: nowrap;\n  text-decoration: none;\n}\n.header__menu .menu__link[data-v-153bfd55]:hover {\n  color: #1f7d63;\n}\n.header__work-time[data-v-153bfd55] {\n  max-width: 250px;\n  overflow: hidden;\n  white-space: nowrap;\n  color: #999999;\n}\n.header__phone-value[data-v-153bfd55] {\n  color: #333333;\n  white-space: nowrap;\n}\n.header__bottom[data-v-153bfd55] {\n  display: flex;\n  align-items: center;\n  padding: 15px 40px;\n}\n.header__logo[data-v-153bfd55] {\n  margin-right: 50px;\n}\n.header__search[data-v-153bfd55] {\n  margin: 0 24px;\n  flex-grow: 1;\n}\n.header__search-form[data-v-153bfd55] {\n  display: flex;\n  height: 50px;\n}\n.header__search-input[data-v-153bfd55] {\n  border-radius: 15px 0 0 15px;\n  border-right: none;\n  min-width: 150px;\n  width: 100%;\n  height: 50px;\n  padding: 0 10px;\n  outline: none;\n  border: 1px solid #808080;\n}\n.header__search-input[data-v-153bfd55]:focus {\n  outline: none;\n}\n.header__search-btn[data-v-153bfd55] {\n  border-radius: 0 15px 15px 0;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  max-width: 100%;\n  line-height: 1;\n  text-align: center;\n  text-decoration: none;\n  white-space: nowrap;\n  vertical-align: middle;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  background: #1f7d63;\n  outline: none;\n  padding: 0 15px;\n}\n.header__search-btn > img[data-v-153bfd55] {\n  height: 40px;\n}\n.header__controls[data-v-153bfd55] {\n  display: flex;\n  grid-column-gap: 20px;\n}\n.header__cart[data-v-153bfd55] {\n  position: relative;\n  margin-right: 10px;\n}\n.header__cart-badge[data-v-153bfd55] {\n  position: absolute;\n  min-width: 1.6rem;\n  height: 1.6rem;\n  padding: 0 3px;\n  line-height: 1.6rem;\n  font-size: 1.1rem;\n  color: #ffffff;\n  font-weight: 700;\n  text-align: center;\n  border-radius: 50%;\n  top: -10px;\n  right: 0;\n  background-color: #ff4100;\n}\n.header__cart-text[data-v-153bfd55] {\n  color: #1f7d63;\n  font-size: 18px;\n}", ""]);
+exports.push([module.i, ".header__top[data-v-153bfd55] {\n  padding-top: 15px;\n  padding-bottom: 15px;\n  background: #f7f7f7;\n}\n.header__flex[data-v-153bfd55] {\n  display: flex;\n  justify-content: space-between;\n}\n.header__navbar[data-v-153bfd55] {\n  overflow: hidden;\n  margin-right: 15px;\n}\n.header__menu[data-v-153bfd55] {\n  list-style-type: none;\n  display: flex;\n  grid-column-gap: 15px;\n}\n.header__menu .menu__link[data-v-153bfd55] {\n  color: #333333;\n  white-space: nowrap;\n  text-decoration: none;\n}\n.header__menu .menu__link[data-v-153bfd55]:hover {\n  color: #b63334;\n}\n.header__work-time[data-v-153bfd55] {\n  max-width: 250px;\n  overflow: hidden;\n  white-space: nowrap;\n  color: #999999;\n}\n.header__phone-value[data-v-153bfd55] {\n  color: #333333;\n  white-space: nowrap;\n}\n.header__bottom[data-v-153bfd55] {\n  display: flex;\n  align-items: center;\n  padding-top: 15px;\n  padding-bottom: 15px;\n}\n.header__logo[data-v-153bfd55] {\n  margin-right: 50px;\n  width: 250px;\n}\n.header__logo img[data-v-153bfd55] {\n  width: 100%;\n}\n.header__search[data-v-153bfd55] {\n  margin: 0 24px;\n  flex-grow: 1;\n}\n.header__search-form[data-v-153bfd55] {\n  display: flex;\n  height: 50px;\n}\n.header__search-input[data-v-153bfd55] {\n  border-radius: 15px 0 0 15px;\n  border: 1px solid #808080;\n  border-right: none;\n  min-width: 150px;\n  width: 100%;\n  height: 50px;\n  padding: 0 10px;\n  outline: none;\n}\n.header__search-input[data-v-153bfd55]:focus {\n  outline: none;\n}\n.header__search-btn[data-v-153bfd55] {\n  border-radius: 0 15px 15px 0;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  max-width: 100%;\n  line-height: 1;\n  text-align: center;\n  text-decoration: none;\n  white-space: nowrap;\n  vertical-align: middle;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  background: #b63334;\n  outline: none;\n  padding: 0 15px;\n}\n.header__search-btn > img[data-v-153bfd55] {\n  height: 40px;\n}\n.header__controls[data-v-153bfd55] {\n  display: flex;\n  grid-column-gap: 20px;\n}\n.header__cart[data-v-153bfd55] {\n  position: relative;\n  margin-right: 10px;\n}\n.header__cart-badge[data-v-153bfd55] {\n  position: absolute;\n  min-width: 1.6rem;\n  height: 1.6rem;\n  padding: 0 3px;\n  line-height: 1.6rem;\n  font-size: 1.1rem;\n  color: #ffffff;\n  font-weight: 700;\n  text-align: center;\n  border-radius: 50%;\n  top: -10px;\n  right: 0;\n  background-color: #ff4100;\n}\n.header__cart-text[data-v-153bfd55] {\n  color: #b63334;\n  font-size: 18px;\n  font-weight: bold;\n}", ""]);
 
 // exports
 
@@ -822,7 +853,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".feedback[data-v-3f912f12] {\n  padding-bottom: 3rem;\n  text-align: center;\n  max-width: 680px;\n}\n.feedback__title[data-v-3f912f12] {\n  font-size: 32px;\n  font-weight: bold;\n  margin-bottom: 3rem;\n}\n.feedback__field[data-v-3f912f12] {\n  margin-bottom: 2rem;\n  text-align: left;\n  position: relative;\n}\n.feedback__field > textarea[data-v-3f912f12] {\n  height: 115px;\n}\n.feedback__inputs[data-v-3f912f12] {\n  display: flex;\n  -moz-column-gap: 2rem;\n       column-gap: 2rem;\n}\n.feedback__input[data-v-3f912f12] {\n  min-width: 250px;\n  flex-grow: 1;\n}\n.form-control[data-v-3f912f12] {\n  padding: 6px 10px;\n}\n.feedback__btn[data-v-3f912f12] {\n  min-width: 250px;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  height: 50px;\n  max-width: 100%;\n  font-weight: bold;\n  font-size: 2rem;\n  line-height: 1;\n  color: #ffffff;\n  border-radius: 10px;\n  white-space: nowrap;\n  background: #b63334;\n  outline: none;\n  transition: all 0.3s;\n}\n.feedback__btn[data-v-3f912f12]:hover {\n  background: rgba(182, 51, 52, 0.9);\n}", ""]);
+exports.push([module.i, ".feedback[data-v-3f912f12] {\n  padding-bottom: 3rem;\n  text-align: center;\n  max-width: 680px;\n  margin: 0 auto;\n}\n.feedback__title[data-v-3f912f12] {\n  font-size: 32px;\n  font-weight: bold;\n  margin-bottom: 3rem;\n}\n.feedback__field[data-v-3f912f12] {\n  margin-bottom: 2rem;\n  text-align: left;\n  position: relative;\n}\n.feedback__field > textarea[data-v-3f912f12] {\n  height: 115px;\n}\n.feedback__inputs[data-v-3f912f12] {\n  display: flex;\n  -moz-column-gap: 2rem;\n       column-gap: 2rem;\n}\n.feedback__input[data-v-3f912f12] {\n  min-width: 250px;\n  flex-grow: 1;\n}\n.form-control[data-v-3f912f12] {\n  padding: 6px 10px;\n}\n.feedback__btn[data-v-3f912f12] {\n  min-width: 250px;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  height: 50px;\n  max-width: 100%;\n  font-weight: bold;\n  font-size: 2rem;\n  line-height: 1;\n  color: #ffffff;\n  border-radius: 10px;\n  white-space: nowrap;\n  background: #b63334;\n  outline: none;\n  transition: all 0.3s;\n}\n.feedback__btn[data-v-3f912f12]:hover {\n  background: rgba(182, 51, 52, 0.9);\n}", ""]);
 
 // exports
 
@@ -879,7 +910,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.product[data-v-b854dbc4] {\n    height: 70vh;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: 20px;\n    margin: 0 15px;\n    border: solid 2px #8e8787;\n}\n.img1[data-v-b854dbc4] {\n    background: salmon;\n}\n.img2[data-v-b854dbc4] {\n    background: lightblue;\n}\n.img3[data-v-b854dbc4] {\n    background: coral;\n}\n.img4[data-v-b854dbc4] {\n    background: lightgreen;\n}\n.img5[data-v-b854dbc4] {\n    background: pink;\n}\nh2[data-v-b854dbc4] {\n    color: #fff\n}\n.hooper[data-v-b854dbc4] {\n    height: 100vh;\n}\n", ""]);
+exports.push([module.i, "\n.product[data-v-b854dbc4] {\n    display: flex;\n    align-items: center;\n    flex-direction: column;\n    border-radius: 20px;\n    margin: 0 15px;\n    border: solid 2px #8e8787;\n    max-width: 230px;\n    padding-bottom: 8px;\n&__img {\n        margin: 13px 6px;\n}\n}\n.hooper[data-v-b854dbc4] {\n    height: auto;\n    max-height: 367px;\n&-slide {\n        width: 230px;\n}\n}\n", ""]);
 
 // exports
 
@@ -3406,77 +3437,29 @@ var render = function() {
   return _c(
     "hooper",
     { attrs: { settings: _vm.hooperSettings } },
-    [
-      _c("slide", [
+    _vm._l(_vm.products, function(product) {
+      return _c("slide", { key: product.id }, [
         _c("div", { staticClass: "product" }, [
           _c("img", {
-            attrs: {
-              src:
-                "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-              alt: ""
-            }
+            staticClass: "product__img",
+            staticStyle: { width: "100%" },
+            attrs: { src: product.img, alt: "product" }
           }),
           _vm._v(" "),
-          _c("h3", [_vm._v("product")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("slide", [
-        _c("div", { staticClass: "product" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-              alt: ""
-            }
-          }),
-          _vm._v(" "),
-          _c("h3", [_vm._v("product")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("slide", [
-        _c("div", { staticClass: "product" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-              alt: ""
-            }
-          }),
-          _vm._v(" "),
-          _c("h3", [_vm._v("product")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("slide", [
-        _c("div", { staticClass: "product" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-              alt: ""
-            }
-          }),
-          _vm._v(" "),
-          _c("h3", [_vm._v("product")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("slide", [
-        _c("div", { staticClass: "product" }, [
-          _c("img", {
-            attrs: {
-              src:
-                "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-              alt: ""
-            }
-          }),
-          _vm._v(" "),
-          _c("h3", [_vm._v("product")])
+          _c("div", { staticClass: "product__text" }, [
+            _c("h3", [
+              _vm._v(_vm._s(product.title) + ", " + _vm._s(product.count))
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "product__price" }, [
+              _vm._v(_vm._s(product.price))
+            ]),
+            _vm._v(" "),
+            _c("button", { staticClass: "product__btn" }, [_vm._v("В корзину")])
+          ])
         ])
       ])
-    ],
+    }),
     1
   )
 }
@@ -3528,96 +3511,98 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("header", { staticClass: "header" }, [
     _c("div", { staticClass: "header__top" }, [
-      _c("nav", { staticClass: "header__navbar" }, [
-        _c("ul", { staticClass: "header__menu" }, [
-          _c(
-            "li",
-            { staticClass: "menu__item" },
-            [
-              _c(
-                "router-link",
-                { staticClass: "menu__link", attrs: { to: "/" } },
-                [_vm._v("Каталог")]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            { staticClass: "menu__item" },
-            [
-              _c(
-                "router-link",
-                { staticClass: "menu__link", attrs: { to: "/about" } },
-                [_vm._v("О компании")]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            { staticClass: "menu__item" },
-            [
-              _c(
-                "router-link",
-                { staticClass: "menu__link", attrs: { to: "/admin" } },
-                [_vm._v("Контакты")]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            { staticClass: "menu__item" },
-            [
-              _c(
-                "router-link",
-                { staticClass: "menu__link", attrs: { to: "/admin" } },
-                [_vm._v("Доставка")]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            { staticClass: "menu__item" },
-            [
-              _c(
-                "router-link",
-                { staticClass: "menu__link", attrs: { to: "/admin" } },
-                [_vm._v("Оплата")]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            { staticClass: "menu__item" },
-            [
-              _c(
-                "router-link",
-                { staticClass: "menu__link", attrs: { to: "/admin" } },
-                [_vm._v("Личный кабинет")]
-              )
-            ],
-            1
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "header__work-time" }, [
-        _vm._v("Доставка с 8:00 до 18:00")
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
+      _c("div", { staticClass: "header__flex container" }, [
+        _c("nav", { staticClass: "header__navbar" }, [
+          _c("ul", { staticClass: "header__menu" }, [
+            _c(
+              "li",
+              { staticClass: "menu__item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "menu__link", attrs: { to: "/" } },
+                  [_vm._v("Каталог")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "menu__item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "menu__link", attrs: { to: "/about" } },
+                  [_vm._v("О компании")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "menu__item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "menu__link", attrs: { to: "/contacts" } },
+                  [_vm._v("Контакты")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "menu__item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "menu__link", attrs: { to: "/delivery" } },
+                  [_vm._v("Доставка")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "menu__item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "menu__link", attrs: { to: "/payment" } },
+                  [_vm._v("Оплата")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "menu__item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "menu__link", attrs: { to: "/admin" } },
+                  [_vm._v("Личный кабинет")]
+                )
+              ],
+              1
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "header__work-time" }, [
+          _vm._v("Доставка с 8:00 до 18:00")
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "header__bottom" }, [
+    _c("div", { staticClass: "header__bottom container" }, [
       _c(
         "div",
         { staticClass: "header__logo" },
@@ -3627,7 +3612,7 @@ var render = function() {
             { staticClass: "navbar-brand", attrs: { to: "/" } },
             [
               _c("img", {
-                attrs: { src: "storage/images/markom_logo.svg", alt: "Logo" }
+                attrs: { src: "storage/images/logo.png", alt: "Logo" }
               })
             ]
           )
@@ -3643,7 +3628,7 @@ var render = function() {
         [
           _c("router-link", { attrs: { to: "/" } }, [
             _c("img", {
-              attrs: { src: "storage/icons/person_black.svg", alt: "Аккаунт" }
+              attrs: { src: "storage/icons/person_black.svg", alt: "аккаунт" }
             })
           ]),
           _vm._v(" "),
@@ -3652,7 +3637,7 @@ var render = function() {
               _c("img", {
                 attrs: {
                   src: "storage/icons/shopping_cart_black.svg",
-                  alt: "Аккаунт"
+                  alt: "корзина"
                 }
               }),
               _vm._v(" "),
@@ -4135,11 +4120,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "wrapper-layout container" },
+    { staticClass: "wrapper-layout" },
     [
       _c("Header"),
       _vm._v(" "),
-      _c("div", { staticClass: "main-layout" }, [_c("router-view")], 1),
+      _c(
+        "div",
+        { staticClass: "main-layout container" },
+        [_c("router-view")],
+        1
+      ),
       _vm._v(" "),
       _c("Footer")
     ],
@@ -19809,7 +19799,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _layout_MainLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layout/MainLayout */ "./resources/js/layout/MainLayout.vue");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
-// require('./bootstrap');
 
 
 

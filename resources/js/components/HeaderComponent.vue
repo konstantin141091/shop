@@ -1,38 +1,40 @@
 <template>
     <header class="header">
         <div class="header__top">
-            <nav class="header__navbar">
-                <ul class="header__menu">
-                    <li class="menu__item">
-                        <router-link to="/" class="menu__link">Каталог</router-link>
-                    </li>
-                    <li class="menu__item">
-                        <router-link to="/about" class="menu__link">О компании</router-link>
-                    </li>
-                    <li class="menu__item">
-                        <router-link to="/admin" class="menu__link">Контакты</router-link>
-                    </li>
-                    <li class="menu__item">
-                        <router-link to="/admin" class="menu__link">Доставка</router-link>
-                    </li>
-                    <li class="menu__item">
-                        <router-link to="/admin" class="menu__link">Оплата</router-link>
-                    </li>
-                    <li class="menu__item">
-                        <router-link to="/admin" class="menu__link">Личный кабинет</router-link>
-                    </li>
-                </ul>
-            </nav>
-            <p class="header__work-time">Доставка с 8:00 до 18:00</p>
-            <div class="header__phone">
-                <a class="header__phone-value" href="tel:+78008008080">+7(3519)46-66-11</a>
+            <div class="header__flex container">
+                <nav class="header__navbar">
+                    <ul class="header__menu">
+                        <li class="menu__item">
+                            <router-link to="/" class="menu__link">Каталог</router-link>
+                        </li>
+                        <li class="menu__item">
+                            <router-link to="/about" class="menu__link">О компании</router-link>
+                        </li>
+                        <li class="menu__item">
+                            <router-link to="/contacts" class="menu__link">Контакты</router-link>
+                        </li>
+                        <li class="menu__item">
+                            <router-link to="/delivery" class="menu__link">Доставка</router-link>
+                        </li>
+                        <li class="menu__item">
+                            <router-link to="/payment" class="menu__link">Оплата</router-link>
+                        </li>
+                        <li class="menu__item">
+                            <router-link to="/admin" class="menu__link">Личный кабинет</router-link>
+                        </li>
+                    </ul>
+                </nav>
+                <p class="header__work-time">Доставка с 8:00 до 18:00</p>
+                <div class="header__phone">
+                    <a class="header__phone-value" href="tel:+78008008080">+7(3519)46-66-11</a>
+                </div>
             </div>
         </div>
 
-        <div class="header__bottom">
+        <div class="header__bottom container">
             <div class="header__logo">
                 <router-link to="/" class="navbar-brand">
-                    <img src="storage/images/markom_logo.svg" alt="Logo">
+                    <img src="storage/images/logo.png" alt="Logo">
                 </router-link>
             </div>
             <div class="header__search">
@@ -45,11 +47,11 @@
             </div>
             <div class="header__controls">
                 <router-link to="/">
-                    <img src="storage/icons/person_black.svg" alt="Аккаунт">
+                    <img src="storage/icons/person_black.svg" alt="аккаунт">
                 </router-link>
                 <router-link to="/">
                     <span class="header__cart">
-                        <img src="storage/icons/shopping_cart_black.svg" alt="Аккаунт">
+                        <img src="storage/icons/shopping_cart_black.svg" alt="корзина">
                         <span class="header__cart-badge">15</span>
                     </span>
                     <span class="header__cart-text">0&nbsp;руб</span>
@@ -67,17 +69,19 @@ export default {
 
 <style lang="scss" scoped>
 
-ul, p {
-    margin: 0
+.header {
+
 }
-a, a:visited{text-decoration: none;}
-a:hover{text-decoration: none;}
 
 .header__top {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: #f7f7f7;
+}
+
+.header__flex {
     display: flex;
     justify-content: space-between;
-    padding: 5px 40px;
-    background: #f7f7f7;
 }
 
 .header__navbar {
@@ -97,7 +101,7 @@ a:hover{text-decoration: none;}
         text-decoration: none;
 
         &:hover {
-            color: #1f7d63;
+            color: #b63334;
         }
     }
 }
@@ -117,11 +121,17 @@ a:hover{text-decoration: none;}
 .header__bottom {
     display: flex;
     align-items: center;
-    padding: 15px 40px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .header__logo {
     margin-right: 50px;
+    width: 250px;
+
+    & img {
+        width: 100%;
+    }
 }
 
 .header__search {
@@ -135,13 +145,13 @@ a:hover{text-decoration: none;}
 
     &-input {
         border-radius: 15px 0 0 15px;
+        border: 1px solid #808080;
         border-right: none;
         min-width: 150px;
         width: 100%;
         height: 50px;
         padding: 0 10px;
         outline: none;
-        border: 1px solid #808080;
 
         &:focus {
             outline: none;
@@ -160,7 +170,7 @@ a:hover{text-decoration: none;}
         white-space: nowrap;
         vertical-align: middle;
         user-select: none;
-        background: #1f7d63;
+        background: #b63334;
         outline: none;
         padding: 0 15px;
 
@@ -194,9 +204,11 @@ a:hover{text-decoration: none;}
         right: 0;
         background-color: #ff4100;
     }
+
     &-text {
-        color: #1f7d63;
+        color: #b63334;
         font-size: 18px;
+        font-weight: bold;
     }
 }
 
