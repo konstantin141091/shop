@@ -1,5 +1,3 @@
-// require('./bootstrap');
-
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from './layout/MainLayout'
