@@ -62,6 +62,7 @@ export default {}
     padding-bottom: 3rem;
     text-align: center;
     max-width: 680px;
+    margin: 0 auto;
 
     &__title {
         font-size: 32px;
