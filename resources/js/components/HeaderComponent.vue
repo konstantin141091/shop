@@ -101,7 +101,7 @@ export default {
         text-decoration: none;
 
         &:hover {
-            color: #b63334;
+            color: $colorBtn;
         }
     }
 }

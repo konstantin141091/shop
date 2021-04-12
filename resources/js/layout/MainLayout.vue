@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper-layout">
         <Header/>
-        <div class="main-layout container">
+        <div class="main-layout">
             <router-view></router-view>
         </div>
         <Footer/>

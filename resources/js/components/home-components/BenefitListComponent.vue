@@ -32,6 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "resources/sass/variables";
 
 .benefit-list {
     padding-bottom: 3rem;
@@ -52,8 +53,13 @@ export default {
 
 article {
     max-width: 300px;
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     text-align: center;
-    color: #333333;
+    color: $colorText;
+
+    & h4 {
+        margin-bottom: 15px;
+        font-size: 2.4rem;
+    }
 }
 </style>

@@ -101,7 +101,6 @@ h4,
 h5,
 h6 {
   line-height: 1.2;
-  margin-bottom: 30px;
 }
 
 #app {
@@ -119,7 +118,7 @@ h6 {
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1200px;
   padding-right: 30px;
   padding-left: 30px;
   margin: 0 auto;
