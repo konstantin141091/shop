@@ -5,7 +5,10 @@
                 <nav class="header__navbar">
                     <ul class="header__menu">
                         <li class="menu__item">
-                            <router-link to="/" class="menu__link">Каталог</router-link>
+                            <router-link to="/" class="menu__link">Главная</router-link>
+                        </li>
+                        <li class="menu__item">
+                            <router-link to="/catalog" class="menu__link">Каталог</router-link>
                         </li>
                         <li class="menu__item">
                             <router-link to="/about" class="menu__link">О компании</router-link>
@@ -68,10 +71,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.header {
-
-}
+@import "resources/sass/variables";
 
 .header__top {
     padding-top: 15px;
@@ -96,7 +96,7 @@ export default {
 
 
     & .menu__link {
-        color: #333333;
+        color: $colorText;
         white-space: nowrap;
         text-decoration: none;
 
@@ -114,7 +114,7 @@ export default {
 }
 
 .header__phone-value {
-    color: #333333;
+    color: $colorText;
     white-space: nowrap;
 }
 

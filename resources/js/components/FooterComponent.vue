@@ -1,20 +1,27 @@
 <template>
     <footer>
-        Footer
+        &copy;&nbsp;{{ date | date('year')}}&nbsp;Любое использование контента без письменного разрешения запрещено
     </footer>
 </template>
 
 <script>
 export default {
-    name: 'FooterComponent'
+    name: 'FooterComponent',
+    data() {
+        return {
+            date: new Date()
+        }
+    }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "resources/sass/variables";
+
 footer {
-    background: #333;
+    background: #f7f7f7;
     height: 50px;
-    color: #fff;
+    color: $colorText;;
     text-align: center;
     line-height: 50px;
 }
