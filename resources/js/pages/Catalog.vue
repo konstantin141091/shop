@@ -15,12 +15,52 @@
 
         <div class="flex-box">
             <aside class="catalog__aside aside">
-                <h2 class="aside__title">Виды колбасы</h2>
-                <ul class="aside__catalogs">
-                    <li class="catalog__item"><a href="#">Варенная</a></li>
-                    <li class="catalog__item"><a href="#">Копченная</a></li>
-                    <li class="catalog__item"><a href="#">Ветчина</a></li>
-                    <li class="catalog__item"><a href="#">Сосиски</a></li>
+                <h3 class="aside__title">Фильтры</h3>
+
+                <form class="filter">
+                    <div class="filter">
+                        <div class="filter__content">
+                            <div class="filter__items">
+                                <div class="filter-item">
+                                    <div class="filter-item__head">
+                                        <span>Цены</span>
+                                    </div>
+                                    <div class="filter-item__content">
+                                        <input type="range" class="double-range">
+                                    </div>
+                                </div>
+                                <div class="filter-item">
+                                    <div class="filter-item__head">
+                                        <span>Масса</span>
+                                    </div>
+                                    <div class="filter-item__content">
+                                        <InputCheck
+                                            :label-text="'1кг'"
+                                        />
+                                        <InputCheck
+                                            :label-text="'3кг'"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter__controls">
+                            <Button
+                                :btn-text="'Применить'"
+                                :btn-class="'filter__btn'"
+                            />
+                        </div>
+                    </div>
+                </form>
+
+                <h3 class="aside__title">Виды колбасы</h3>
+                <ul class="aside__categories">
+                    <li
+                        class="category__list"
+                        v-for="category in categories"
+                    >
+                        <a :href="category.link" class="category__link">{{ category.name }}</a>
+                    </li>
                 </ul>
             </aside>
             <main class="catalog__main">
@@ -35,9 +75,11 @@
 
 <script>
 import Select from "../ui/Select";
+import InputCheck from "../ui/InputCheck";
+import Button from "../ui/Button";
 
 export default {
-    components: {Select},
+    components: {Button, InputCheck, Select},
     data() {
         return {
             categoriesSort: [
@@ -45,6 +87,12 @@ export default {
                 {id: 2, title: 'по убыванию цены'},
                 {id: 3, title: 'сначала новые'},
                 {id: 4, title: 'по названию'},
+            ],
+            categories: [
+                {name: 'Варенная', link: '#'},
+                {name: 'Копченная', link: '#'},
+                {name: 'Ветчина', link: '#'},
+                {name: 'Сосиски', link: '#'}
             ]
         }
     }
@@ -53,12 +101,14 @@ export default {
 
 <style lang="scss" scoped>
 @import "resources/sass/variables";
+
 .catalog {
     &__top {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
     }
+
     &__title {
         font-size: 32px;
         font-weight: bold;
@@ -81,7 +131,7 @@ export default {
     -webkit-appearance: none;
     appearance: none;
     background-color: #fff;
-/*    background-image: url('../storage/icons/arrow-down.svg');*/
+    /*    background-image: url('../storage/icons/arrow-down.svg');*/
     background-repeat: no-repeat;
 }
 
@@ -90,14 +140,47 @@ export default {
 }
 
 .catalog__aside {
-    width: 200px;
-    border: 1px solid green;
+    width: 300px;
     padding: 10px;
+}
+
+.aside__title {
+    font-size: 20px;
+    margin-bottom: 1.5rem;
+}
+
+.category {
+    &__list {
+        border-bottom: 1px solid $greyLight;
+    }
+
+    &__link {
+        display: block;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        color: $colorText;
+        font-family: "Fira Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji";
+
+        &:hover {
+            color: $colorBtn;
+        }
+    }
 }
 
 .catalog__main {
     width: 100%;
-    border: 1px solid red;
     padding: 10px;
 }
+.filter {
+    margin-bottom: 3rem;
+
+    &__content {
+        margin-bottom: 1.5rem;
+    }
+
+    &__btn {
+        height: 40px;
+    }
+}
+
 </style>

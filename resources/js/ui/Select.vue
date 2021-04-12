@@ -16,6 +16,9 @@ export default {
         return {
             categories: []
         }
+    },
+    methods: {
+
     }
 }
 </script>
