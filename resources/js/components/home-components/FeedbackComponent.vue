@@ -29,20 +29,20 @@
 
 
                 <div class="feedback__field agree">
-                    <label class="agree__checkbox">
-                        <input type="checkbox" checked="checked">
-                        <span class="checkmark"></span>
-                        <span class="agree__label">
-                              Настоящим подтверждаю, что я ознакомлен и согласен с условиями оферты и политики конфиденциальности *
-                        </span>
-                    </label>
+                    <InputCheck
+                        :labelText="'Настоящим подтверждаю, что я ознакомлен и согласен с условиями оферты и политики конфиденциальности *'"
+                        :labelClass="'agree__label'"
+                    />
                     <div class="feedback__field-error"></div>
                 </div>
 
                 <!--                <input type="hidden" value="Форма обратной связи" name="subject">-->
 
                 <div class="feedback__submit">
-                    <button class="button feedback__btn" type="submit">Отправить</button>
+                    <Button
+                        :btnText="'Отправить'"
+                        :btn-class="'feedback__btn'"
+                    />
                 </div>
             </div>
         </form>
@@ -50,7 +50,12 @@
 </template>
 
 <script>
-export default {}
+import InputCheck from "../../ui/InputCheck";
+import Button from "../../ui/Button";
+
+export default {
+    components: {Button, InputCheck}
+}
 </script>
 
 <style lang="scss" scoped>
@@ -84,6 +89,7 @@ export default {}
 
     & textarea {
         height: 115px;
+        resize: none;
     }
 }
 
@@ -99,86 +105,10 @@ export default {}
 }
 
 .feedback__btn {
-    min-width: 250px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     height: 50px;
-    max-width: 100%;
-    font-weight: bold;
-    font-size: 2rem;
-    line-height: 1;
-    color: #ffffff;
-    border-radius: 10px;
-    white-space: nowrap;
-    background: #b63334;
-    outline: none;
-    transition: all .3s;
-
-    &:hover {
-        background: rgba(182, 51, 52, .9);
-    }
 }
 
-.agree__checkbox {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    user-select: none;
+.agree__label {
 
-}
-
-.agree__checkbox input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
-
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 2.5rem;
-    width: 2.5rem;
-    border: 1px solid $grey;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-}
-
-.agree__checkbox:hover input ~ .checkmark {
-
-}
-
-.agree__checkbox input:checked ~ .checkmark {
-
-
-}
-
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-.agree__checkbox input:checked ~ .checkmark:after {
-    display: block;
-}
-
-.agree__checkbox .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 6px;
-    height: 12px;
-    border: solid $colorBtn;
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
 }
 </style>
