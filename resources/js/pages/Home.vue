@@ -6,7 +6,8 @@
 
         <BenefitListComponent />
 
-        <CarouselProductComponent :title="'Акции'" />
+<!--        <CarouselProductComponent :title="'Акции'" />-->
+        <PromotionsComponent />
 
         <ReviewsComponent />
 
