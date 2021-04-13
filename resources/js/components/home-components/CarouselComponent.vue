@@ -1,6 +1,6 @@
 <template>
-    <hooper :progress="true" :autoPlay="true" :playSpeed="8000" style="height: auto; outline: none">
-        <slide>
+    <hooper :progress="true" :autoPlay="true" :playSpeed="8000" :wheelControl="false" style="height: auto; outline: none">
+        <slide style="width: 100%">
             <!--            в url картинку для слайдера-->
             <div class="slider__container">
                 <img class="slider__img" src="https://static-sl.insales.ru/r/nlEYOkOZekE/fit/1408/0/ce/1/plain/files/1/2110/14641214/original/slider.jpg@webp" alt="">
@@ -9,7 +9,7 @@
                 </div>
             </div>
         </slide>
-        <slide>
+        <slide style="width: 100%">
             <div class="slider__container">
                 <img class="slider__img" src="https://static-sl.insales.ru/r/nlEYOkOZekE/fit/1408/0/ce/1/plain/files/1/2110/14641214/original/slider.jpg@webp" alt="">
                 <div class="slider__text">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </slide>
-        <slide>
+        <slide style="width: 100%">
             <div class="slider__container">
                 <img class="slider__img" src="https://static-sl.insales.ru/r/nlEYOkOZekE/fit/1408/0/ce/1/plain/files/1/2110/14641214/original/slider.jpg@webp" alt="">
                 <div class="slider__text">
@@ -55,15 +55,7 @@
 </script>
 
 <style lang="scss" scoped>
-/*.carousel-caption {*/
-/*    bottom: 50%;*/
-/*    padding-top: 0;*/
-/*    padding-bottom: 0;*/
 
-/*    & > h2 {*/
-/*        margin-bottom: 0;*/
-/*    }*/
-/*}*/
 .slider {
     &__container {
         height: 100%;

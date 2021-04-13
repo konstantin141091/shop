@@ -6,10 +6,10 @@
 
 @import "nullstyle";
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
-
+* {
+    margin: 0;
+    padding: 0;
+}
 body {
     height: 100%;
     font-family: $fontFamily;
@@ -32,27 +32,26 @@ h1, h2, h3, h4, h5, h6 {
     height: 100%;
     display: flex;
     flex-direction: column;
+    //margin: 0 auto;
 }
 
 .main-layout {
     flex-grow: 1;
 }
+
 .container {
-    max-width: 1408px;
+    max-width: 1400px;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin: 0 auto;
+    //@media (min-width: 768px) {
+    //    padding-right: 50px;
+    //    padding-left: 50px;
+    //}
+    //@media (min-width: 992px) {
+    //
+    //}
+    //@media (min-width: 1200px) {
+    //
+    //}
 }
-//.container {
-//    max-width: 1140px;
-//    padding-right: 30px;
-//    padding-left: 30px;
-//    margin: 0 auto;
-//    @media (min-width: 768px) {
-//        padding-right: 50px;
-//        padding-left: 50px;
-//    }
-//    //@media (min-width: 992px) {
-//    //
-//    //}
-//    //@media (min-width: 1200px) {
-//    //
-//    //}
-//}
