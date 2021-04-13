@@ -66,7 +66,7 @@ article {
     font-size: 1.6rem;
     text-align: left;
     color: $colorText;
-    background: #f7f7f7;
+    background: $greyLight;
     padding: 30px;
 
     & h4 {

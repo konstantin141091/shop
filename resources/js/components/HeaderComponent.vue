@@ -193,14 +193,14 @@ export default {
         position: absolute;
         min-width: 1.6rem;
         height: 1.6rem;
-        padding: 0 3px;
+        padding: 1px 3px;
         line-height: 1.6rem;
         font-size: 1.1rem;
         color: #ffffff;
         font-weight: 700;
         text-align: center;
         border-radius: 50%;
-        top: -10px;
+        top: -9px;
         right: 0;
         background-color: #ff4100;
     }
