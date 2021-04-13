@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <Carousel/>
 
         <section>
@@ -9,9 +9,7 @@
 
         <BenefitListComponent />
 
-        <section>
-            <h2>Акции</h2>
-        </section>
+        <PromotionsComponent />
 
         <ReviewsComponent />
 
@@ -26,10 +24,13 @@ import BenefitListComponent from "../components/home-components/BenefitListCompo
 import ReviewsComponent from "../components/home-components/ReviewsComponent";
 import FeedbackComponent from "../components/home-components/FeedbackComponent";
 import CarouselProductComponent from "../components/CarouselProductsComponent"
+import PromotionsComponent from "../components/home-components/PromotionsComponent";
 
 export default {
     name: "Home",
-    components: {FeedbackComponent, ReviewsComponent, BenefitListComponent, Carousel, CarouselProductComponent}
+    components: {
+        PromotionsComponent,
+        FeedbackComponent, ReviewsComponent, BenefitListComponent, Carousel, CarouselProductComponent}
 }
 </script>
 

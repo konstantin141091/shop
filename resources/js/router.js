@@ -6,6 +6,7 @@ import Admin from "./pages/Admin";
 import Contacts from "./pages/Contacts";
 import Delivery from "./pages/Delivery";
 import Payment from "./pages/Payment";
+import Catalog from "./pages/Catalog";
 
 export default new VueRouter( {
   mode: 'history',
@@ -14,6 +15,11 @@ export default new VueRouter( {
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/catalog',
+      name: 'catalog',
+      component: Catalog
     },
     {
       path: '/about',

@@ -1,6 +1,6 @@
 <template>
     <section class="reviews">
-        <h2 class="reviews__title">Наши плюсы</h2>
+        <h2 class="reviews__title">Отзывы клиентов</h2>
 
         <div class="reviews__box">
             <article>
@@ -42,12 +42,13 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
+@import "resources/sass/variables";
 
 .reviews {
     padding-bottom: 3rem;
 
     &__title {
-        font-size: 32px;
+        font-size: 3.2rem;
         font-weight: bold;
         margin-bottom: 3rem;
     }
@@ -61,10 +62,16 @@ export default {}
 
 article {
     max-width: 450px;
+    min-width: 350px;
     font-size: 1.6rem;
     text-align: left;
-    color: #333333;
-    background: #f7f7f7;
+    color: $colorText;
+    background: $greyLight;
     padding: 30px;
+
+    & h4 {
+        margin-bottom: 15px;
+        font-size: 2rem;
+    }
 }
 </style>

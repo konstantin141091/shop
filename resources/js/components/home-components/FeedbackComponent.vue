@@ -28,24 +28,21 @@
                 </div>
 
 
-                <div class="feedback__field-area agree">
-                    <label class="agree__checkbox">
-                        <input name="agree" type="checkbox" value="" autocomplete="off" class="agree__field">
-                        <span class="agree__content">
-                        <span class="agree__btn icon-check"></span>
-                        <span class="agree__label">
-                          Настоящим подтверждаю, что я ознакомлен и согласен с условиями оферты и политики конфиденциальности *
-                        </span>
-            </span>
-                    </label>
-                    <div data-feedback-form-field-error="" class="feedback__field-error"></div>
+                <div class="feedback__field agree">
+                    <InputCheck
+                        :labelText="'Настоящим подтверждаю, что я ознакомлен и согласен с условиями оферты и политики конфиденциальности *'"
+                        :labelClass="'agree__label'"
+                    />
+                    <div class="feedback__field-error"></div>
                 </div>
 
-
-                <input type="hidden" value="Форма обратной связи" data-feedback-form-field="" name="subject">
+                <!--                <input type="hidden" value="Форма обратной связи" name="subject">-->
 
                 <div class="feedback__submit">
-                    <button class="button feedback__btn" type="submit">Отправить</button>
+                    <Button
+                        :btnText="'Отправить'"
+                        :btn-class="'feedback__btn'"
+                    />
                 </div>
             </div>
         </form>
@@ -53,10 +50,16 @@
 </template>
 
 <script>
-export default {}
+import InputCheck from "../../ui/InputCheck";
+import Button from "../../ui/Button";
+
+export default {
+    components: {Button, InputCheck}
+}
 </script>
 
 <style lang="scss" scoped>
+@import "resources/sass/variables";
 
 .feedback {
     padding-bottom: 3rem;
@@ -76,8 +79,17 @@ export default {}
     text-align: left;
     position: relative;
 
-    & > textarea {
+    & input, textarea {
+        background: #f7f7f7;
+        width: 100%;
+        border-radius: 5px;
+        font-size: 16px;
+        padding: 6px 10px;
+    }
+
+    & textarea {
         height: 115px;
+        resize: none;
     }
 }
 
@@ -89,32 +101,14 @@ export default {}
 .feedback__input {
     min-width: 250px;
     flex-grow: 1;
-}
 
-.form-control {
-    padding: 6px 10px;
 }
 
 .feedback__btn {
-    min-width: 250px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     height: 50px;
-    max-width: 100%;
-    font-weight: bold;
-    font-size: 2rem;
-    line-height: 1;
-    color: #ffffff;
-    border-radius: 10px;
-    white-space: nowrap;
-    background: #b63334;
-    outline: none;
-    transition: all .3s;
+}
 
-    &:hover {
-        background: rgba(182,51,52, .9);
-    }
+.agree__label {
+
 }
 </style>
