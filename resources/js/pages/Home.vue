@@ -2,14 +2,11 @@
     <div class="container">
         <Carousel/>
 
-        <section>
-            <h2>Новое поступление</h2>
-            <CarouselProductComponent />
-        </section>
+        <CarouselProductComponent :title="'Новое поступление'" />
 
         <BenefitListComponent />
 
-        <PromotionsComponent />
+        <CarouselProductComponent :title="'Акции'" />
 
         <ReviewsComponent />
 
@@ -34,6 +31,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

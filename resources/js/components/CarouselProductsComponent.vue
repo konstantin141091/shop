@@ -1,19 +1,21 @@
 <template>
+<section class="container">
+    <h2 class="title">{{ title }}</h2>
     <hooper :settings="hooperSettings">
-    <slide v-for="product in products" :key="product.id">
-        <div class="product">
-            <a href="#">
+<!--        TODO вынести slide в отдельный компонент-->
+        <slide v-for="product in products" :key="product.id">
+            <div class="product">
                 <img class="product__img" style="width: 100%" :src="product.img" alt="product">
-            </a>
-            <div class="product__text">
-                <h3>{{product.title}}, {{product.count}}</h3>
-                <p class="product__price">{{product.price}}</p>
+
+                <div class="product__text">
+                    <a class="product__title" href="#">{{product.title}}, {{product.count}}</a>
+                    <p class="product__price">{{product.price}}</p>
+                </div>
+                <div class="product__btn">
+                    <button>В корзину</button>
+                </div>
             </div>
-            <div class="product__btn">
-                <button>В корзину</button>
-            </div>
-        </div>
-    </slide>
+        </slide>
         <hooper-navigation slot="hooper-addons">
             <svg slot="hooper-prev" class="icon icon-arrowLeft" viewBox="0 0 24 24" width="50px" height="50px">
                 <title>Arrow Left</title>
@@ -26,13 +28,25 @@
                 <path d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg>
         </hooper-navigation>
-</hooper>
+    </hooper>
+</section>
 </template>
 
 <script>
   import { Hooper, Slide, Navigation as HooperNavigation} from "hooper";
   import 'hooper/dist/hooper.css';
   export default {
+    // TODO описать пропсы, добавить возможные значения flag (акция, новинки, рекомендованые)
+    props: {
+      title: {
+        type: String,
+        required: true,
+      },
+      flag: {
+        type: String,
+        // required: true раскоментировать когда продукты будем брать из апи
+      }
+    },
     name: "CarouselProductsComponent",
     components: {
       Hooper,
@@ -66,6 +80,7 @@
             }
           }
         },
+        // убрать products когда будет апи
         products: [
           {
             id: 1,
@@ -139,6 +154,7 @@
 
 
 <style lang="scss" scoped>
+    /*TODO импортировать scss переменные глобально*/
     @import "../../sass/variables";
     .product {
         display: flex;
@@ -152,10 +168,10 @@
             display: flex;
             flex-direction: column;
             padding: 0 0 5px 10px;
-            & h3 {
-                font-size: 16px;
-                margin: 0;
-            }
+        }
+        &__title {
+            font-size: 16px;
+            margin: 0;
         }
         &__price {
             font-size: 28px;
@@ -179,5 +195,13 @@
         &-slide {
             width: 230px;
         }
+    }
+    .title {
+        font-size: 3.2rem;
+        font-weight: bold;
+        margin-bottom: 3rem;
+    }
+    .container {
+        margin: 20px 0;
     }
 </style>

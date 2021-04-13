@@ -1,7 +1,8 @@
 <template>
-    <hooper :progress="true" :autoPlay="true" :playSpeed="8000" :wheelControl="false" style="height: auto; outline: none">
+    <hooper  :settings="hooperSettings" style="height: auto; outline: none">
         <slide style="width: 100%">
             <!--            в url картинку для слайдера-->
+<!--            TODO вынести слайд карусели в отдельный компонент-->
             <div class="slider__container">
                 <img class="slider__img" src="https://static-sl.insales.ru/r/nlEYOkOZekE/fit/1408/0/ce/1/plain/files/1/2110/14641214/original/slider.jpg@webp" alt="">
                 <div class="slider__text">
@@ -50,6 +51,35 @@
       Hooper,
       Slide,
       HooperNavigation
+    },
+    data() {
+      return {
+        hooperSettings: {
+          infiniteScroll: true,
+          centerMode: true,
+          autoPlay: false,
+          playSpeed: 3500,
+          wheelControl: false,
+          breakpoints: {
+            1400: {
+              itemsToShow: 6
+            },
+            1100: {
+              itemsToShow: 5
+            },
+
+            720: {
+              itemsToShow: 4
+            },
+            550: {
+              itemsToShow: 3
+            },
+            0: {
+              itemsToShow: 2
+            }
+          }
+        },
+      }
     }
   }
 </script>
