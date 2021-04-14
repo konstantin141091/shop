@@ -8,7 +8,7 @@
                 <img class="product__img" style="width: 100%" :src="product.img" alt="product">
 
                 <div class="product__text">
-                    <a class="product__title" href="#">{{product.title}}, {{product.count}}</a>
+                    <a class="product__title" href="#">{{product.name}}, {{product.count}}</a>
                     <p class="product__price">{{product.price}}</p>
                 </div>
                 <div class="product__btn">
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </slide>
-        <hooper-navigation slot="hooper-addons">
+        <hooper-navigation slot="hooper-addons" class="slider-arrow">
             <svg slot="hooper-prev" class="icon icon-arrowLeft" viewBox="0 0 24 24" width="50px" height="50px">
                 <title>Arrow Left</title>
                 <path d="M0 0h24v24H0z" fill="none"></path>
@@ -35,6 +35,7 @@
 <script>
   import { Hooper, Slide, Navigation as HooperNavigation} from "hooper";
   import 'hooper/dist/hooper.css';
+  import axios from 'axios';
   export default {
     // TODO описать пропсы, добавить возможные значения flag (акция, новинки, рекомендованые)
     props: {
@@ -75,79 +76,31 @@
             550: {
               itemsToShow: 3
             },
-            0: {
+            400: {
               itemsToShow: 2
+            },
+            0: {
+              itemsToShow: 1
             }
           }
         },
-        // убрать products когда будет апи
-        products: [
-          {
-            id: 1,
-            title: "product",
-            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-            price: 1300,
-            count: "1 кг"
-          },
-          {
-            id: 2,
-            title: "product2",
-            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-            price: 1300,
-            count: "1 кг"
-          },
-          {
-            id: 3,
-            title: "product3",
-            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-            price: 1300,
-            count: "1 кг"
-          },
-          {
-            id: 4,
-            title: "product4",
-            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-            price: 1300,
-            count: "1 кг"
-          },
-          {
-            id: 5,
-            title: "product5",
-            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-            price: 1300,
-            count: "1 кг"
-          },
-          {
-            id: 6,
-            title: "product6",
-            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-            price: 1300,
-            count: "1 кг"
-          },
-          {
-            id: 7,
-            title: "product7",
-            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-            price: 1300,
-            count: "1 кг"
-          },
-          {
-            id: 8,
-            title: "product8",
-            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-            price: 1300,
-            count: "1 кг"
-          },
-          {
-            id: 9,
-            title: "product9",
-            img: "https://static-sl.insales.ru/r/OhtYntwQrDA/fit/440/0/ce/1/plain/images/products/1/3146/379440202/large_Авокадо.jpg",
-            price: 1300,
-            count: "1 кг"
-          },
-
-        ]
+        products: [],
       }
+    },
+
+    mounted() {
+      axios.get('/api/product/' + this.flag)
+        .then(response => {
+          if (response.data.products) {
+            for (let el of response.data.products) {
+              this.products.push(el);
+            }
+          }
+        })
+        .catch(error => {
+          // TODO нужно обработать ошибку и что-то сделать если не придут продукты
+          console.log(error);
+        });
     }
   }
 </script>
@@ -187,7 +140,6 @@
             padding: 10px 0;
             border-radius: 10px;
         }
-
     }
     .hooper {
         height: auto;
@@ -195,6 +147,13 @@
         &-slide {
             width: 230px;
         }
+    }
+
+    .hooper-prev {
+        left: -20px;
+    }
+    .hooper-next {
+        right: -20px;
     }
     .title {
         font-size: 3.2rem;

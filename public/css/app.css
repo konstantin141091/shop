@@ -85,6 +85,18 @@ h6 {
   font-weight: 700;
 }
 
+.slider-arrow button {
+  padding: 0 !important;
+}
+
+.slider-arrow button:first-child {
+  left: -20px;
+}
+
+.slider-arrow button:last-child {
+  right: -20px;
+}
+
 * {
   margin: 0;
   padding: 0;
