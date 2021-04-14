@@ -2,11 +2,12 @@
     <div class="container">
         <Carousel/>
 
-        <CarouselProductComponent :title="'Новое поступление'" />
+        <CarouselProductComponent :title="'Новое поступление'" :flag="'news'" />
 
         <BenefitListComponent />
 
         <PromotionsComponent />
+
         <ReviewsComponent />
 
         <FeedbackComponent />
