@@ -9,6 +9,7 @@ import Payment from "./pages/Payment";
 import Catalog from "./pages/Catalog";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
+import PageNotFound from "./pages/PageNotFound";
 
 export default new VueRouter( {
   mode: 'history',
@@ -57,6 +58,10 @@ export default new VueRouter( {
       path: '/cart',
       name: 'cart',
       component: Cart
+    },
+    {
+      path: '/*',
+      component: PageNotFound
     },
   ]
 })
