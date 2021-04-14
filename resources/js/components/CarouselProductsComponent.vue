@@ -9,7 +9,7 @@
                 <slide v-for="product in products" :key="product.id">
                     <ProductComponent
                         :product="product"
-                        :imageUrl="imageUrl + product.img"
+                        :imageUrl="product.img ? imageUrl + product.img : 'storage/images/no_photo.png'"
                     />
                 </slide>
 
@@ -89,7 +89,7 @@ export default {
                 {
                     id: 1,
                     title: "Сосиски Кроха",
-                    img: "Sosiski_kroha.png",
+                    // img: "Sosiski_kroha.png",
                     price: 1300,
                     count: "1 кг"
                 },

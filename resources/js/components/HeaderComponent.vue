@@ -71,7 +71,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "resources/sass/variables";
+@import "../../sass/variables";
 
 .header__top {
     padding-top: 15px;

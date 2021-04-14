@@ -31,13 +31,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "resources/sass/variables";
+@import "../../sass/variables";
 
 .product {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    border: 1px solid $grey;
+    border: 1px solid $greyLight;
     max-width: 230px;
     height: 350px;
 
@@ -62,7 +62,8 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        margin-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     &__title {
@@ -79,15 +80,18 @@ export default {
         font-weight: bold;
     }
 
-    &__btn button {
-        font-size: 16px;
-        cursor: pointer;
-        color: #ffffff;
-        background-color: $colorBtn;
-        width: 100%;
+    &__btn {
         padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 10px;
+
+        button {
+            font-size: 16px;
+            cursor: pointer;
+            color: #ffffff;
+            background-color: $colorBtn;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+        }
     }
 
 }

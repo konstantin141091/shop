@@ -185,7 +185,7 @@ __webpack_require__.r(__webpack_exports__);
       products: [{
         id: 1,
         title: "Сосиски Кроха",
-        img: "Sosiski_kroha.png",
+        // img: "Sosiski_kroha.png",
         price: 1300,
         count: "1 кг"
       }, {
@@ -1210,7 +1210,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".product[data-v-9e91ef8e] {\n  display: flex;\n  flex-direction: column;\n  border-radius: 10px;\n  border: 1px solid #808080;\n  max-width: 230px;\n  height: 350px;\n}\n.product img[data-v-9e91ef8e] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  border-top-left-radius: inherit;\n  border-top-right-radius: inherit;\n}\n.product__img[data-v-9e91ef8e] {\n  display: block;\n  height: 180px;\n  margin-bottom: 1.5rem;\n  border-top-left-radius: inherit;\n  border-top-right-radius: inherit;\n}\n.product__text[data-v-9e91ef8e] {\n  flex-grow: 1;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 10px;\n}\n.product__title[data-v-9e91ef8e] {\n  font-size: 16px;\n  color: #333333;\n}\n.product__title[data-v-9e91ef8e]:hover {\n  color: #b63334;\n}\n.product__price[data-v-9e91ef8e] {\n  font-size: 2.4rem;\n  font-weight: bold;\n}\n.product__btn button[data-v-9e91ef8e] {\n  font-size: 16px;\n  cursor: pointer;\n  color: #ffffff;\n  background-color: #b63334;\n  width: 100%;\n  padding: 10px;\n  border-radius: 5px;\n  margin-bottom: 10px;\n}", ""]);
+exports.push([module.i, ".product[data-v-9e91ef8e] {\n  display: flex;\n  flex-direction: column;\n  border-radius: 10px;\n  border: 1px solid #f7f7f7;\n  max-width: 230px;\n  height: 350px;\n}\n.product img[data-v-9e91ef8e] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  border-top-left-radius: inherit;\n  border-top-right-radius: inherit;\n}\n.product__img[data-v-9e91ef8e] {\n  display: block;\n  height: 180px;\n  margin-bottom: 1.5rem;\n  border-top-left-radius: inherit;\n  border-top-right-radius: inherit;\n}\n.product__text[data-v-9e91ef8e] {\n  flex-grow: 1;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding-left: 10px;\n  padding-right: 10px;\n}\n.product__title[data-v-9e91ef8e] {\n  font-size: 16px;\n  color: #333333;\n}\n.product__title[data-v-9e91ef8e]:hover {\n  color: #b63334;\n}\n.product__price[data-v-9e91ef8e] {\n  font-size: 2.4rem;\n  font-weight: bold;\n}\n.product__btn[data-v-9e91ef8e] {\n  padding: 10px;\n}\n.product__btn button[data-v-9e91ef8e] {\n  font-size: 16px;\n  cursor: pointer;\n  color: #ffffff;\n  background-color: #b63334;\n  width: 100%;\n  padding: 10px;\n  border-radius: 5px;\n}", ""]);
 
 // exports
 
@@ -4057,7 +4057,9 @@ var render = function() {
                   _c("ProductComponent", {
                     attrs: {
                       product: product,
-                      imageUrl: _vm.imageUrl + product.img
+                      imageUrl: product.img
+                        ? _vm.imageUrl + product.img
+                        : "storage/images/no_photo.png"
                     }
                   })
                 ],
@@ -22520,8 +22522,8 @@ function dateFilter(value) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\OpenServer\domains\shop-suasage\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\OpenServer\domains\shop-suasage\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! F:\programms\OpenServer\domains\shop-sausage\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! F:\programms\OpenServer\domains\shop-sausage\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
