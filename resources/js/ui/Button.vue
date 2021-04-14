@@ -10,6 +10,7 @@ export default {
     props: {
         btnText: {
             type: String,
+            default: 'Кнопка'
         },
         btnClass: {
             type: String,

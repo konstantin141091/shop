@@ -7,7 +7,7 @@
             <!--        TODO вынести slide в отдельный компонент-->
 
                 <slide v-for="product in products" :key="product.id">
-                    <ProductComponent
+                    <ProductCard
                         :product="product"
                         :imageUrl="product.img ? imageUrl + product.img : 'storage/images/no_photo.png'"
                     />
@@ -35,7 +35,7 @@
 <script>
 import {Hooper, Slide, Navigation as HooperNavigation} from "hooper";
 import 'hooper/dist/hooper.css';
-import ProductComponent from "./ProductComponent";
+import ProductCard from "./ProductCardComponent";
 
 export default {
     // TODO описать пропсы, добавить возможные значения flag (акция, новинки, рекомендованые)
@@ -51,7 +51,7 @@ export default {
     },
     name: "CarouselProductsComponent",
     components: {
-        ProductComponent,
+        ProductCard,
         Hooper,
         Slide,
         HooperNavigation
