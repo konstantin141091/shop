@@ -17,7 +17,7 @@
 
 <script>
 export default {
-    name: 'ProductComponent',
+    name: 'ProductCardComponent',
     props: {
         product: {
             type: Object,
