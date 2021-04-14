@@ -10,6 +10,7 @@ export default {
     props: {
         btnText: {
             type: String,
+            default: 'Кнопка'
         },
         btnClass: {
             type: String,
@@ -23,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "resources/sass/variables";
+@import "../../sass/variables";
 
 .button {
     min-width: 250px;

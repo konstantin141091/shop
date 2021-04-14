@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "resources/sass/variables";
+@import "../../../sass/variables";
 
 .feedback {
     padding-bottom: 3rem;

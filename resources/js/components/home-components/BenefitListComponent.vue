@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "resources/sass/variables";
+@import "../../../sass/variables";
 
 .benefit-list {
     padding-bottom: 3rem;

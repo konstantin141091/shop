@@ -52,7 +52,7 @@
                 <router-link to="/">
                     <img src="storage/icons/person_black.svg" alt="аккаунт">
                 </router-link>
-                <router-link to="/">
+                <router-link to="/cart">
                     <span class="header__cart">
                         <img src="storage/icons/shopping_cart_black.svg" alt="корзина">
                         <span class="header__cart-badge">15</span>
@@ -71,7 +71,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "resources/sass/variables";
+@import "../../sass/variables";
 
 .header__top {
     padding-top: 15px;
@@ -144,14 +144,15 @@ export default {
     }
 
     &-input {
-        border-radius: 15px 0 0 15px;
+        border-radius: 10px 0 0 10px;
         border: 1px solid #808080;
         border-right: none;
         min-width: 150px;
         width: 100%;
         height: 50px;
-        padding: 0 10px;
+        padding: 0 15px;
         outline: none;
+        font-size: 16px;
 
         &:focus {
             outline: none;
