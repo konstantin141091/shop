@@ -2,11 +2,11 @@
     <div>
         <div class="product">
             <a href="#" class="product__img">
-                <img :src="imageUrl" :alt="product.title">
+                <img :src="imageUrl" :alt="title">
             </a>
             <div class="product__text">
-                <a class="product__title" href="#">{{ product.title }}, {{ product.count }}</a>
-                <p class="product__price">{{ product.price }} руб.</p>
+                <a class="product__title" href="#">{{ title }}, {{ count }}</a>
+                <p class="product__price">{{ price }} руб.</p>
             </div>
             <div class="product__btn">
                 <button>В корзину</button>
@@ -21,11 +21,23 @@ export default {
     props: {
         product: {
             type: Object,
+            required: true
         },
         imageUrl: {
             type: String,
             default: 'storage/images/no_photo.png'
-        }
+        },
+        title: {
+            type: String,
+            default: 'Продукт'
+        },
+        count: {
+            type: String,
+        },
+        price: {
+            type: Number,
+        },
+
     }
 }
 </script>

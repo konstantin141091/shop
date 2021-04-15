@@ -26,7 +26,9 @@
                                         <span>Цены</span>
                                     </div>
                                     <div class="filter-item__content">
-                                        <input type="range" class="double-range">
+<!--                                        <Slider-->
+<!--                                            v-model="value"-->
+<!--                                        />-->
                                     </div>
                                 </div>
                                 <div class="filter-item">
@@ -63,10 +65,21 @@
                     </li>
                 </ul>
             </aside>
-            <main class="catalog__main">
-                <h2>Варенная</h2>
-                <div>
 
+            <main class="catalog__main">
+<!--                <h2>Варенная</h2>-->
+
+
+                <div class="products__flex">
+                    <ProductCardComponent
+                        v-for="(product, index) in productList"
+                        :product="product"
+                        :key="index"
+                        :title="product.name"
+                        :count="product.count"
+                        :price="product.price"
+                        :imageUrl="product.img ? imageUrl + product.img : 'storage/images/no_photo.png'"
+                    />
                 </div>
             </main>
         </div>
@@ -77,9 +90,24 @@
 import Select from "../ui/Select";
 import InputCheck from "../ui/InputCheck";
 import Button from "../ui/Button";
+import Slider from '@vueform/slider'
+import PaginatedList from "../ui/PaginatedList";
+import ProductCardComponent from "../components/ProductCardComponent";
 
 export default {
-    components: {Button, InputCheck, Select},
+    components: {ProductCardComponent, PaginatedList, Button, InputCheck, Select, Slider},
+
+    props: {
+        listData: {
+            type: Array,
+            required: true
+        },
+        size: {
+            type: Number,
+            required: false,
+            default: 5
+        },
+    },
     data() {
         return {
             categoriesSort: [
@@ -93,7 +121,33 @@ export default {
                 {name: 'Копченная', link: '#'},
                 {name: 'Ветчина', link: '#'},
                 {name: 'Сосиски', link: '#'}
-            ]
+            ],
+            pageNumber: 0,
+
+        }
+    },
+    computed: {
+
+    },
+    methods: {
+        //product
+        productList() {
+            return this.$store.getters.PRODUCTS
+        },
+        imageUrl() {
+            return `storage/images/products/`
+        },
+
+        //paginator
+        pageCount() {
+            let l = this.listData.length
+            let s = this.size
+            return Math.ceil(l/s)
+        },
+        paginatedData() {
+            const start = this.pageNumber * this.size
+            const end = start + this.size
+            return this.listData.slice(start, end);
         }
     }
 }
@@ -183,4 +237,11 @@ export default {
     }
 }
 
+
+.products__flex {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 3rem;
+    row-gap: 3rem;
+}
 </style>
