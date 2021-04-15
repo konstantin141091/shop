@@ -3,12 +3,16 @@
         <div class="catalog__top">
             <h1 class="catalog__title">Каталог</h1>
             <div class="catalog__select">
-                <select class="select-css">
-                    <option>Сортировка</option>
-                    <option>по возрастанию цены</option>
-                    <option>по убыванию цены</option>
-                    <option>сначала новые</option>
-                    <option>по названию</option>
+                <select
+                    class="select"
+                    v-model="sortType"
+                    @click="sortItem()"
+                >
+                    <option value="name">По названию</option>
+                    <option value="min_price">По возрастанию цены</option>
+                    <option value="max_price">По убыванию цены</option>
+                    <option value="new-products">Сначала новые</option>
+
                 </select>
             </div>
         </div>
@@ -26,7 +30,7 @@
                                         <span>Цены</span>
                                     </div>
                                     <div class="filter-item__content">
-                                        <input type="range" class="double-range">
+
                                     </div>
                                 </div>
                                 <div class="filter-item">
@@ -63,11 +67,15 @@
                     </li>
                 </ul>
             </aside>
-            <main class="catalog__main">
-                <h2>Варенная</h2>
-                <div>
 
-                </div>
+            <main class="catalog__main">
+                <!--                <h2>Варенная</h2>-->
+
+
+                <PaginationCatalog
+                    :catalogData="productList"
+                />
+
             </main>
         </div>
     </div>
@@ -77,9 +85,15 @@
 import Select from "../ui/Select";
 import InputCheck from "../ui/InputCheck";
 import Button from "../ui/Button";
+import ProductCardComponent from "../components/ProductCardComponent";
+import PaginationCatalog from "../components/catalog-components/PaginationCatalog";
 
 export default {
-    components: {Button, InputCheck, Select},
+    components: {PaginationCatalog, ProductCardComponent, Button, InputCheck, Select},
+
+    props: {
+
+    },
     data() {
         return {
             categoriesSort: [
@@ -93,8 +107,29 @@ export default {
                 {name: 'Копченная', link: '#'},
                 {name: 'Ветчина', link: '#'},
                 {name: 'Сосиски', link: '#'}
-            ]
+            ],
+            pageNumber: 0,
+            sortType: 'name',
         }
+    },
+    computed: {
+        productList() {
+            return this.$store.getters.PRODUCTS
+        },
+
+    },
+    methods: {
+        sortItem() {
+            if (this.sortType === 'name') {
+                this.productList.sort((a,b) => {a.name.localeCompare(b.name)})
+            }
+            if (this.sortType === 'min_price') {
+                this.productList.sort((a,b) => a.price - b.price)
+            }
+            if (this.sortType === 'max_price') {
+                this.productList.sort((a,b) => b.price - a.price)
+            }
+        },
     }
 }
 </script>
@@ -116,7 +151,7 @@ export default {
     }
 }
 
-.select-css {
+.select {
     display: block;
     font-size: 16px;
     color: $colorText;
@@ -171,6 +206,7 @@ export default {
     width: 100%;
     padding: 10px;
 }
+
 .filter {
     margin-bottom: 3rem;
 
