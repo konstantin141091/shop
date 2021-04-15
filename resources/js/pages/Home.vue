@@ -2,7 +2,7 @@
     <div class="container">
         <Carousel/>
 
-        <CarouselProductComponent :title="'Новое поступление'" :flag="'news'" />
+        <CarouselProductComponent :title="'Новое поступление'" :flag="'sale'" />
 
         <BenefitListComponent />
 

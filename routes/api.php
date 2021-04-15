@@ -23,5 +23,11 @@ Route::group([
     'prefix' => 'product',
 ], function () {
     Route::get('/', 'ProductController@index');
-    Route::get('/news', 'ProductController@indexNews');
+});
+
+Route::group([
+    'namespace' => 'API',
+    'prefix' => 'category',
+], function () {
+    Route::get('/', 'CategoryController@index');
 });

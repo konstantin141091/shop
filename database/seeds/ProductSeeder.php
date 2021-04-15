@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
                 'sale' => null,
                 'news' => false,
                 'price' => rand(10, 5000),
-                'img' => 'storage/images/products/Polukopchyonnaya_Armavarskaya_GOST.png',
+                'img' => 'Polukopchyonnaya_Armavarskaya_GOST.png',
                 'description' => 'product description '.$i,
                 'shelf_life' => 'product shelf_life '. $i,
             ];

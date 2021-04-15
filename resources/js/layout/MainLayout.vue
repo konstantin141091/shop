@@ -14,7 +14,12 @@ import Footer from "../components/FooterComponent";
 
 export default {
     name: "MainLayout",
-    components: {Header, Footer}
+    components: {Header, Footer},
+  mounted() {
+      // вызываем запросы к бд, чтобы сохранить данные в store
+    this.$store.dispatch('GET_PRODUCTS');
+    this.$store.dispatch('GET_CATEGORIES');
+  }
 }
 </script>
 

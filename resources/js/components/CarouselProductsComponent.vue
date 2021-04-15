@@ -3,9 +3,9 @@
     <h2 class="title">{{ title }}</h2>
     <hooper :settings="hooperSettings">
 <!--        TODO вынести slide в отдельный компонент-->
-        <slide v-for="product in products" :key="product.id">
+        <slide v-for="product in productList" :key="product.id">
             <div class="product">
-                <img class="product__img" style="width: 100%" :src="product.img" alt="product">
+                <img class="product__img" style="width: 100%" :src="'storage/images/products/' + product.img" alt="product">
 
                 <div class="product__text">
                     <a class="product__title" href="#">{{product.name}}, {{product.count}}</a>
@@ -35,7 +35,6 @@
 <script>
   import { Hooper, Slide, Navigation as HooperNavigation} from "hooper";
   import 'hooper/dist/hooper.css';
-  import axios from 'axios';
   export default {
     // TODO описать пропсы, добавить возможные значения flag (акция, новинки, рекомендованые)
     props: {
@@ -44,8 +43,9 @@
         required: true,
       },
       flag: {
+        // флаг принимает значения news - товары новинки или sale - товары со скидкой
         type: String,
-        // required: true раскоментировать когда продукты будем брать из апи
+        required: true,
       }
     },
     name: "CarouselProductsComponent",
@@ -88,20 +88,17 @@
       }
     },
 
-    mounted() {
-      axios.get('/api/product/' + this.flag)
-        .then(response => {
-          if (response.data.products) {
-            for (let el of response.data.products) {
-              this.products.push(el);
-            }
-          }
-        })
-        .catch(error => {
-          // TODO нужно обработать ошибку и что-то сделать если не придут продукты
-          console.log(error);
-        });
-    }
+    computed: {
+      productList() {
+        if (this.flag === 'news') {
+          return this.$store.getters.PRODUCTS_NEWS;
+        }
+        if (this.flag === 'sale') {
+          return this.$store.getters.PRODUCTS_SALE;
+        }
+      }
+
+    },
   }
 </script>
 
@@ -147,13 +144,6 @@
         &-slide {
             width: 230px;
         }
-    }
-
-    .hooper-prev {
-        left: -20px;
-    }
-    .hooper-next {
-        right: -20px;
     }
     .title {
         font-size: 3.2rem;
