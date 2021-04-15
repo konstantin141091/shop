@@ -2,10 +2,10 @@
     <div>
         <div class="product">
             <a href="#" class="product__img">
-                <img :src="imageUrl" :alt="title">
+                <img :src="imageUrl" :alt="name">
             </a>
             <div class="product__text">
-                <a class="product__title" href="#">{{ title }}, {{ count }}</a>
+                <a class="product__title" href="#">{{ name }}, {{ count }}</a>
                 <p class="product__price">{{ price }} руб.</p>
             </div>
             <div class="product__btn">
@@ -21,13 +21,15 @@ export default {
     props: {
         product: {
             type: Object,
-            required: true
+            default: () => {
+                return {}
+            }
         },
         imageUrl: {
             type: String,
             default: 'storage/images/no_photo.png'
         },
-        title: {
+        name: {
             type: String,
             default: 'Продукт'
         },

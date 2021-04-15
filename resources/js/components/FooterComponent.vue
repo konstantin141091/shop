@@ -20,9 +20,10 @@ export default {
 
 footer {
     background: #f7f7f7;
-    height: 50px;
+    height: 5rem;
     color: $colorText;;
     text-align: center;
-    line-height: 50px;
+    line-height: 5rem;
+    margin-top: 3rem;
 }
 </style>
