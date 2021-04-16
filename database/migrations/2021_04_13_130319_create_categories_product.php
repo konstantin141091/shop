@@ -16,6 +16,7 @@ class CreateCategoriesProduct extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->comment('название категории');
+            $table->string('slug');
             $table->tinyInteger('sale')->nullable()->comment('скидка на всю категорию');
             $table->timestamps();
         });

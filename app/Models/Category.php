@@ -10,12 +10,14 @@ class Category extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'name',
+        'slug',
         'sale',
     ];
 
     public static function attributesName() {
         return [
             'name' => "Категория",
+            'slug' => "Категория", //не знаю что написать
             'sale' => "Скидка",
         ];
     }
@@ -24,6 +26,7 @@ class Category extends Model
     {
         return [
             'name' => "required|max:100",
+            'slug' => "required|max:100",
             'sale' => "digits_between:0,100",
         ];
     }

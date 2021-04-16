@@ -16,11 +16,34 @@ class ProductSeeder extends Seeder
     }
 
     private function getData() {
-        $data = [];
+        $data = [
+            [
+                'name' => 'Старомосковская вареная копченая',
+                'count' => '1 шт',
+                'sale' => 5,
+                'news' => true,
+                'price' => 200,
+                'img' => 'Staromoskovskaya_varyono_kopchyonnaya.png',
+                'description' => 'product description ',
+                'shelf_life' => 'product shelf_life ',
+                'category' => 'вареная'
+            ],
+            [
+                'name' => 'Охотничие колбаски ГОСТ ',
+                'count' => '1 шт',
+                'sale' => 15,
+                'news' => true,
+                'price' => 600,
+                'img' => 'Ohotnich_kolbaski_GOST.png',
+                'description' => 'product description ',
+                'shelf_life' => 'product shelf_life ',
+                'category' => 'полукопченая'
+            ],
+        ];
 
         for ($i = 0; $i < 60; $i++) {
             $data[] = [
-                'name' => 'product '.$i,
+                'name' => 'Полукопченная Армавирская ГОСТ '.$i,
                 'count' => '1 кг',
                 'sale' => null,
                 'news' => false,
@@ -28,6 +51,7 @@ class ProductSeeder extends Seeder
                 'img' => 'Polukopchyonnaya_Armavarskaya_GOST.png',
                 'description' => 'product description '.$i,
                 'shelf_life' => 'product shelf_life '. $i,
+                'category' => 'полукопченая'
             ];
         }
 

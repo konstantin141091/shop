@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('img')->comment('путь до картинки');
             $table->text('description')->comment('описание товара');
             $table->text('shelf_life')->comment('срок годности и условия хранения');
+            $table->string('category')->comment('категория');
             $table->timestamps();
         });
     }

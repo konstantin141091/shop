@@ -20,57 +20,20 @@
         <div class="flex-box">
             <aside class="catalog__aside aside">
                 <h3 class="aside__title">Фильтры</h3>
-
-                <form class="filter">
-                    <div class="filter">
-                        <div class="filter__content">
-                            <div class="filter__items">
-                                <div class="filter-item">
-                                    <div class="filter-item__head">
-                                        <span>Цены</span>
-                                    </div>
-                                    <div class="filter-item__content">
-
-                                    </div>
-                                </div>
-                                <div class="filter-item">
-                                    <div class="filter-item__head">
-                                        <span>Масса</span>
-                                    </div>
-                                    <div class="filter-item__content">
-                                        <InputCheck
-                                            :label-text="'1кг'"
-                                        />
-                                        <InputCheck
-                                            :label-text="'3кг'"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="filter__controls">
-                            <Button
-                                :btn-text="'Применить'"
-                                :btn-class="'filter__btn'"
-                            />
-                        </div>
-                    </div>
-                </form>
-
+                    <FilterComponent />
                 <h3 class="aside__title">Виды колбасы</h3>
                 <ul class="aside__categories">
                     <li
                         class="category__list"
-                        v-for="category in categories"
+                        v-for="category in categoryList"
                     >
-                        <a :href="category.link" class="category__link">{{ category.name }}</a>
+                       {{ category.name }}
                     </li>
                 </ul>
             </aside>
 
             <main class="catalog__main">
                 <!--                <h2>Варенная</h2>-->
-
 
                 <PaginationCatalog
                     :catalogData="productList"
@@ -87,10 +50,10 @@ import InputCheck from "../ui/InputCheck";
 import Button from "../ui/Button";
 import ProductCardComponent from "../components/ProductCardComponent";
 import PaginationCatalog from "../components/catalog-components/PaginationCatalog";
+import FilterComponent from "../components/catalog-components/FiltersComponent";
 
 export default {
-    components: {PaginationCatalog, ProductCardComponent, Button, InputCheck, Select},
-
+    components: {FilterComponent, PaginationCatalog, ProductCardComponent, Button, InputCheck, Select},
     props: {
 
     },
@@ -102,12 +65,7 @@ export default {
                 {id: 3, title: 'сначала новые'},
                 {id: 4, title: 'по названию'},
             ],
-            categories: [
-                {name: 'Варенная', link: '#'},
-                {name: 'Копченная', link: '#'},
-                {name: 'Ветчина', link: '#'},
-                {name: 'Сосиски', link: '#'}
-            ],
+            sortedProducts: [],
             pageNumber: 0,
             sortType: 'name',
         }
@@ -115,6 +73,9 @@ export default {
     computed: {
         productList() {
             return this.$store.getters.PRODUCTS
+        },
+        categoryList() {
+            return this.$store.getters.CATEGORIES
         },
 
     },
@@ -129,6 +90,14 @@ export default {
             if (this.sortType === 'max_price') {
                 this.productList.sort((a,b) => b.price - a.price)
             }
+        },
+        sortByCategories(category) {
+            this.sortedProducts = []
+            this.productList.map(item => {
+                if(item.category === category.name) {
+                    this.sortedProducts.push(item)
+                }
+            })
         },
     }
 }
@@ -187,6 +156,17 @@ export default {
 .category {
     &__list {
         border-bottom: 1px solid $greyLight;
+        text-transform: capitalize;
+        display: block;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        color: $colorText;
+        font-family: "Fira Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji";
+        cursor: pointer;
+
+        &:hover {
+            color: $colorBtn;
+        }
     }
 
     &__link {
