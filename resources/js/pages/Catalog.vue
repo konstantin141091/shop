@@ -1,17 +1,19 @@
 <template>
     <div class="container">
         <div class="catalog__top">
-            <h1 class="catalog__title">Каталог</h1>
+            <h1 class="catalog__title">{{ categoryName || 'Каталог' }}</h1>
             <div class="catalog__select">
                 <select
                     class="select"
+                    name="Сортировка"
                     v-model="sortType"
                     @click="sortItem()"
                 >
-                    <option value="name">По названию</option>
-                    <option value="min_price">По возрастанию цены</option>
-                    <option value="max_price">По убыванию цены</option>
-                    <option value="new-products">Сначала новые</option>
+                    <option
+                        v-for="item in itemsSort"
+                        :key="item.value"
+                        :value="item.value"
+                    >{{ item.title }}</option>
 
                 </select>
             </div>
@@ -26,6 +28,7 @@
                     <li
                         class="category__list"
                         v-for="category in categoryList"
+                        @click="sortByCategories(category)"
                     >
                        {{ category.name }}
                     </li>
@@ -33,10 +36,9 @@
             </aside>
 
             <main class="catalog__main">
-                <!--                <h2>Варенная</h2>-->
 
                 <PaginationCatalog
-                    :catalogData="productList"
+                    :catalogData="filterProducts"
                 />
 
             </main>
@@ -59,15 +61,16 @@ export default {
     },
     data() {
         return {
-            categoriesSort: [
-                {id: 1, title: 'по возрастанию цены'},
-                {id: 2, title: 'по убыванию цены'},
-                {id: 3, title: 'сначала новые'},
-                {id: 4, title: 'по названию'},
+            itemsSort: [
+                {value: 'name', title: 'по названию'},
+                {value: 'min_price', title: 'по убыванию цены'},
+                {value: 'max_price', title: 'по возрастанию цены'},
+                {value: 'new_products', title: 'сначала новые'},
             ],
             sortedProducts: [],
             pageNumber: 0,
             sortType: 'name',
+            categoryName: '',
         }
     },
     computed: {
@@ -77,20 +80,25 @@ export default {
         categoryList() {
             return this.$store.getters.CATEGORIES
         },
-
-    },
-    methods: {
+        filterProducts() {
+            if (this.sortedProducts.length) {
+                return this.sortedProducts
+            }
+            return this.productList
+        },
         sortItem() {
             if (this.sortType === 'name') {
-                this.productList.sort((a,b) => {a.name.localeCompare(b.name)})
+               return this.productList.sort((a,b) => a.name.localeCompare(b.name))
             }
             if (this.sortType === 'min_price') {
-                this.productList.sort((a,b) => a.price - b.price)
+                return this.productList.sort((a,b) => a.price - b.price)
             }
             if (this.sortType === 'max_price') {
-                this.productList.sort((a,b) => b.price - a.price)
+                return this.productList.sort((a,b) => b.price - a.price)
             }
         },
+    },
+    methods: {
         sortByCategories(category) {
             this.sortedProducts = []
             this.productList.map(item => {
@@ -98,6 +106,7 @@ export default {
                     this.sortedProducts.push(item)
                 }
             })
+            this.categoryName = category.name
         },
     }
 }
@@ -117,6 +126,7 @@ export default {
         font-size: 32px;
         font-weight: bold;
         margin-bottom: 3rem;
+        text-transform: capitalize;
     }
 }
 

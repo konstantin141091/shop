@@ -2826,6 +2826,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -2844,22 +2846,23 @@ __webpack_require__.r(__webpack_exports__);
   props: {},
   data: function data() {
     return {
-      categoriesSort: [{
-        id: 1,
-        title: 'по возрастанию цены'
+      itemsSort: [{
+        value: 'name',
+        title: 'по названию'
       }, {
-        id: 2,
+        value: 'min_price',
         title: 'по убыванию цены'
       }, {
-        id: 3,
-        title: 'сначала новые'
+        value: 'max_price',
+        title: 'по возрастанию цены'
       }, {
-        id: 4,
-        title: 'по названию'
+        value: 'new_products',
+        title: 'сначала новые'
       }],
-      categories: [],
+      sortedProducts: [],
       pageNumber: 0,
-      sortType: 'name'
+      sortType: 'name',
+      categoryName: ''
     };
   },
   computed: {
@@ -2868,33 +2871,45 @@ __webpack_require__.r(__webpack_exports__);
     },
     categoryList: function categoryList() {
       return this.$store.getters.CATEGORIES;
-    }
-  },
-  methods: {
+    },
+    filterProducts: function filterProducts() {
+      if (this.sortedProducts.length) {
+        return this.sortedProducts;
+      }
+
+      return this.productList;
+    },
     sortItem: function sortItem() {
       if (this.sortType === 'name') {
-        this.productList.sort(function (a, b) {
-          a.name.localeCompare(b.name);
+        return this.productList.sort(function (a, b) {
+          return a.name.localeCompare(b.name);
         });
       }
 
       if (this.sortType === 'min_price') {
-        this.productList.sort(function (a, b) {
+        return this.productList.sort(function (a, b) {
           return a.price - b.price;
         });
       }
 
       if (this.sortType === 'max_price') {
-        this.productList.sort(function (a, b) {
+        return this.productList.sort(function (a, b) {
           return b.price - a.price;
         });
       }
-    },
-    categories: function categories() {
-      return this.categoryList.map(function (item) {
-        console.log(item);
-        return item.name.toLowerCase();
+    }
+  },
+  methods: {
+    sortByCategories: function sortByCategories(category) {
+      var _this = this;
+
+      this.sortedProducts = [];
+      this.productList.map(function (item) {
+        if (item.category === category.name) {
+          _this.sortedProducts.push(item);
+        }
       });
+      this.categoryName = category.name;
     }
   }
 });
@@ -3459,7 +3474,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".catalog__top[data-v-7ea477c0] {\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n}\n.catalog__title[data-v-7ea477c0] {\n  font-size: 32px;\n  font-weight: bold;\n  margin-bottom: 3rem;\n}\n.select[data-v-7ea477c0] {\n  display: block;\n  font-size: 16px;\n  color: #333333;\n  line-height: 1.3;\n  padding: 0.6em 1.4em 0.5em 0.8em;\n  width: 100%;\n  max-width: 100%;\n  margin: 0;\n  border: 1px solid #808080;\n  border-radius: 5px;\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  appearance: none;\n  background-color: #fff;\n  /*    background-image: url('../storage/icons/arrow-down.svg');*/\n  background-repeat: no-repeat;\n}\n.flex-box[data-v-7ea477c0] {\n  display: flex;\n}\n.catalog__aside[data-v-7ea477c0] {\n  width: 300px;\n  padding: 10px;\n}\n.aside__title[data-v-7ea477c0] {\n  font-size: 20px;\n  margin-bottom: 1.5rem;\n}\n.category__list[data-v-7ea477c0] {\n  border-bottom: 1px solid #ededed;\n  text-transform: capitalize;\n  display: block;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  color: #333333;\n  font-family: \"Fira Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\";\n  cursor: pointer;\n}\n.category__list[data-v-7ea477c0]:hover {\n  color: #b63334;\n}\n.category__link[data-v-7ea477c0] {\n  display: block;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  color: #333333;\n  font-family: \"Fira Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\";\n}\n.category__link[data-v-7ea477c0]:hover {\n  color: #b63334;\n}\n.catalog__main[data-v-7ea477c0] {\n  width: 100%;\n  padding: 10px;\n}\n.filter[data-v-7ea477c0] {\n  margin-bottom: 3rem;\n}\n.filter__content[data-v-7ea477c0] {\n  margin-bottom: 1.5rem;\n}\n.filter__btn[data-v-7ea477c0] {\n  height: 40px;\n}", ""]);
+exports.push([module.i, ".catalog__top[data-v-7ea477c0] {\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n}\n.catalog__title[data-v-7ea477c0] {\n  font-size: 32px;\n  font-weight: bold;\n  margin-bottom: 3rem;\n  text-transform: capitalize;\n}\n.select[data-v-7ea477c0] {\n  display: block;\n  font-size: 16px;\n  color: #333333;\n  line-height: 1.3;\n  padding: 0.6em 1.4em 0.5em 0.8em;\n  width: 100%;\n  max-width: 100%;\n  margin: 0;\n  border: 1px solid #808080;\n  border-radius: 5px;\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  appearance: none;\n  background-color: #fff;\n  /*    background-image: url('../storage/icons/arrow-down.svg');*/\n  background-repeat: no-repeat;\n}\n.flex-box[data-v-7ea477c0] {\n  display: flex;\n}\n.catalog__aside[data-v-7ea477c0] {\n  width: 300px;\n  padding: 10px;\n}\n.aside__title[data-v-7ea477c0] {\n  font-size: 20px;\n  margin-bottom: 1.5rem;\n}\n.category__list[data-v-7ea477c0] {\n  border-bottom: 1px solid #ededed;\n  text-transform: capitalize;\n  display: block;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  color: #333333;\n  font-family: \"Fira Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\";\n  cursor: pointer;\n}\n.category__list[data-v-7ea477c0]:hover {\n  color: #b63334;\n}\n.category__link[data-v-7ea477c0] {\n  display: block;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  color: #333333;\n  font-family: \"Fira Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\";\n}\n.category__link[data-v-7ea477c0]:hover {\n  color: #b63334;\n}\n.catalog__main[data-v-7ea477c0] {\n  width: 100%;\n  padding: 10px;\n}\n.filter[data-v-7ea477c0] {\n  margin-bottom: 3rem;\n}\n.filter__content[data-v-7ea477c0] {\n  margin-bottom: 1.5rem;\n}\n.filter__btn[data-v-7ea477c0] {\n  height: 40px;\n}", ""]);
 
 // exports
 
@@ -8257,7 +8272,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "catalog__top" }, [
-      _c("h1", { staticClass: "catalog__title" }, [_vm._v("Каталог")]),
+      _c("h1", { staticClass: "catalog__title" }, [
+        _vm._v(_vm._s(_vm.categoryName || "Каталог"))
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "catalog__select" }, [
         _c(
@@ -8272,6 +8289,7 @@ var render = function() {
               }
             ],
             staticClass: "select",
+            attrs: { name: "Сортировка" },
             on: {
               click: function($event) {
                 return _vm.sortItem()
@@ -8291,21 +8309,14 @@ var render = function() {
               }
             }
           },
-          [
-            _c("option", { attrs: { value: "name" } }, [_vm._v("По названию")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "min_price" } }, [
-              _vm._v("По возрастанию цены")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "max_price" } }, [
-              _vm._v("По убыванию цены")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "new-products" } }, [
-              _vm._v("Сначала новые")
-            ])
-          ]
+          _vm._l(_vm.itemsSort, function(item) {
+            return _c(
+              "option",
+              { key: item.value, domProps: { value: item.value } },
+              [_vm._v(_vm._s(item.title))]
+            )
+          }),
+          0
         )
       ])
     ]),
@@ -8325,13 +8336,24 @@ var render = function() {
             "ul",
             { staticClass: "aside__categories" },
             _vm._l(_vm.categoryList, function(category) {
-              return _c("li", { staticClass: "category__list" }, [
-                _vm._v(
-                  "\n                   " +
-                    _vm._s(category.name) +
-                    "\n                "
-                )
-              ])
+              return _c(
+                "li",
+                {
+                  staticClass: "category__list",
+                  on: {
+                    click: function($event) {
+                      return _vm.sortByCategories(category)
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                   " +
+                      _vm._s(category.name) +
+                      "\n                "
+                  )
+                ]
+              )
             }),
             0
           )
@@ -8342,7 +8364,11 @@ var render = function() {
       _c(
         "main",
         { staticClass: "catalog__main" },
-        [_c("PaginationCatalog", { attrs: { catalogData: _vm.productList } })],
+        [
+          _c("PaginationCatalog", {
+            attrs: { catalogData: _vm.filterProducts }
+          })
+        ],
         1
       )
     ])
@@ -27646,8 +27672,8 @@ function dateFilter(value) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\programms\OpenServer\domains\shop-sausage\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! F:\programms\OpenServer\domains\shop-sausage\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\OpenServer\domains\shop-suasage\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\OpenServer\domains\shop-suasage\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

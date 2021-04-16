@@ -29,15 +29,37 @@ class ProductSeeder extends Seeder
                 'category' => 'вареная'
             ],
             [
-                'name' => 'Охотничие колбаски ГОСТ ',
+                'name' => 'Охотничие колбаски ГОСТ',
                 'count' => '1 шт',
-                'sale' => 15,
+                'sale' => 5,
                 'news' => true,
                 'price' => 600,
                 'img' => 'Ohotnich_kolbaski_GOST.png',
                 'description' => 'product description ',
                 'shelf_life' => 'product shelf_life ',
                 'category' => 'полукопченая'
+            ],
+            [
+                'name' => 'Колбаса вареная Молочная',
+                'count' => '1 шт',
+                'sale' => 15,
+                'news' => true,
+                'price' => 150,
+                'img' => 'Kolbasa_varennaya_Molochnaya.png',
+                'description' => 'product description ',
+                'shelf_life' => 'product shelf_life ',
+                'category' => 'вареная'
+            ],
+            [
+                'name' => 'Сосиски Кроха',
+                'count' => '1 шт',
+                'sale' => 10,
+                'news' => true,
+                'price' => 100,
+                'img' => 'Sosiski_kroha.png',
+                'description' => 'product description ',
+                'shelf_life' => 'product shelf_life ',
+                'category' => 'сосиски'
             ],
         ];
 
