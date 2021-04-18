@@ -1,15 +1,17 @@
 <template>
     <div>
         <div class="product">
-            <a href="#" class="product__img">
-                <img :src="imageUrl" :alt="name">
-            </a>
+            <router-link to="#" class="product__img">
+                <img :src="imageUrl" :alt="product_data.name">
+            </router-link>
             <div class="product__text">
-                <a class="product__title" href="#">{{ name }}, {{ count }}</a>
-                <p class="product__price">{{ price }} руб.</p>
+                <router-link to="#" class="product__title">{{ product_data.name }}, {{ product_data.count }}</router-link>
+                <p class="product__price">{{ product_data.price }} руб.</p>
             </div>
             <div class="product__btn">
-                <button>В корзину</button>
+                <button
+                        @click="addToCart"
+                >В корзину</button>
             </div>
         </div>
     </div>
@@ -19,27 +21,20 @@
 export default {
     name: 'ProductCardComponent',
     props: {
-        product: {
+        product_data: {
             type: Object,
             default: () => {
                 return {}
             }
         },
         imageUrl: {
-            type: String,
-            default: 'storage/images/no_photo.png'
-        },
-        name: {
-            type: String,
-            default: 'Продукт'
-        },
-        count: {
-            type: String,
-        },
-        price: {
-            type: Number,
-        },
-
+            type: String
+        }
+    },
+    methods: {
+        addToCart() {
+            this.$emit('addToCart', this.product_data)
+        }
     }
 }
 </script>
@@ -53,6 +48,7 @@ export default {
     border-radius: 10px;
     border: 1px solid $greyLight;
     max-width: 230px;
+    min-width: 180px;
     height: 350px;
 
     img {

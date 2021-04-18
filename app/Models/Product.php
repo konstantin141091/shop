@@ -17,7 +17,7 @@ class Product extends Model
         'img',
         'description',
         'shelf_life',
-        'category',
+        'category_item',
     ];
 
     public static function attributesName() {
@@ -30,7 +30,7 @@ class Product extends Model
             'img' => "Изображение",
             'description' => "Описание и состав",
             'shelf_life' => "Срок и условия хранения",
-            'category' => "Категория",
+            'category_item' => "Категория",
         ];
     }
 
@@ -45,7 +45,7 @@ class Product extends Model
             'img' => "file",
             'description' => "required|max:3000",
             'shelf_life' => "required|max:3000",
-            'category' => "required|max:300",
+            'category_item' => "required|max:300",
         ];
     }
 }

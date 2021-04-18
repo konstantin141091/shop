@@ -1,14 +1,13 @@
 <template>
     <div>
         <div class="catalog">
+<!--            :imageUrl="item.img ? imageUrl + item.img : 'storage/images/no_photo.png'"-->
             <ProductCardComponent
                 v-for="item in paginatedData"
-                :key="item.id"
+                :key="'product' + item.id"
                 :imageUrl="item.img ? imageUrl + item.img : 'storage/images/no_photo.png'"
-                :product="item"
-                :name="item.name"
-                :price="item.price"
-                :count="item.count"
+                :product_data="item"
+                @addToCart="addToCart"
             />
         </div>
         <div class="pagination">
@@ -38,6 +37,7 @@
 
 <script>
 import ProductCardComponent from "../ProductCardComponent";
+import { mapActions } from "vuex/dist/vuex.mjs";
 
 export default {
     name: 'PaginationCatalog',
@@ -70,6 +70,12 @@ export default {
         }
     },
     methods: {
+        ...mapActions([
+            'ADD_TO_CART'
+        ]),
+        addToCart(data) {
+            this.ADD_TO_CART(data)
+        },
         pageClick(page) {
             this.pageNumber = page
         },

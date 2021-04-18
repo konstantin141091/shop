@@ -7,7 +7,7 @@ import Contacts from "./pages/Contacts";
 import Delivery from "./pages/Delivery";
 import Payment from "./pages/Payment";
 import Catalog from "./pages/Catalog";
-import Product from "./pages/Product";
+import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart";
 import PageNotFound from "./pages/PageNotFound";
 
@@ -61,6 +61,7 @@ export default new VueRouter( {
     },
     {
       path: '/*',
+      name: 'notFound',
       component: PageNotFound
     },
   ]

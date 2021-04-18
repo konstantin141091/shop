@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
                 'img' => 'Staromoskovskaya_varyono_kopchyonnaya.png',
                 'description' => 'product description ',
                 'shelf_life' => 'product shelf_life ',
-                'category' => 'вареная'
+                'category_item' => 'вареная'
             ],
             [
                 'name' => 'Охотничие колбаски ГОСТ',
@@ -37,7 +37,7 @@ class ProductSeeder extends Seeder
                 'img' => 'Ohotnich_kolbaski_GOST.png',
                 'description' => 'product description ',
                 'shelf_life' => 'product shelf_life ',
-                'category' => 'полукопченая'
+                'category_item' => 'полукопченая'
             ],
             [
                 'name' => 'Колбаса вареная Молочная',
@@ -48,7 +48,7 @@ class ProductSeeder extends Seeder
                 'img' => 'Kolbasa_varennaya_Molochnaya.png',
                 'description' => 'product description ',
                 'shelf_life' => 'product shelf_life ',
-                'category' => 'вареная'
+                'category_item' => 'вареная'
             ],
             [
                 'name' => 'Сосиски Кроха',
@@ -59,7 +59,7 @@ class ProductSeeder extends Seeder
                 'img' => 'Sosiski_kroha.png',
                 'description' => 'product description ',
                 'shelf_life' => 'product shelf_life ',
-                'category' => 'сосиски'
+                'category_item' => 'сосиски'
             ],
         ];
 
@@ -73,7 +73,7 @@ class ProductSeeder extends Seeder
                 'img' => 'Polukopchyonnaya_Armavarskaya_GOST.png',
                 'description' => 'product description '.$i,
                 'shelf_life' => 'product shelf_life '. $i,
-                'category' => 'полукопченая'
+                'category_item' => 'полукопченая'
             ];
         }
 
