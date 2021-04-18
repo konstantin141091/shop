@@ -2,7 +2,9 @@
     <div class="wrapper-layout">
         <Header/>
         <div class="main-layout">
-            <router-view></router-view>
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </div>
         <Footer/>
     </div>

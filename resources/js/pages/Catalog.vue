@@ -36,11 +36,9 @@
             </aside>
 
             <main class="catalog__main">
-
                 <PaginationCatalog
                     :catalogData="filterProducts"
                 />
-
             </main>
         </div>
     </div>
@@ -54,11 +52,14 @@ import ProductCardComponent from "../components/ProductCardComponent";
 import PaginationCatalog from "../components/catalog-components/PaginationCatalog";
 import FilterComponent from "../components/catalog-components/FiltersComponent";
 
+
 export default {
     components: {FilterComponent, PaginationCatalog, ProductCardComponent, Button, InputCheck, Select},
+
     props: {
 
     },
+
     data() {
         return {
             itemsSort: [
@@ -73,6 +74,7 @@ export default {
             categoryName: '',
         }
     },
+
     computed: {
         productList() {
             return this.$store.getters.PRODUCTS
@@ -98,11 +100,12 @@ export default {
             }
         },
     },
+
     methods: {
         sortByCategories(category) {
             this.sortedProducts = []
             this.productList.map(item => {
-                if(item.category === category.name) {
+                if(item.category_item === category.name) {
                     this.sortedProducts.push(item)
                 }
             })

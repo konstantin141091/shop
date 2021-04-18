@@ -8,6 +8,7 @@ export const store = new Vuex.Store({
   state: {
     products: [],
     categories: [],
+    cart: [],
   },
   getters: {
     // гетеры продуктов
@@ -26,6 +27,10 @@ export const store = new Vuex.Store({
       return state.categories;
     },
 
+    // геттеры Корзины
+    CART: state => {
+        return state.cart
+    }
   },
   mutations: {
     SET_PRODUCTS: (state, payload) => {
@@ -34,6 +39,11 @@ export const store = new Vuex.Store({
     SET_CATEGORIES: (state, payload) => {
       state.categories = payload;
     },
+
+      //Корзина
+      SET_CART: (state, product) => {
+        state.cart.push(product)
+      }
   },
   actions: {
     // поолучение продуктов из бд
@@ -65,5 +75,9 @@ export const store = new Vuex.Store({
         });
     },
 
+      //Корзина
+      ADD_TO_CART: ({commit}, product) => {
+          commit('SET_CART', product)
+      }
   },
 });
