@@ -2229,6 +2229,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CartItem',
   props: {
@@ -3450,7 +3462,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".cart-item[data-v-4db03a2c] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  border-bottom: 1px solid #808080;\n  margin-bottom: 1rem;\n  padding-top: 2rem;\n  padding-bottom: 2rem;\n}\n.cart-item__img[data-v-4db03a2c] {\n  width: 100px;\n}\n.cart-item__img img[data-v-4db03a2c] {\n  width: 100%;\n}", ""]);
+exports.push([module.i, ".cart-item[data-v-4db03a2c] {\n  display: flex;\n  align-items: center;\n  border-bottom: 1px solid #ededed;\n  margin-bottom: 1rem;\n  padding-top: 2rem;\n  padding-bottom: 2rem;\n}\n.cart-item__img[data-v-4db03a2c] {\n  width: 150px;\n  margin-right: 3rem;\n}\n.cart-item__img img[data-v-4db03a2c] {\n  width: 100%;\n}\n.cart-item__title[data-v-4db03a2c] {\n  flex-grow: 1;\n}\n.cart-item__description[data-v-4db03a2c] {\n  display: flex;\n  align-items: center;\n  width: 100%;\n}\n.cart-item__name[data-v-4db03a2c] {\n  font-size: 24px;\n  color: #333333;\n  display: block;\n  font-weight: bold;\n  margin-bottom: 1.5rem;\n}\n.cart-item__control[data-v-4db03a2c] {\n  display: flex;\n  align-items: center;\n}\n.field-control[data-v-4db03a2c] {\n  width: 40%;\n}\n.field-control__btn[data-v-4db03a2c] {\n  width: 20px;\n  height: 20px;\n}\n.field-control input[data-v-4db03a2c]::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n}\n.field-control__input[data-v-4db03a2c] {\n  border: 1px solid #f7f7f7;\n  border-radius: 5px;\n  width: 50px;\n}\n.field-control__del[data-v-4db03a2c] {\n  margin-left: 3rem;\n}\n.field-control__del button[data-v-4db03a2c] {\n  background: #808080;\n  color: #fff;\n  width: 20px;\n  height: 20px;\n  border-radius: 50%;\n}\n.field-control__del button[data-v-4db03a2c]:hover {\n  background: red;\n}", ""]);
 
 // exports
 
@@ -7686,16 +7698,31 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "cart-item" }, [
-    _c("div", { staticClass: "cart-item__img" }, [
-      _c("img", { attrs: { src: _vm.imageUrl, alt: _vm.cartDataItem.name } })
-    ]),
-    _vm._v(" "),
     _c("div", { staticClass: "cart-item__description" }, [
-      _c("p", [_vm._v(_vm._s(_vm.cartDataItem.name))]),
+      _c("div", { staticClass: "cart-item__img" }, [
+        _c("img", { attrs: { src: _vm.imageUrl, alt: _vm.cartDataItem.name } })
+      ]),
       _vm._v(" "),
-      _c("p", { staticClass: "cart-item__price" }, [
-        _vm._v(_vm._s(_vm.cartDataItem.price) + " руб.")
-      ])
+      _c(
+        "div",
+        { staticClass: "cart-item__text" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "cart-item__name", attrs: { to: "#" } },
+            [_vm._v(_vm._s(_vm.cartDataItem.name))]
+          ),
+          _vm._v(" "),
+          _c("p", { staticClass: "cart-item__price" }, [
+            _vm._v(
+              _vm._s(_vm.cartDataItem.price) +
+                " руб/" +
+                _vm._s(_vm.cartDataItem.unit)
+            )
+          ])
+        ],
+        1
+      )
     ]),
     _vm._v(" "),
     _vm._m(0)
@@ -7706,8 +7733,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "cart-item__btn" }, [
-      _c("button", [_vm._v("Удалить")])
+    return _c("div", { staticClass: "cart-item__control field-control" }, [
+      _c("div", {}, [
+        _c("button", { staticClass: "field-control__btn" }, [_vm._v("-")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "field-control__input",
+          attrs: { type: "number" }
+        }),
+        _vm._v(" "),
+        _c("button", { staticClass: "field-control__btn" }, [_vm._v("+")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field-control__del" }, [
+        _c("button", [_vm._v("x")])
+      ])
     ])
   }
 ]
@@ -29009,7 +29049,17 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
   state: {
     products: [],
     categories: [],
-    cart: []
+    cart: [{
+      name: 'Сосиски Кроха',
+      img: 'Sosiski_kroha.png',
+      price: 100,
+      unit: "кг"
+    }, {
+      name: 'Колбаса вареная молочная',
+      img: 'Kolbasa_varennaya_Molochnaya.png',
+      price: 500,
+      unit: 'шт'
+    }]
   },
   getters: {
     // гетеры продуктов
