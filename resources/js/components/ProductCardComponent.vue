@@ -5,7 +5,7 @@
                 <img :src="imageUrl" :alt="product_data.name">
             </router-link>
             <div class="product__text">
-                <router-link to="#" class="product__title">{{ product_data.name }}, {{ product_data.count }}</router-link>
+                <router-link to="#" class="product__title">{{ product_data.name }}, 1 {{ product_data.unit }}</router-link>
                 <p class="product__price">{{ product_data.price }} руб.</p>
             </div>
             <div class="product__btn">

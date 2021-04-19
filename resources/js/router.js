@@ -52,7 +52,7 @@ export default new VueRouter( {
     {
       path: '/product',
       name: 'product',
-      component: Product
+      component: ProductPage
     },
     {
       path: '/cart',

@@ -16,14 +16,14 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name')->comment('имя продукта');
-            $table->string('count')->comment('единица измерения(штука, пачка, кг)');
+            $table->string('unit')->comment('единица измерения(штука, пачка, кг)');
             $table->tinyInteger('sale')->nullable()->comment('размер скидки в %');
             $table->boolean('news')->default(false)->comment('является ли новинкой');
             $table->unsignedSmallInteger('price')->comment('цена');
             $table->string('img')->comment('путь до картинки');
             $table->text('description')->comment('описание товара');
             $table->text('shelf_life')->comment('срок годности и условия хранения');
-            $table->string('category_item')->comment('категория');
+            $table->string('category_id')->comment('категория');
             $table->timestamps();
         });
     }

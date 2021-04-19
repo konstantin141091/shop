@@ -2365,7 +2365,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3015,7 +3014,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.sortedProducts = [];
       this.productList.map(function (item) {
-        if (item.category_item === category.name) {
+        if (item.category_id === category.name) {
           _this.sortedProducts.push(item);
         }
       });
@@ -7612,8 +7611,8 @@ var render = function() {
               [
                 _vm._v(
                   _vm._s(_vm.product_data.name) +
-                    ", " +
-                    _vm._s(_vm.product_data.count)
+                    ", 1 " +
+                    _vm._s(_vm.product_data.unit)
                 )
               ]
             ),
@@ -7845,11 +7844,7 @@ var render = function() {
                 }
               }
             },
-            [
-              _vm._v(
-                "\n                    " + _vm._s(page) + "\n                "
-              )
-            ]
+            [_vm._v("\n                " + _vm._s(page) + "\n            ")]
           )
         }),
         0
@@ -28969,7 +28964,7 @@ __webpack_require__.r(__webpack_exports__);
   }, {
     path: '/product',
     name: 'product',
-    component: Product
+    component: _pages_ProductPage__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
     path: '/cart',
     name: 'cart',
@@ -29407,8 +29402,8 @@ function dateFilter(value) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\OpenServer\domains\shop-suasage\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\OpenServer\domains\shop-suasage\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! F:\programms\OpenServer\domains\shop-sausage\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! F:\programms\OpenServer\domains\shop-sausage\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

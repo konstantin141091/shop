@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="catalog">
-<!--            :imageUrl="item.img ? imageUrl + item.img : 'storage/images/no_photo.png'"-->
             <ProductCardComponent
                 v-for="item in paginatedData"
                 :key="'product' + item.id"
