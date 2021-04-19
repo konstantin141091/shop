@@ -6,9 +6,22 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    products: [],
-    categories: [],
-    cart: [],
+      products: [],
+      categories: [],
+      cart: [
+          {
+              name: 'Сосиски Кроха',
+              img: 'Sosiski_kroha.png',
+              price: 100,
+              unit: "кг"
+          },
+          {
+              name: 'Колбаса вареная молочная',
+              img: 'Kolbasa_varennaya_Molochnaya.png',
+              price: 500,
+              unit: 'шт'
+          },
+      ],
   },
   getters: {
     // гетеры продуктов
