@@ -14,11 +14,12 @@
         </div>
 
         <div class="cart-item__control field-control">
-            <div class="">
+            <div class="field-control__quantity">
                 <button class="field-control__btn">-</button>
-                <input class="field-control__input" type="number">
+                <input class="field-control__input" type="number" min="1" max="999" value="1" required>
                 <button class="field-control__btn">+</button>
             </div>
+            <p class="field-control__total">{{ 10000 }}&nbsp;руб</p>
             <div class="field-control__del">
                 <button>x</button>
             </div>
@@ -67,10 +68,9 @@ export default {
     padding-top: 2rem;
     padding-bottom: 2rem;
     &__img {
-        width: 150px;
         margin-right: 3rem;
         img {
-            width: 100%;
+            width: 100px;
         }
     }
 
@@ -100,9 +100,15 @@ export default {
 
 .field-control {
     width: 40%;
+    margin-left: 3rem;
     &__btn {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
+    }
+
+    &__quantity {
+        display: flex;
+        align-items: center;
     }
 
     input::-webkit-inner-spin-button {
@@ -111,8 +117,14 @@ export default {
 
     &__input {
         border: 1px solid $greyExtraLight;
-        border-radius: 5px;
-        width: 50px;
+        width: 30px;
+        text-align: center;
+        height: 25px;
+        padding: 0 3px;
+    }
+
+    &__total {
+        margin-left: 3rem;
     }
 
     &__del {

@@ -2,23 +2,24 @@
     <div class="container">
         <div class="flex-box">
             <div class="left">
-                <img src="storage/images/products/Polukopchyonnye_kolbaski_Elitnye_3_sort.png" alt="Полукопченные колбаски элитные">
+                <img :src="`storage/images/products/${product.img}`" :alt="product.name">
             </div>
             <div class="right">
-                <h1 class="product__title">Полукопченные колбаски элитные 3 сорт</h1>
+                <h1 class="product__title">{{ product.name }}</h1>
                 <div class="product__info">
                     <div class="product__buy">
-                        <p class="product__price">550 руб.</p>
+                        <p class="product__price">{{ product.price }} руб.</p>
                         <Button
                             :btnClass="'product__btn'"
                             :btnText="'В корзину'"
+                            @click="addToCart"
                         />
                     </div>
 
                     <div class="product__description">
                         <div>
                             <h3>Описание</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor, vel.</p>
+                            <p>{{ product.description }}</p>
                         </div>
 
                         <div>
@@ -36,8 +37,36 @@
 
 <script>
 import Button from "../ui/Button";
+import {mapActions} from "vuex/dist/vuex.mjs";
+import {mapGetters} from "vuex/dist/vuex.mjs";
+
 export default {
-    components: {Button}
+    data() {
+        return {
+            product: null
+        }
+    },
+    components: {Button},
+    created() {
+        console.log(this.$route.params.id)
+        const product = this.PRODUCTS.find(product => product.id === this.$route.params.id)
+        if (product) {
+            this.product = product
+        }
+    },
+    computed: {
+        ...mapGetters([
+            'PRODUCTS'
+        ])
+    },
+    methods: {
+        ...mapActions([
+            'ADD_TO_CART'
+        ]),
+        addToCart(data) {
+            this.ADD_TO_CART(data)
+        },
+    }
 }
 </script>
 
