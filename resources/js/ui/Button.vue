@@ -1,5 +1,9 @@
 <template>
-    <button :class="[ 'button', btnClass ]" :type="btnType">
+    <button
+        :class="[ 'button', btnClass ]"
+        :type="btnType"
+        @click="click"
+    >
         {{ btnText }}
     </button>
 </template>
@@ -18,6 +22,11 @@ export default {
         btnType: {
             type: String,
             default: 'submit',
+        }
+    },
+    methods: {
+        click(data) {
+            this.$emit('event', data)
         }
     }
 }

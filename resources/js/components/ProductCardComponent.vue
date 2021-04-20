@@ -1,7 +1,10 @@
 <template>
     <div>
         <div class="product">
-            <router-link to="#" class="product__img">
+            <router-link
+                :to="{name: 'product', params: { id: product_data.id } }"
+                class="product__img"
+            >
                 <img :src="imageUrl" :alt="product_data.name">
             </router-link>
             <div class="product__text">
