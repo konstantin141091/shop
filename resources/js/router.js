@@ -50,9 +50,9 @@ export default new VueRouter( {
       component: Payment
     },
     {
-      path: '/product',
+      path: '/product/:id',
       name: 'product',
-      component: ProductPage
+      component: ProductPage,
     },
     {
       path: '/cart',

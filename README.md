@@ -29,7 +29,7 @@
 * composer require guzzlehttp/guzzle
 
 ## Описание баз данных ##
-команды
+
 * php artisan migrate:refresh --seed
 
 

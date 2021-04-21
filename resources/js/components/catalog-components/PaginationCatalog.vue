@@ -9,7 +9,7 @@
                 @addToCart="addToCart"
             />
         </div>
-        <div class="pagination">
+        <div class="pagination" v-if="catalogData.length > usersPerPage">
             <button
                 class="pagination__btn"
                 :disabled="pageNumber === 1"

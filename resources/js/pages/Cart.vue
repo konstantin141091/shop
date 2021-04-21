@@ -6,14 +6,20 @@
             <CartEmpty />
         </div>
 
-        <div v-else>
+        <div
+            v-else
+            class="cart__flex"
+        >
+            <div class="cart__list">
+                <CartItem
+                    v-for="item in cartList"
+                    :key="item.id"
+                    :imageUrl="item.img ? imageUrl + item.img : 'storage/images/no_photo.png'"
+                    :cartDataItem="item"
+                />
+            </div>
 
-            <CartItem
-                v-for="item in cartList"
-                :key="item.id"
-                :imageUrl="item.img ? imageUrl + item.img : 'storage/images/no_photo.png'"
-                :cartDataItem="item"
-            />
+            <CartControl />
         </div>
 
     </div>
@@ -22,10 +28,11 @@
 <script>
 import CartEmpty from "../components/cart-components/CartEmpty";
 import CartItem from "../components/cart-components/CartItem";
+import CartControl from "../components/cart-components/CartControl";
 
 export default {
     name: 'Cart',
-    components: {CartItem, CartEmpty},
+    components: {CartControl, CartItem, CartEmpty},
     props: {
 
     },
@@ -51,6 +58,14 @@ export default {
         font-size: 3.2rem;
         font-weight: bold;
         margin-bottom: 3rem;
+    }
+    &__flex {
+        display: flex;
+        align-items: flex-start;
+    }
+    &__list {
+        flex-grow: 1;
+        margin-right: 3rem;
     }
 }
 </style>

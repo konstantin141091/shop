@@ -55,7 +55,7 @@
                 <router-link to="/cart">
                     <span class="header__cart">
                         <img src="storage/icons/shopping_cart_black.svg" alt="корзина">
-                        <span class="header__cart-badge">15</span>
+                        <span class="header__cart-badge">{{ CART.length }}</span>
                     </span>
                     <span class="header__cart-text">0&nbsp;руб</span>
                 </router-link>
@@ -65,8 +65,15 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex/dist/vuex.mjs";
+
 export default {
-    name: "HeaderComponent"
+    name: "HeaderComponent",
+    computed: {
+        ...mapGetters([
+            'CART'
+        ])
+    }
 }
 </script>
 
