@@ -15,13 +15,26 @@
 
         <div class="cart-item__control field-control">
             <div class="field-control__quantity">
-                <button class="field-control__btn">-</button>
-                <input class="field-control__input" type="number" min="1" max="999" value="1" required>
-                <button class="field-control__btn">+</button>
+                <button
+                    class="field-control__btn"
+                    @click="decrementItem"
+                >-</button>
+                <input
+                    class="field-control__input"
+                    type="number"
+                    min="1"
+                    max="999"
+                    value="1"
+                    v-model="cartDataItem.count"
+                    required>
+                <button
+                    class="field-control__btn"
+                    @click="incrementItem"
+                >+</button>
             </div>
-            <p class="field-control__total">{{ 10000 }}&nbsp;руб</p>
+            <p class="field-control__total">{{ itemTotalCost }}&nbsp;руб</p>
             <div class="field-control__del">
-                <button>x</button>
+                <button @click="deleteFromCart">x</button>
             </div>
         </div>
 
@@ -29,11 +42,13 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
     name: 'CartItem',
     props: {
         cartDataItem: {
-            type: Array,
+            type: Object,
             default: () => {
                 return {}
             }
@@ -47,11 +62,27 @@ export default {
 
         }
     },
+    mounted() {
+        this.$set(this.cartDataItem, 'count', 1)
+    },
     computed: {
-
+        ...mapGetters([
+            'CART'
+        ]),
+        itemTotalCost() {
+            return this.cartDataItem.count * this.cartDataItem.price
+        },
     },
     methods: {
-
+        deleteFromCart() {
+            this.$emit('deleteFromCart')
+        },
+        decrementItem() {
+            this.$emit('decrementItem')
+        },
+        incrementItem() {
+            this.$emit('incrementItem')
+        }
     }
 
 }
