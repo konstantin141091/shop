@@ -2259,6 +2259,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ui_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../ui/Button */ "./resources/js/ui/Button.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2274,11 +2287,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CartControl',
   components: {
     Button: _ui_Button__WEBPACK_IMPORTED_MODULE_0__["default"]
-  }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['CART'])), {}, {
+    cartTotalCost: function cartTotalCost() {
+      var result = [];
+
+      if (this.CART.length) {
+        var _iterator = _createForOfIteratorHelper(this.CART),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var item = _step.value;
+            result.push(item.price * item.count);
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+
+        result = result.reduce(function (sum, el) {
+          return sum + el;
+        });
+        return result;
+      } else {
+        return result = 0;
+      }
+    }
+  })
 });
 
 /***/ }),
@@ -2313,6 +2355,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2343,11 +2392,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CartItem',
   props: {
     cartDataItem: {
-      type: Array,
+      type: Object,
       "default": function _default() {
         return {};
       }
@@ -2359,8 +2422,25 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
-  computed: {},
-  methods: {}
+  mounted: function mounted() {
+    this.$set(this.cartDataItem, 'count', 1);
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['CART'])), {}, {
+    itemTotalCost: function itemTotalCost() {
+      return this.cartDataItem.count * this.cartDataItem.price;
+    }
+  }),
+  methods: {
+    deleteFromCart: function deleteFromCart() {
+      this.$emit('deleteFromCart');
+    },
+    decrementItem: function decrementItem() {
+      this.$emit('decrementItem');
+    },
+    incrementItem: function incrementItem() {
+      this.$emit('incrementItem');
+    }
+  }
 });
 
 /***/ }),
@@ -2946,6 +3026,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_cart_components_CartEmpty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/cart-components/CartEmpty */ "./resources/js/components/cart-components/CartEmpty.vue");
 /* harmony import */ var _components_cart_components_CartItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/cart-components/CartItem */ "./resources/js/components/cart-components/CartItem.vue");
 /* harmony import */ var _components_cart_components_CartControl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/cart-components/CartControl */ "./resources/js/components/cart-components/CartControl.vue");
+/* harmony import */ var vuex_dist_vuex_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex/dist/vuex.mjs */ "./node_modules/vuex/dist/vuex.mjs");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2973,6 +3060,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -2987,14 +3078,25 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
-  computed: {
+  computed: _objectSpread(_objectSpread({}, Object(vuex_dist_vuex_mjs__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(['CART'])), {}, {
     cartList: function cartList() {
-      return this.$store.getters.CART;
+      return this.CART;
     },
     imageUrl: function imageUrl() {
       return "storage/images/products/";
     }
-  }
+  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex_dist_vuex_mjs__WEBPACK_IMPORTED_MODULE_3__["mapActions"])(['DELETE_FROM_CART', 'DECREMENT_CART_ITEM', 'INCREMENT_CART_ITEM'])), {}, {
+    deleteFromCart: function deleteFromCart(index) {
+      this.DELETE_FROM_CART(index);
+    },
+    incrementItem: function incrementItem(index) {
+      this.INCREMENT_CART_ITEM(index);
+    },
+    decrementItem: function decrementItem(index) {
+      this.DECREMENT_CART_ITEM(index);
+    }
+  })
 });
 
 /***/ }),
@@ -8015,7 +8117,7 @@ var render = function() {
       _c("div", { staticClass: "total__price" }, [
         _c("span", [_vm._v("Итого")]),
         _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(10000) + " руб")])
+        _c("span", [_vm._v(_vm._s(_vm.cartTotalCost) + " руб")])
       ]),
       _vm._v(" "),
       _c("Button", {
@@ -8111,47 +8213,65 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "cart-item__control field-control" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("p", { staticClass: "field-control__total" }, [
-        _vm._v(_vm._s(10000) + " руб")
+      _c("div", { staticClass: "field-control__quantity" }, [
+        _c(
+          "button",
+          {
+            staticClass: "field-control__btn",
+            on: { click: _vm.decrementItem }
+          },
+          [_vm._v("-")]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.cartDataItem.count,
+              expression: "cartDataItem.count"
+            }
+          ],
+          staticClass: "field-control__input",
+          attrs: {
+            type: "number",
+            min: "1",
+            max: "999",
+            value: "1",
+            required: ""
+          },
+          domProps: { value: _vm.cartDataItem.count },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.cartDataItem, "count", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "field-control__btn",
+            on: { click: _vm.incrementItem }
+          },
+          [_vm._v("+")]
+        )
       ]),
       _vm._v(" "),
-      _vm._m(1)
+      _c("p", { staticClass: "field-control__total" }, [
+        _vm._v(_vm._s(_vm.itemTotalCost) + " руб")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "field-control__del" }, [
+        _c("button", { on: { click: _vm.deleteFromCart } }, [_vm._v("x")])
+      ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field-control__quantity" }, [
-      _c("button", { staticClass: "field-control__btn" }, [_vm._v("-")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "field-control__input",
-        attrs: {
-          type: "number",
-          min: "1",
-          max: "999",
-          value: "1",
-          required: ""
-        }
-      }),
-      _vm._v(" "),
-      _c("button", { staticClass: "field-control__btn" }, [_vm._v("+")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field-control__del" }, [
-      _c("button", [_vm._v("x")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -8944,7 +9064,7 @@ var render = function() {
             _c(
               "div",
               { staticClass: "cart__list" },
-              _vm._l(_vm.cartList, function(item) {
+              _vm._l(_vm.cartList, function(item, index) {
                 return _c("CartItem", {
                   key: item.id,
                   attrs: {
@@ -8952,6 +9072,17 @@ var render = function() {
                       ? _vm.imageUrl + item.img
                       : "storage/images/no_photo.png",
                     cartDataItem: item
+                  },
+                  on: {
+                    deleteFromCart: function($event) {
+                      return _vm.deleteFromCart(index)
+                    },
+                    incrementItem: function($event) {
+                      return _vm.incrementItem(index)
+                    },
+                    decrementItem: function($event) {
+                      return _vm.decrementItem(index)
+                    }
                   }
                 })
               }),
@@ -29701,10 +29832,45 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/store/auth.js":
-/*!************************************!*\
-  !*** ./resources/js/store/auth.js ***!
-  \************************************/
+/***/ "./resources/js/store/index.js":
+/*!*************************************!*\
+  !*** ./resources/js/store/index.js ***!
+  \*************************************/
+/*! exports provided: store */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _modules_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/auth */ "./resources/js/store/modules/auth.js");
+/* harmony import */ var _modules_cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/cart */ "./resources/js/store/modules/cart.js");
+/* harmony import */ var _modules_categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/categories */ "./resources/js/store/modules/categories.js");
+/* harmony import */ var _modules_products__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/products */ "./resources/js/store/modules/products.js");
+
+
+
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
+  modules: {
+    auth: _modules_auth__WEBPACK_IMPORTED_MODULE_2__["default"],
+    categories: _modules_categories__WEBPACK_IMPORTED_MODULE_4__["default"],
+    products: _modules_products__WEBPACK_IMPORTED_MODULE_5__["default"],
+    cart: _modules_cart__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/auth.js":
+/*!********************************************!*\
+  !*** ./resources/js/store/modules/auth.js ***!
+  \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -29807,46 +29973,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./resources/js/store/index.js":
-/*!*************************************!*\
-  !*** ./resources/js/store/index.js ***!
-  \*************************************/
-/*! exports provided: store */
+/***/ "./resources/js/store/modules/cart.js":
+/*!********************************************!*\
+  !*** ./resources/js/store/modules/cart.js ***!
+  \********************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auth */ "./resources/js/store/auth.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-
-
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__["default"]); // TODO декомпозировать хранилище
-
-var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
+/* harmony default export */ __webpack_exports__["default"] = ({
   state: {
-    products: [],
-    categories: [],
     cart: [{
+      id: 1,
       name: 'Сосиски Кроха',
       img: 'Sosiski_kroha.png',
       price: 100,
       unit: "кг"
     }, {
+      id: 2,
       name: 'Колбаса вареная молочная',
       img: 'Kolbasa_varennaya_Molochnaya.png',
       price: 500,
@@ -29854,7 +29999,168 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
     }]
   },
   getters: {
-    // гетеры продуктов
+    CART: function CART(state) {
+      return state.cart;
+    }
+  },
+  mutations: {
+    SET_CART: function SET_CART(state, product) {
+      if (state.cart.length) {
+        var isProductExists = false;
+        state.cart.map(function (item) {
+          if (item.id === product.id) {
+            isProductExists = true;
+            item.count++;
+          }
+        });
+
+        if (!isProductExists) {
+          state.cart.push(product);
+        }
+      } else {
+        state.cart.push(product);
+      }
+    },
+    REMOVE_FROM_CART: function REMOVE_FROM_CART(state, productIndex) {
+      state.cart.splice(productIndex, 1);
+    },
+    INCREMENT: function INCREMENT(state, index) {
+      state.cart[index].count++;
+    },
+    DECREMENT: function DECREMENT(state, index) {
+      if (state.cart[index].count > 1) {
+        state.cart[index].count--;
+      }
+    }
+  },
+  actions: {
+    ADD_TO_CART: function ADD_TO_CART(_ref, product) {
+      var commit = _ref.commit;
+      commit('SET_CART', product);
+    },
+    DECREMENT_CART_ITEM: function DECREMENT_CART_ITEM(_ref2, index) {
+      var commit = _ref2.commit;
+      commit('DECREMENT', index);
+    },
+    INCREMENT_CART_ITEM: function INCREMENT_CART_ITEM(_ref3, index) {
+      var commit = _ref3.commit;
+      commit('INCREMENT', index);
+    },
+    DELETE_FROM_CART: function DELETE_FROM_CART(_ref4, productIndex) {
+      var commit = _ref4.commit;
+      commit('REMOVE_FROM_CART', productIndex);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/categories.js":
+/*!**************************************************!*\
+  !*** ./resources/js/store/modules/categories.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: {
+    categories: []
+  },
+  getters: {
+    CATEGORIES: function CATEGORIES(state) {
+      return state.categories;
+    }
+  },
+  mutations: {
+    SET_CATEGORIES: function SET_CATEGORIES(state, payload) {
+      state.categories = payload;
+    }
+  },
+  actions: {
+    GET_CATEGORIES: function () {
+      var _GET_CATEGORIES = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/category').then(function (response) {
+                  if (response.data.categories) {
+                    context.commit('SET_CATEGORIES', response.data.categories);
+                  }
+                })["catch"](function (error) {
+                  // TODO нужно обработать ошибку и что-то сделать если не придут продукты
+                  console.log(error);
+                });
+
+              case 1:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function GET_CATEGORIES(_x) {
+        return _GET_CATEGORIES.apply(this, arguments);
+      }
+
+      return GET_CATEGORIES;
+    }()
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/products.js":
+/*!************************************************!*\
+  !*** ./resources/js/store/modules/products.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: {
+    products: [{
+      id: 1,
+      name: 'Сосиски Кроха',
+      img: 'Sosiski_kroha.png',
+      price: 100,
+      unit: "кг"
+    }, {
+      id: 2,
+      name: 'Колбаса вареная молочная',
+      img: 'Kolbasa_varennaya_Molochnaya.png',
+      price: 500,
+      unit: 'шт'
+    }]
+  },
+  getters: {
     PRODUCTS: function PRODUCTS(state) {
       return state.products;
     },
@@ -29867,37 +30173,21 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
       return state.products.filter(function (product) {
         return product.sale > 0;
       });
-    },
-    // гетеры категорий
-    CATEGORIES: function CATEGORIES(state) {
-      return state.categories;
-    },
-    // геттеры Корзины
-    CART: function CART(state) {
-      return state.cart;
     }
   },
   mutations: {
     SET_PRODUCTS: function SET_PRODUCTS(state, payload) {
       state.products = payload;
-    },
-    SET_CATEGORIES: function SET_CATEGORIES(state, payload) {
-      state.categories = payload;
-    },
-    //Корзина
-    SET_CART: function SET_CART(state, product) {
-      state.cart.push(product);
     }
   },
   actions: {
-    // поолучение продуктов из бд
     GET_PRODUCTS: function () {
       var _GET_PRODUCTS = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(context) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/product').then(function (response) {
+                axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/product').then(function (response) {
                   if (response.data.products) {
                     context.commit('SET_PRODUCTS', response.data.products);
                   }
@@ -29919,45 +30209,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store({
       }
 
       return GET_PRODUCTS;
-    }(),
-    // получение категорий из бд
-    GET_CATEGORIES: function () {
-      var _GET_CATEGORIES = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(context) {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/category').then(function (response) {
-                  if (response.data.categories) {
-                    context.commit('SET_CATEGORIES', response.data.categories);
-                  }
-                })["catch"](function (error) {
-                  // TODO нужно обработать ошибку и что-то сделать если не придут продукты
-                  console.log(error);
-                });
-
-              case 1:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }));
-
-      function GET_CATEGORIES(_x2) {
-        return _GET_CATEGORIES.apply(this, arguments);
-      }
-
-      return GET_CATEGORIES;
-    }(),
-    //Корзина
-    ADD_TO_CART: function ADD_TO_CART(_ref, product) {
-      var commit = _ref.commit;
-      commit('SET_CART', product);
-    }
-  },
-  modules: {
-    auth: _auth__WEBPACK_IMPORTED_MODULE_4__["default"]
+    }()
   }
 });
 
@@ -30247,8 +30499,8 @@ function dateFilter(value) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\konstantin\projects\shop\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\konstantin\projects\shop\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! F:\programms\OpenServer\domains\shop-sausage\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! F:\programms\OpenServer\domains\shop-sausage\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

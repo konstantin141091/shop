@@ -2,7 +2,7 @@
     <div class="total">
         <div class="total__price">
             <span>Итого</span>
-            <span>{{ 10000 }}&nbsp;руб</span>
+            <span>{{ cartTotalCost }}&nbsp;руб</span>
         </div>
         <Button
             :btn-type="'submit'"
@@ -14,9 +14,32 @@
 
 <script>
 import Button from "../../ui/Button";
+import {mapGetters} from "vuex";
+
 export default {
     name: 'CartControl',
-    components: {Button}
+    components: {Button},
+
+    computed: {
+        ...mapGetters([
+           'CART'
+        ]),
+        cartTotalCost() {
+            let result = []
+            if(this.CART.length) {
+                for (let item of this.CART) {
+                    result.push(item.price * item.count)
+                }
+                result = result.reduce( (sum, el) => {
+                    return sum + el
+                })
+                return result
+            } else {
+                return result = 0
+            }
+
+        }
+    }
 }
 </script>
 
