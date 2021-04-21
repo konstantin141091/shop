@@ -10,9 +10,11 @@ import Catalog from "./pages/Catalog";
 import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart";
 import PageNotFound from "./pages/PageNotFound";
+import Login from "./pages/Login";
 
 export default new VueRouter( {
   mode: 'history',
+  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
@@ -58,6 +60,11 @@ export default new VueRouter( {
       path: '/cart',
       name: 'cart',
       component: Cart
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/*',

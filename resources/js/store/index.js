@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import auth from './auth'
 
 Vue.use(Vuex);
-
+// TODO декомпозировать хранилище
 export const store = new Vuex.Store({
   state: {
       products: [],
@@ -43,7 +44,8 @@ export const store = new Vuex.Store({
     // геттеры Корзины
     CART: state => {
         return state.cart
-    }
+    },
+
   },
   mutations: {
     SET_PRODUCTS: (state, payload) => {
@@ -54,9 +56,10 @@ export const store = new Vuex.Store({
     },
 
       //Корзина
-      SET_CART: (state, product) => {
-        state.cart.push(product)
-      }
+    SET_CART: (state, product) => {
+      state.cart.push(product)
+    },
+
   },
   actions: {
     // поолучение продуктов из бд
@@ -93,4 +96,8 @@ export const store = new Vuex.Store({
           commit('SET_CART', product)
       }
   },
+
+  modules: {
+    auth
+  }
 });

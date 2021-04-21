@@ -22,9 +22,24 @@
                         <li class="menu__item">
                             <router-link to="/payment" class="menu__link">Оплата</router-link>
                         </li>
-                        <li class="menu__item">
-                            <router-link to="/admin" class="menu__link">Личный кабинет</router-link>
-                        </li>
+                        <template v-if="!authenticated">
+                            <li class="menu__item">
+                                <router-link to="/login" class="menu__link">Войти</router-link>
+                            </li>
+                        </template>
+                        <template v-else>
+                            <li class="menu__item">
+                                <router-link to="/admin" class="menu__link"></router-link>
+                            </li>
+                            <li class="menu__item">
+                                <a href="#" @click.prevent="signOut">Выйти</a>
+                            </li>
+
+                        </template>
+<!--                        <li class="menu__item">-->
+<!--                            <router-link to="/admin" class="menu__link"></router-link>-->
+<!--                        </li>-->
+
                     </ul>
                 </nav>
                 <p class="header__work-time">Доставка с 8:00 до 18:00</p>
@@ -65,15 +80,33 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex/dist/vuex.mjs";
+import {mapGetters, mapActions} from "vuex/dist/vuex.mjs";
+// import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: "HeaderComponent",
     computed: {
-        ...mapGetters([
-            'CART'
-        ])
+      // TODO не разобрался как объеденить эти два запроса в стору
+      ...mapGetters([
+        'CART',
+      ]),
+      ...mapGetters({
+        authenticated: 'auth/authenticated',
+        user: 'auth/user',
+      })
+    },
+
+  methods: {
+    ...mapActions({
+      signOutAction: 'auth/signOut'
+    }),
+
+    async signOut () {
+      await this.signOutAction();
+
+      this.$router.replace({ name: 'home' })
     }
+  }
 }
 </script>
 
