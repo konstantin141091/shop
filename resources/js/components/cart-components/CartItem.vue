@@ -1,7 +1,5 @@
 <template>
-    <div
-        class="cart-item"
-    >
+    <div class="cart-item">
 
         <div class="cart-item__description">
             <div class="cart-item__img">
