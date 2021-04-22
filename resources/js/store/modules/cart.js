@@ -41,6 +41,10 @@ export default {
             }
         },
 
+        SAVE_CART: (state) => {
+            window.localStorage.setItem('cart', JSON.stringify(state.cart))
+        },
+
         REMOVE_FROM_CART: (state, productIndex) => {
             state.cart.splice(productIndex, 1)
         },
@@ -59,6 +63,7 @@ export default {
     actions: {
         ADD_TO_CART: ({commit}, product) => {
             commit('SET_CART', product)
+            // commit('SAVE_CART')
         },
 
         DECREMENT_CART_ITEM: ({commit}, index) => {
@@ -71,6 +76,7 @@ export default {
 
         DELETE_FROM_CART: ({commit}, productIndex) => {
             commit('REMOVE_FROM_CART', productIndex)
+            // commit('SAVE_CART')
         }
     }
 }

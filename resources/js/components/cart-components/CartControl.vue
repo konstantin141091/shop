@@ -4,11 +4,10 @@
             <span>Итого</span>
             <span>{{ cartTotalCost }}&nbsp;руб</span>
         </div>
-        <Button
-            :btn-type="'submit'"
-            :btn-text="'Оформить заказ'"
-            :btn-class="'total__btn'"
-            />
+        <router-link
+            class="total__btn"
+            to="/checkout"
+        >Оформить заказ</router-link>
     </div>
 </template>
 
@@ -63,6 +62,23 @@ export default {
 
     &__btn {
         height: 50px;
+        min-width: 250px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+        font-size: 2rem;
+        line-height: 1;
+        color: #ffffff;
+        border-radius: 5px;
+        white-space: nowrap;
+        background: $colorBtn;
+        outline: none;
+        transition: all .3s;
+
+        &:hover {
+            background: lighten($colorBtn, .9);
+        }
     }
 }
 </style>

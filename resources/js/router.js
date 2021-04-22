@@ -11,6 +11,7 @@ import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart";
 import PageNotFound from "./pages/PageNotFound";
 import Login from "./pages/Login";
+import Checkout from "./pages/Checkout";
 
 export default new VueRouter( {
   mode: 'history',
@@ -65,6 +66,11 @@ export default new VueRouter( {
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: Checkout
     },
     {
       path: '/*',
