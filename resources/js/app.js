@@ -19,10 +19,3 @@ store.dispatch('auth/me').then(() => {
         render: h => h(Main)
     }).$mount('#app');
 });
-
-
-// new Vue({
-//     store,
-//     router,
-//     render: h => h(Main)
-// }).$mount('#app');
