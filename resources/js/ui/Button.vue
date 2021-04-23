@@ -2,7 +2,8 @@
     <button
         :class="[ 'button', btnClass ]"
         :type="btnType"
-        @click="click"
+        :disabled="disabled"
+        @click="click($event)"
     >
         {{ btnText }}
     </button>
@@ -19,14 +20,18 @@ export default {
         btnClass: {
             type: String,
         },
+        disabled: {
+          type: Boolean,
+          default: false
+        },
         btnType: {
             type: String,
             default: 'submit',
         }
     },
     methods: {
-        click(data) {
-            this.$emit('event', data)
+        click(e) {
+            this.$emit('click', e)
         }
     }
 }

@@ -11,6 +11,7 @@ import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart";
 import PageNotFound from "./pages/PageNotFound";
 import Login from "./pages/Login";
+import Checkout from "./pages/Checkout";
 import Register from "./pages/Register";
 
 export default new VueRouter( {
@@ -71,6 +72,11 @@ export default new VueRouter( {
       path: '/register',
       name: 'register',
       component: Register
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: Checkout
     },
     {
       path: '/*',
