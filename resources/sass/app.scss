@@ -54,3 +54,62 @@ h1, h2, h3, h4, h5, h6 {
     //
     //}
 }
+
+.form {
+    &-item {
+        display: block;
+        margin-bottom: 3rem;
+        position: relative;
+    }
+
+    &-error {
+        border: 2px solid #D53128 !important;
+    }
+
+    &-label {
+        display: block;
+        margin: 0 0 5px;
+        font-size: 1.6rem;
+        color: $colorText;
+
+        &:after {
+            content: '*';
+            font-size: 0.9em;
+            margin-left: 0.2em;
+            line-height: 0.7em;
+            color: #D53128;
+        }
+    }
+    &-input {
+        padding: 0 15px;
+        border: 1px solid $grey;
+        background-color: #ffffff;
+        color: $colorText;
+        font-size: 1.6rem;
+        height: 40px;
+        border-radius: 5px;
+        width: 100%;
+    }
+    &-input:focus {
+        box-shadow: 0 0 0 0.2rem $greyLight;
+        border-color: #cccccc;
+    }
+    &-input:disabled {
+        background: #DDD;
+        color: $grey;
+    }
+    &-input.invalid {
+        box-shadow: 0 0 0 0.2rem #D53128;
+    }
+}
+.error-label {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 12px;
+    color: #D53128;
+}
+

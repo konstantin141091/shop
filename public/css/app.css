@@ -141,3 +141,64 @@ h6 {
   margin: 0 auto;
 }
 
+.form-item {
+  display: block;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.form-error {
+  border: 2px solid #D53128 !important;
+}
+
+.form-label {
+  display: block;
+  margin: 0 0 5px;
+  font-size: 1.6rem;
+  color: #333333;
+}
+
+.form-label:after {
+  content: "*";
+  font-size: 0.9em;
+  margin-left: 0.2em;
+  line-height: 0.7em;
+  color: #D53128;
+}
+
+.form-input {
+  padding: 0 15px;
+  border: 1px solid #808080;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 1.6rem;
+  height: 40px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.form-input:focus {
+  box-shadow: 0 0 0 0.2rem #ededed;
+  border-color: #cccccc;
+}
+
+.form-input:disabled {
+  background: #DDD;
+  color: #808080;
+}
+
+.form-input.invalid {
+  box-shadow: 0 0 0 0.2rem #D53128;
+}
+
+.error-label {
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 12px;
+  color: #D53128;
+}
+

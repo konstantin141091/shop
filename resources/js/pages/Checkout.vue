@@ -6,13 +6,64 @@
             <form class="checkout__form">
                 <div class="checkout-block">
                     <h2 class="form__title">Контактные данные</h2>
-                    <div class="input">
-                        <label class="input-label" for="client_contact_name">Контактное лицо (ФИО)</label>
-                        <input class="input-field" autocomplete="off" type="text" id="client_contact_name" value="">
-                        <div class="co-input-notice co-notice--danger">Поле не заполнено</div>
-                    </div>
-                    <InputText />
+
+                    <InputText
+                        :label="'Контактное лицо (ФИО)'"
+                        :uniq="'client_name'"
+                        :error="'Поле не заполнено'"
+                 /> <!--   :error="'Поле не заполнено'"-->
+
+                    <InputText
+                        :label="'Контактный телефон'"
+                        :uniq="'client_tel'"
+                    />
                 </div>
+
+                <div class="checkout-block">
+                    <h3 class="form__title">Доставка</h3>
+
+                    <InputText
+                        :label="'Населенный пункт'"
+                        :uniq="'client_address'"
+                 />
+
+                    <InputRadio
+                        :label="'Самовывоз'"
+                        :uniq="'pickUp'"
+                        :name="'delivery'"
+                    />
+                    <InputRadio
+                        :label="'Курьером'"
+                        :uniq="'deliveryByCourier'"
+                        :name="'delivery'"
+                    />
+
+                    <InputTextarea
+                        :label="'Комментарии к заказу'"
+                        :resize="false"
+
+                    />
+
+                </div>
+
+                <div class="checkout-block">
+                    <h3 class="form__title">Покупатель</h3>
+
+                    <InputEmail
+                        :label="'Email'"
+                        :uniq="'client_email'"
+                    />
+                    <InputCheck
+                        :labelText="'Стать постоянным покупателем'"
+                        :labelClass="'label-class'"
+                    />
+                </div>
+
+                <div class="checkout-block">
+                    <h3 class="form__title">Способ оплаты</h3>
+                    <p>Оплата производится наличными или по карте курьеру</p>
+                </div>
+
             </form>
 
             <div class="basket-item__list">
@@ -38,8 +89,13 @@
 
 <script>
 import InputText from "../ui/InputText";
+import InputNumber from "../ui/InputNumber";
+import InputTextarea from "../ui/InputTextarea";
+import InputEmail from "../ui/InputEmail";
+import InputCheck from "../ui/InputCheck";
+import InputRadio from "../ui/InputRadio";
 export default {
-    components: {InputText}
+    components: {InputRadio, InputCheck, InputEmail, InputTextarea, InputNumber, InputText}
 }
 </script>
 
@@ -116,17 +172,9 @@ export default {
     }
 }
 
-.input-label {
-    display: block;
-    margin-bottom: .5rem;
-}
-
-.input-label:after {
-    font-size: 0.9em;
-    margin-left: 0.2em;
-    line-height: 0.7em;
-    content: '*';
-    color: red;
+.label-class {
+    display: flex;
+    align-items: center;
 }
 </style>
 

@@ -6,11 +6,10 @@
       :id="uniq"
       :placeholder="placeholder"
       :class="[{
-        light: light,
-        'form-textarea form-input': !light,
         resize: !resize,
         'form-error': error,
       },classTextArea]"
+      class="form-textarea form-input"
     ></textarea>
   <label v-if="error" class="error-label">{{ error }}</label>
   </div>
@@ -38,10 +37,6 @@ export default {
     label: {
       type: String,
       default: ""
-    },
-    light: {
-      type: Boolean,
-      default: false
     },
     resize: {
       type: Boolean,

@@ -30,7 +30,8 @@ export default {
 }
 
 .checkbox {
-    display: block;
+    display: flex;
+    align-items: center;
     position: relative;
     padding-left: 35px;
     margin-bottom: 12px;
@@ -48,7 +49,7 @@ export default {
 
 .checkmark {
     position: absolute;
-    top: 0;
+    //top: 0;
     left: 0;
     height: 2.5rem;
     width: 2.5rem;

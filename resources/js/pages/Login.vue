@@ -46,7 +46,7 @@
       async submit () {
         await this.signIn(this.form);
 
-        this.$router.replace({ name: 'home' })
+        // this.$router.replace({ name: 'home' })
       }
     }
   }

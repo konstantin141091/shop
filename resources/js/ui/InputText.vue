@@ -6,7 +6,8 @@
             :name="uniq"
             :id="uniq"
             :placeholder="placeholder"
-            :class="{ light: light, 'form-input': !light, 'form-error': error }"
+            :class="{ 'form-error': error }"
+            class="form-input"
             :maxlength="maxLength"
             :disabled="disabled"
             ref="autocomplete"
@@ -34,7 +35,7 @@ export default {
         value: [String, Number],
         placeholder: {
             type: String,
-            default: "Placeholder"
+            default: ""
         },
         uniq: {
             type: String,
@@ -45,10 +46,6 @@ export default {
             default: ""
         },
         required: {
-            type: Boolean,
-            default: false
-        },
-        light: {
             type: Boolean,
             default: false
         }
