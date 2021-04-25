@@ -2,6 +2,7 @@
     <div class="container">
         <div class="catalog__top">
             <h1 class="catalog__title">{{ categoryName || 'Каталог' }}</h1>
+
             <div class="catalog__select">
                 <select
                     class="select"
@@ -13,16 +14,19 @@
                         v-for="item in itemsSort"
                         :key="item.value"
                         :value="item.value"
-                    >{{ item.title }}</option>
+                    >{{ item.title }}
+                    </option>
 
                 </select>
+
             </div>
         </div>
 
         <div class="flex-box">
             <aside class="catalog__aside aside">
                 <h3 class="aside__title">Фильтры</h3>
-                    <FilterComponent />
+                <FilterComponent/>
+
                 <h3 class="aside__title">Виды колбасы</h3>
                 <ul class="aside__categories">
                     <li
@@ -30,7 +34,7 @@
                         v-for="category in categoryList"
                         @click="sortByCategories(category)"
                     >
-                       {{ category.name }}
+                        {{ category.name }}
                     </li>
                 </ul>
             </aside>
@@ -56,13 +60,12 @@ import FilterComponent from "../components/catalog-components/FiltersComponent";
 export default {
     components: {FilterComponent, PaginationCatalog, ProductCardComponent, Button, InputCheck, Select},
 
-    props: {
-
-    },
+    props: {},
 
     data() {
         return {
             itemsSort: [
+                {value: '', title: 'Сортировка'},
                 {value: 'name', title: 'по названию'},
                 {value: 'min_price', title: 'по убыванию цены'},
                 {value: 'max_price', title: 'по возрастанию цены'},
@@ -70,7 +73,7 @@ export default {
             ],
             sortedProducts: [],
             pageNumber: 0,
-            sortType: 'name',
+            sortType: '',
             categoryName: '',
         }
     },
@@ -88,28 +91,30 @@ export default {
             }
             return this.productList
         },
-        sortItem() {
-            if (this.sortType === 'name') {
-               return this.productList.sort((a,b) => a.name.localeCompare(b.name))
-            }
-            if (this.sortType === 'min_price') {
-                return this.productList.sort((a,b) => a.price - b.price)
-            }
-            if (this.sortType === 'max_price') {
-                return this.productList.sort((a,b) => b.price - a.price)
-            }
-        },
+
     },
 
     methods: {
         sortByCategories(category) {
             this.sortedProducts = []
             this.productList.map(item => {
-                if(item.category_id === category.name) {
+                if (item.category_id === category.name) {
                     this.sortedProducts.push(item)
                 }
             })
             this.categoryName = category.name
+        },
+
+        sortItem() {
+            if (this.sortType === 'name') {
+                return this.filterProducts.sort((a, b) => a.name.localeCompare(b.name))
+            }
+            if (this.sortType === 'min_price') {
+                return this.filterProducts.sort((a, b) => a.price - b.price)
+            }
+            if (this.sortType === 'max_price') {
+                return this.filterProducts.sort((a, b) => b.price - a.price)
+            }
         },
     }
 }
@@ -176,18 +181,6 @@ export default {
         color: $colorText;
         font-family: "Fira Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji";
         cursor: pointer;
-
-        &:hover {
-            color: $colorBtn;
-        }
-    }
-
-    &__link {
-        display: block;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        color: $colorText;
-        font-family: "Fira Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji";
 
         &:hover {
             color: $colorBtn;

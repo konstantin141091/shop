@@ -1,21 +1,6 @@
 export default {
     state: {
-        cart: [
-            {
-                id: 1,
-                name: 'Сосиски Кроха',
-                img: 'Sosiski_kroha.png',
-                price: 100,
-                unit: "кг"
-            },
-            {
-                id: 2,
-                name: 'Колбаса вареная молочная',
-                img: 'Kolbasa_varennaya_Molochnaya.png',
-                price: 500,
-                unit: 'шт'
-            },
-        ],
+        cart: JSON.parse(localStorage.getItem('cart' ) || '[]'),
     },
     getters: {
         CART: state => {
@@ -63,7 +48,7 @@ export default {
     actions: {
         ADD_TO_CART: ({commit}, product) => {
             commit('SET_CART', product)
-            // commit('SAVE_CART')
+            commit('SAVE_CART')
         },
 
         DECREMENT_CART_ITEM: ({commit}, index) => {
@@ -76,7 +61,7 @@ export default {
 
         DELETE_FROM_CART: ({commit}, productIndex) => {
             commit('REMOVE_FROM_CART', productIndex)
-            // commit('SAVE_CART')
+            commit('SAVE_CART')
         }
     }
 }
