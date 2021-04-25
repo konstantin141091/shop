@@ -3,7 +3,7 @@
         <h1 class="login__title">Вход в кабинет покупателя</h1>
         <form action="#" @submit.prevent="submit" class="login__form">
             <div class="login__group">
-                <label for="email" class="login__label">Телефон или email</label>
+                <label for="email" class="login__label">Email</label>
                 <input type="email" name="email" id="email" class="login__input" v-model="form.email">
             </div>
             <div class="login__group">
@@ -26,7 +26,7 @@
 <script>
   import axios from 'axios'
   import { mapActions } from 'vuex'
-
+// TODO нужно добавить обработку случая если логирование не прошло успешно, валидация
   export default {
     name: "Login",
     data () {
@@ -45,8 +45,7 @@
 
       async submit () {
         await this.signIn(this.form);
-
-        // this.$router.replace({ name: 'home' })
+        this.$router.push('/');
       }
     }
   }

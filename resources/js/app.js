@@ -9,9 +9,9 @@ import {store} from './store';
 //Global styles
 import '../sass/app.scss'
 
-const APP_URL = process.env.MIX_APP_URL
+const APP_URL = process.env.MIX_APP_URL;
 console.log("my env variable:");
-console.log(APP_URL)
+console.log(APP_URL);
 
 
 axios.defaults.withCredentials = true;
