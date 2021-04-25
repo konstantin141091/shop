@@ -29,17 +29,13 @@
                         </template>
                         <template v-else>
                             <li class="menu__item">
-                                <router-link to="/admin" class="menu__link"></router-link>
+                                <router-link to="/account/history" class="menu__link">Личный кабинет</router-link>
                             </li>
                             <li class="menu__item">
                                 <a href="#" @click.prevent="signOut">Выйти</a>
                             </li>
 
                         </template>
-<!--                        <li class="menu__item">-->
-<!--                            <router-link to="/admin" class="menu__link"></router-link>-->
-<!--                        </li>-->
-
                     </ul>
                 </nav>
                 <p class="header__work-time">Доставка с 8:00 до 18:00</p>
@@ -86,7 +82,7 @@ import {mapGetters, mapActions} from "vuex/dist/vuex.mjs";
 export default {
     name: "HeaderComponent",
     computed: {
-      // TODO не разобрался как объеденить эти два запроса в стору
+      // TODO не разобрался как объеденить эти два запроса к стору
       ...mapGetters([
         'CART',
       ]),
@@ -104,7 +100,7 @@ export default {
     async signOut () {
       await this.signOutAction();
 
-      this.$router.replace({ name: 'home' })
+      this.$router.push('/');
     }
   }
 }

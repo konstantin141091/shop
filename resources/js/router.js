@@ -13,6 +13,10 @@ import PageNotFound from "./pages/PageNotFound";
 import Login from "./pages/Login";
 import Checkout from "./pages/Checkout";
 import Register from "./pages/Register";
+import Account from "./pages/Account";
+import AccountHistory from "./pages/account/History";
+import AccountAddress from "./pages/account/Address";
+import AccountProfile from "./pages/account/Profile";
 
 export default new VueRouter( {
   mode: 'history',
@@ -77,6 +81,25 @@ export default new VueRouter( {
       path: '/checkout',
       name: 'checkout',
       component: Checkout
+    },
+    {
+      path: '/account',
+      name: 'account',
+      component: Account,
+      children: [
+        {
+          path: 'history',
+          component: AccountHistory
+        },
+        {
+          path: 'address',
+          component: AccountAddress
+        },
+        {
+          path: 'profile',
+          component: AccountProfile
+        },
+      ],
     },
     {
       path: '/*',
