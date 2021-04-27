@@ -2,44 +2,99 @@
     <section class="feedback">
         <h2 class="feedback__title">Обратная связь</h2>
 
-        <form method="post" class="feedback__form">
+        <form method="post" class="feedback__form" @submit.prevent="submitHandler">
 
             <div class="feedback__fields">
                 <div class="feedback__field feedback__inputs">
                     <div class="feedback__name feedback__input">
-                        <input name="name"
-                               type="text" placeholder="Имя*"
-                               class="form-control">
-                        <div class="feedback__error"></div>
+                        <input
+                            name="name"
+                            type="text"
+                            placeholder="Имя*"
+                            class="form-control"
+                            v-model="userName"
+                            :class="{invalid: ($v.userName.$dirty && !$v.userName.required) || ($v.userName.$dirty && !$v.userName.minLength) }"
+                        >
+                        <div
+                            class="feedback__error"
+                            v-if="$v.userName.$dirty && !$v.userName.required"
+                        >Поле не должно быть пустым
+                        </div>
+                        <div
+                            class="feedback__error"
+                            v-else-if="$v.userName.$dirty && !$v.userName.minLength"
+                        >Введите корректный email
+                        </div>
+
                     </div>
                     <div class="feedback__mail feedback__input">
-                        <input name="email"
-                               type="text" placeholder="Ваша почта*"
-                               class="form-control">
-                        <div class="feedback__error"></div>
+                        <input
+                            name="email"
+                            type="text"
+                            placeholder="Ваша почта*"
+                            class="form-control"
+                            v-model.trim="email"
+                            :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email) }"
+                        >
+
+                        <div
+                            class="feedback__error"
+                            v-if="$v.email.$dirty && !$v.email.required"
+                        >Поле не должно быть пустым
+                        </div>
+                        <div
+                            class="feedback__error"
+                            v-else-if="$v.email.$dirty && !$v.email.email"
+                        >Введите корректный email
+                        </div>
                     </div>
                 </div>
 
                 <div class="feedback__field feedback__text">
-                    <textarea name="content"
-                              placeholder="Ваш вопрос, отзыв или пожелание*"
-                              class="form-control"></textarea>
-                    <div class="feedback__error"></div>
-                </div>
-
-
-                <div class="feedback__field agree">
-                    <InputCheck
-                        :labelText="'Настоящим подтверждаю, что я ознакомлен и согласен с условиями оферты и политики конфиденциальности *'"
-                        :labelClass="'agree__label'"
+                    <textarea
+                        name="content"
+                        placeholder="Ваш вопрос, отзыв или пожелание*"
+                        class="form-control"
+                        v-model="message"
+                        :class="{invalid: ($v.message.$dirty && !$v.message.required) || ($v.message.$dirty && !$v.message.maxLength) }"
                     />
-                    <div class="feedback__field-error"></div>
+                    <div
+                        class="feedback__error"
+                        v-if="$v.message.$dirty && !$v.message.required"
+                    >Поле не должно быть пустым
+                    </div>
+                    <div
+                        class="feedback__error"
+                        v-else-if="$v.message.$dirty && !$v.message.maxLength"
+                    >Введите корректный email
+                    </div>
                 </div>
 
-                <!--                <input type="hidden" value="Форма обратной связи" name="subject">-->
+<!--                <div class="feedback__field agree">
+                    <label class="checkbox">
+                        Согласие
+                        <input
+                            type="checkbox"
+                            checked="checked"
+                            v-model="agreeWithRules"
+                        >
+                    </label>
+                    &lt;!&ndash;                    <InputCheck&ndash;&gt;
+                    &lt;!&ndash;                        :labelText="'Настоящим подтверждаю, что я ознакомлен и согласен с условиями оферты и политики конфиденциальности *'"&ndash;&gt;
+                    &lt;!&ndash;                        :labelClass="'agree__label'"&ndash;&gt;
+                    &lt;!&ndash;                        v-model="checkbox"&ndash;&gt;
+                    &lt;!&ndash;                    />&ndash;&gt;
+                    <div
+                        class="feedback__field-error"
+                        v-if="$v.agreeWithRules.$dirty && !$v.agreeWithRules.mustBeTrue"
+                    >
+
+                    </div>
+                </div>-->
 
                 <div class="feedback__submit">
                     <Button
+                        :btn-type="'submit'"
                         :btnText="'Отправить'"
                         :btn-class="'feedback__btn'"
                     />
@@ -53,13 +108,51 @@
 import InputCheck from "../../ui/InputCheck";
 import Button from "../../ui/Button";
 
+import {required, minLength, maxLength, email } from 'vuelidate/lib/validators'
+
 export default {
-    components: {Button, InputCheck}
+    name: 'FeedbackComponent',
+    components: {Button, InputCheck},
+    data() {
+        return ({
+            userName: '',
+            email: '',
+            message: '',
+            agreeWithRules: true,
+        })
+    },
+    validations: {
+        userName: {minLength: minLength(2), required},
+        email: {email, required},
+        message: { maxLength: maxLength(2048), required},
+        agreeWithRules: {
+            mustBeTrue(value) {
+                return value
+            }
+        },
+    },
+    methods: {
+        submitHandler() {
+            console.log(this.$v.$invalid)
+            this.$v.$touch()
+            if (this.$v.$invalid) {
+                return
+            }
+            const formData = {
+                userName: this.userName,
+                email: this.email,
+                message: this.message,
+                agreeWithRules: this.agreeWithRules
+            }
+            console.log(formData)
+        }
+    }
+
 }
 </script>
 
 <style lang="scss" scoped>
-@import "../../../sass/variables";
+@import "resources/sass/variables";
 
 .feedback {
     padding-bottom: 3rem;
@@ -71,6 +164,10 @@ export default {
         font-size: 32px;
         font-weight: bold;
         margin-bottom: 3rem;
+    }
+
+    &__error {
+        color: red;
     }
 }
 
