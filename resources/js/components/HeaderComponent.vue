@@ -77,7 +77,6 @@
 
 <script>
 import {mapGetters, mapActions} from "vuex/dist/vuex.mjs";
-// import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: "HeaderComponent",
@@ -101,6 +100,7 @@ export default {
       await this.signOutAction();
 
       this.$router.push('/');
+      // await
     }
   }
 }

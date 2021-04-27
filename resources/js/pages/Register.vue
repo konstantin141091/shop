@@ -54,7 +54,7 @@
         await this.register(this.form);
         this.$router.push('/');
       }
-    }
+    },
   }
 </script>
 

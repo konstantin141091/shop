@@ -2152,7 +2152,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
- // import { mapGetters, mapActions } from 'vuex'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HeaderComponent",
@@ -2175,7 +2174,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return _this.signOutAction();
 
               case 2:
-                _this.$router.push('/');
+                _this.$router.push('/'); // await
+
 
               case 3:
               case "end":
@@ -3025,6 +3025,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Account",
+  computed: _objectSpread({
+    isAuth: function isAuth() {
+      return this.$store.getters.authenticated;
+    }
+  }, Object(vuex_dist_vuex_mjs__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    authenticated: 'auth/authenticated'
+  })),
   methods: _objectSpread(_objectSpread({}, Object(vuex_dist_vuex_mjs__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
     signOutAction: 'auth/signOut'
   })), {}, {
@@ -3050,7 +3057,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee);
       }))();
     }
-  })
+  }),
+  mounted: function mounted() {
+    if (!this.authenticated) {
+      this.$router.push('/login');
+    }
+  }
 });
 
 /***/ }),
@@ -3224,6 +3236,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3243,6 +3259,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       itemsSort: [{
+        value: '',
+        title: 'Сортировка'
+      }, {
         value: 'name',
         title: 'по названию'
       }, {
@@ -3257,7 +3276,7 @@ __webpack_require__.r(__webpack_exports__);
       }],
       sortedProducts: [],
       pageNumber: 0,
-      sortType: 'name',
+      sortType: '',
       categoryName: ''
     };
   },
@@ -3274,25 +3293,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return this.productList;
-    },
-    sortItem: function sortItem() {
-      if (this.sortType === 'name') {
-        return this.productList.sort(function (a, b) {
-          return a.name.localeCompare(b.name);
-        });
-      }
-
-      if (this.sortType === 'min_price') {
-        return this.productList.sort(function (a, b) {
-          return a.price - b.price;
-        });
-      }
-
-      if (this.sortType === 'max_price') {
-        return this.productList.sort(function (a, b) {
-          return b.price - a.price;
-        });
-      }
     }
   },
   methods: {
@@ -3306,6 +3306,25 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       this.categoryName = category.name;
+    },
+    sortItem: function sortItem() {
+      if (this.sortType === 'name') {
+        return this.filterProducts.sort(function (a, b) {
+          return a.name.localeCompare(b.name);
+        });
+      }
+
+      if (this.sortType === 'min_price') {
+        return this.filterProducts.sort(function (a, b) {
+          return a.price - b.price;
+        });
+      }
+
+      if (this.sortType === 'max_price') {
+        return this.filterProducts.sort(function (a, b) {
+          return b.price - a.price;
+        });
+      }
     }
   }
 });
@@ -3583,9 +3602,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -3623,7 +3640,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
  // TODO нужно добавить обработку случая если логирование не прошло успешно, валидация
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3636,7 +3652,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])({
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
     signIn: 'auth/signIn'
   })), {}, {
     submit: function submit() {
@@ -4658,7 +4674,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".catalog__top[data-v-7ea477c0] {\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n}\n.catalog__title[data-v-7ea477c0] {\n  font-size: 32px;\n  font-weight: bold;\n  margin-bottom: 3rem;\n  text-transform: capitalize;\n}\n.select[data-v-7ea477c0] {\n  display: block;\n  font-size: 16px;\n  color: #333333;\n  line-height: 1.3;\n  padding: 0.6em 1.4em 0.5em 0.8em;\n  width: 100%;\n  max-width: 100%;\n  margin: 0;\n  border: 1px solid #808080;\n  border-radius: 5px;\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  appearance: none;\n  background-color: #fff;\n  /*    background-image: url('../storage/icons/arrow-down.svg');*/\n  background-repeat: no-repeat;\n}\n.flex-box[data-v-7ea477c0] {\n  display: flex;\n}\n.catalog__aside[data-v-7ea477c0] {\n  width: 300px;\n  padding: 10px;\n}\n.aside__title[data-v-7ea477c0] {\n  font-size: 20px;\n  margin-bottom: 1.5rem;\n}\n.category__list[data-v-7ea477c0] {\n  border-bottom: 1px solid #ededed;\n  text-transform: capitalize;\n  display: block;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  color: #333333;\n  font-family: \"Fira Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\";\n  cursor: pointer;\n}\n.category__list[data-v-7ea477c0]:hover {\n  color: #b63334;\n}\n.category__link[data-v-7ea477c0] {\n  display: block;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  color: #333333;\n  font-family: \"Fira Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\";\n}\n.category__link[data-v-7ea477c0]:hover {\n  color: #b63334;\n}\n.catalog__main[data-v-7ea477c0] {\n  width: 100%;\n  padding: 10px;\n}\n.filter[data-v-7ea477c0] {\n  margin-bottom: 3rem;\n}\n.filter__content[data-v-7ea477c0] {\n  margin-bottom: 1.5rem;\n}\n.filter__btn[data-v-7ea477c0] {\n  height: 40px;\n}", ""]);
+exports.push([module.i, ".catalog__top[data-v-7ea477c0] {\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n}\n.catalog__title[data-v-7ea477c0] {\n  font-size: 32px;\n  font-weight: bold;\n  margin-bottom: 3rem;\n  text-transform: capitalize;\n}\n.select[data-v-7ea477c0] {\n  display: block;\n  font-size: 16px;\n  color: #333333;\n  line-height: 1.3;\n  padding: 0.6em 1.4em 0.5em 0.8em;\n  width: 100%;\n  max-width: 100%;\n  margin: 0;\n  border: 1px solid #808080;\n  border-radius: 5px;\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  appearance: none;\n  background-color: #fff;\n  /*    background-image: url('../storage/icons/arrow-down.svg');*/\n  background-repeat: no-repeat;\n}\n.flex-box[data-v-7ea477c0] {\n  display: flex;\n}\n.catalog__aside[data-v-7ea477c0] {\n  width: 300px;\n  padding: 10px;\n}\n.aside__title[data-v-7ea477c0] {\n  font-size: 20px;\n  margin-bottom: 1.5rem;\n}\n.category__list[data-v-7ea477c0] {\n  border-bottom: 1px solid #ededed;\n  text-transform: capitalize;\n  display: block;\n  padding-top: 1rem;\n  padding-bottom: 1rem;\n  color: #333333;\n  font-family: \"Fira Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\";\n  cursor: pointer;\n}\n.category__list[data-v-7ea477c0]:hover {\n  color: #b63334;\n}\n.catalog__main[data-v-7ea477c0] {\n  width: 100%;\n  padding: 10px;\n}\n.filter[data-v-7ea477c0] {\n  margin-bottom: 3rem;\n}\n.filter__content[data-v-7ea477c0] {\n  margin-bottom: 1.5rem;\n}\n.filter__btn[data-v-7ea477c0] {\n  height: 40px;\n}", ""]);
 
 // exports
 
@@ -10414,7 +10430,7 @@ var render = function() {
             return _c(
               "option",
               { key: item.value, domProps: { value: item.value } },
-              [_vm._v(_vm._s(item.title))]
+              [_vm._v(_vm._s(item.title) + "\n                ")]
             )
           }),
           0
@@ -10449,7 +10465,7 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    "\n                   " +
+                    "\n                    " +
                       _vm._s(category.name) +
                       "\n                "
                   )
@@ -32363,6 +32379,13 @@ __webpack_require__.r(__webpack_exports__);
     path: '/account',
     name: 'account',
     component: _pages_Account__WEBPACK_IMPORTED_MODULE_14__["default"],
+    // beforeEnter: (to, from, next) => {
+    //   if (to.name === 'account' && !this.$store.getters.authenticated) {
+    //     next({name: login})
+    //   } else {
+    //     next()
+    //   }
+    // },
     children: [{
       path: 'history',
       component: _pages_account_History__WEBPACK_IMPORTED_MODULE_15__["default"]
@@ -32561,19 +32584,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
-    cart: [{
-      id: 1,
-      name: 'Сосиски Кроха',
-      img: 'Sosiski_kroha.png',
-      price: 100,
-      unit: "кг"
-    }, {
-      id: 2,
-      name: 'Колбаса вареная молочная',
-      img: 'Kolbasa_varennaya_Molochnaya.png',
-      price: 500,
-      unit: 'шт'
-    }]
+    cart: JSON.parse(localStorage.getItem('cart') || '[]')
   },
   getters: {
     CART: function CART(state) {
@@ -32616,7 +32627,8 @@ __webpack_require__.r(__webpack_exports__);
   actions: {
     ADD_TO_CART: function ADD_TO_CART(_ref, product) {
       var commit = _ref.commit;
-      commit('SET_CART', product); // commit('SAVE_CART')
+      commit('SET_CART', product);
+      commit('SAVE_CART');
     },
     DECREMENT_CART_ITEM: function DECREMENT_CART_ITEM(_ref2, index) {
       var commit = _ref2.commit;
@@ -32628,7 +32640,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     DELETE_FROM_CART: function DELETE_FROM_CART(_ref4, productIndex) {
       var commit = _ref4.commit;
-      commit('REMOVE_FROM_CART', productIndex); // commit('SAVE_CART')
+      commit('REMOVE_FROM_CART', productIndex);
+      commit('SAVE_CART');
     }
   }
 });

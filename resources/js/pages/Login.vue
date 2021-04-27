@@ -24,7 +24,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import { mapActions } from 'vuex'
 // TODO нужно добавить обработку случая если логирование не прошло успешно, валидация
   export default {
@@ -47,7 +46,7 @@
         await this.signIn(this.form);
         this.$router.push('/');
       }
-    }
+    },
   }
 </script>
 

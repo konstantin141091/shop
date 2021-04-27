@@ -13,10 +13,18 @@
 </template>
 
 <script>
-  import {mapActions} from "vuex/dist/vuex.mjs";
+  import {mapActions, mapGetters} from "vuex/dist/vuex.mjs";
   export default {
     name: "Account",
 
+    computed: {
+      isAuth() {
+        return this.$store.getters.authenticated;
+      },
+      ...mapGetters({
+        authenticated: 'auth/authenticated',
+      })
+    },
 
     methods: {
       ...mapActions({
@@ -27,6 +35,11 @@
         await this.signOutAction();
 
         this.$router.push('/');
+      }
+    },
+    mounted() {
+      if (!this.authenticated) {
+        this.$router.push('/login');
       }
     }
   }

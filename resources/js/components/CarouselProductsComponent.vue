@@ -97,7 +97,6 @@
           return this.$store.getters.PRODUCTS_SALE;
         }
       }
-
     },
   }
 </script>

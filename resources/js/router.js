@@ -21,6 +21,7 @@ import AccountProfile from "./pages/account/Profile";
 export default new VueRouter( {
   mode: 'history',
   base: process.env.BASE_URL,
+
   routes: [
     {
       path: '/',
@@ -86,6 +87,13 @@ export default new VueRouter( {
       path: '/account',
       name: 'account',
       component: Account,
+      // beforeEnter: (to, from, next) => {
+      //   if (to.name === 'account' && !this.$store.getters.authenticated) {
+      //     next({name: login})
+      //   } else {
+      //     next()
+      //   }
+      // },
       children: [
         {
           path: 'history',
