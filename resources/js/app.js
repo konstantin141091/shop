@@ -22,7 +22,7 @@ Vue.filter('date', dateFilter)
 Vue.use(VueRouter)
 Vue.use(Vuelidate)
 
-store.dispatch('auth/me').then(() => {
+store.dispatch('auth/ME').then(() => {
     new Vue({
         store,
         router,

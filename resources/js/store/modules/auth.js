@@ -4,56 +4,81 @@ export default {
   namespaced: true,
 
   state: {
-    authenticated: false,
-    user: null
+    AUTHENTICATED: false,
+    USER: null,
+    USER_TOKEN: null,
   },
 
   getters: {
-    authenticated (state) {
-      return state.authenticated
+    AUTHENTICATED (state) {
+      return state.AUTHENTICATED
     },
-
-    user (state) {
-      return state.user
+    USER (state) {
+      return state.USER
+    },
+    USER_TOKEN (state) {
+      return state.USER_TOKEN
     },
   },
 
   mutations: {
     SET_AUTHENTICATED (state, value) {
-      state.authenticated = value
+      state.AUTHENTICATED = value
     },
 
     SET_USER (state, value) {
-      state.user = value
+      state.USER = value
+    },
+
+    SET_USER_TOKEN(state, value) {
+      state.USER_TOKEN = value
     }
   },
 
   actions: {
-    async signIn ({ dispatch }, credentials) {
+    async SIGN_IN ({ dispatch }, credentials) {
       await axios.get('/sanctum/csrf-cookie');
       await axios.post('/login', credentials);
 
-      return dispatch('me')
+      return dispatch('ME')
     },
 
-    async signOut ({ dispatch }) {
+    async SIGN_OUT ({ dispatch }) {
       await axios.post('/logout');
 
-      return dispatch('me')
+      return dispatch('ME')
     },
 
-    async register ({ dispatch }, credentials) {
+    async REGISTER ({ dispatch }, credentials) {
       await axios.get('/sanctum/csrf-cookie');
       await axios.post('/register', credentials);
 
-      return dispatch('me')
+      return dispatch('ME')
     },
 
-    me ({ commit }) {
-      return axios.get('/api/user').then((response) => {
+    async EDIT ({dispatch, state}, credentials) {
+      console.log(credentials);
+      await axios.get('/sanctum/csrf-cookie');
+      await axios.put('/api/user/edit', credentials, {
+        headers: {Authorization: state.USER_TOKEN},
+      });
+
+      return dispatch('ME')
+    },
+
+    ME ({ commit, state }) {
+      return axios.get('/api/user')
+        .then((response) => {
         commit('SET_AUTHENTICATED', true);
         commit('SET_USER', response.data);
-      }).catch(() => {
+      }).then(() => {
+          axios.get('/api/user/token', {params: {email: state.USER.email}})
+            .then((response) => {
+              commit('SET_USER_TOKEN', response.data.token);
+            })
+        })
+        .catch((error) => {
+          console.log(error);
         commit('SET_AUTHENTICATED', false);
         commit('SET_USER', null)
       })

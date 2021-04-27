@@ -22,13 +22,13 @@
         return this.$store.getters.authenticated;
       },
       ...mapGetters({
-        authenticated: 'auth/authenticated',
+        authenticated: 'auth/AUTHENTICATED',
       })
     },
 
     methods: {
       ...mapActions({
-        signOutAction: 'auth/signOut'
+        signOutAction: 'auth/SIGN_OUT'
       }),
 
       async signOut () {

@@ -86,14 +86,14 @@ export default {
         'CART',
       ]),
       ...mapGetters({
-        authenticated: 'auth/authenticated',
-        user: 'auth/user',
+        authenticated: 'auth/AUTHENTICATED',
+        user: 'auth/USER',
       })
     },
 
   methods: {
     ...mapActions({
-      signOutAction: 'auth/signOut'
+      signOutAction: 'auth/SIGN_OUT'
     }),
 
     async signOut () {

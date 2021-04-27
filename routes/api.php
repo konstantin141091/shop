@@ -35,3 +35,22 @@ Route::group([
 ], function () {
     Route::get('/', 'CategoryController@index');
 });
+
+Route::group([
+    'namespace' => 'Auth',
+    'prefix' => 'user',
+], function () {
+    Route::get('/token', 'UserController@token');
+});
+
+Route::group([
+    'namespace' => 'Auth',
+    'prefix' => 'user',
+    'middleware' => 'auth:sanctum'
+], function () {
+    Route::put('/edit', 'UserController@edit');
+});
+
+//Route::middleware('auth:sanctum')->get('/name', function (Request $request) {
+//    return response()->json(['name' => $request->user()->name]);
+//});
