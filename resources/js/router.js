@@ -15,7 +15,6 @@ import Checkout from "./pages/Checkout";
 import Register from "./pages/Register";
 import Account from "./pages/Account";
 import AccountHistory from "./pages/account/History";
-import AccountAddress from "./pages/account/Address";
 import AccountProfile from "./pages/account/Profile";
 
 export default new VueRouter( {
@@ -98,10 +97,6 @@ export default new VueRouter( {
         {
           path: 'history',
           component: AccountHistory
-        },
-        {
-          path: 'address',
-          component: AccountAddress
         },
         {
           path: 'profile',

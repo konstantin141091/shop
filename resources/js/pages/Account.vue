@@ -3,7 +3,6 @@
         <nav class="account__menu">
             <ul>
                 <li class="account__li"><router-link to="/account/history" class="account__link">История заказов</router-link></li>
-                <li class="account__li"><router-link to="/account/address" class="account__link">Адрес доставки</router-link></li>
                 <li class="account__li"><router-link to="/account/profile" class="account__link">Мои данные</router-link></li>
                 <li class="account__li"><a href="#" @click.prevent="signOut" class="account__link">Выйти</a></li>
             </ul>

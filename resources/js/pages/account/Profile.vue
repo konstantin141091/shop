@@ -35,6 +35,32 @@
                 </div>
             </div>
             <div class="login__checkPassword">
+                <input type="checkbox" id="checkAddress" v-model="checkAddress">
+                <p>Указать адрес доставки</p>
+            </div>
+            <template v-if="checkAddress">
+                <div class="login__group">
+                    <label for="location" class="login__label">Населенный пункт</label>
+                    <input type="text" name="location" list="locations" id="location" class="login__input" v-model="form.location" placeholder="Населенный пункт">
+                    <datalist id="locations">
+                        <option value="Чита"></option>
+                        <option value="Чита2"></option>
+                        <option value="Москва"></option>
+                        <option value="Москва2"></option>
+                    </datalist>
+                    <div class="login__error" v-show="validateErrors.location">
+                        <p v-for="error in validateErrors.location">{{ error }}</p>
+                    </div>
+                </div>
+                <div class="login__group">
+                    <label for="address" class="login__label">Адрес доставки</label>
+                    <input type="text" name="address" id="address" class="login__input" v-model="form.address" placeholder="Адрес доставки">
+                    <div class="login__error" v-show="validateErrors.address">
+                        <p v-for="error in validateErrors.address">{{ error }}</p>
+                    </div>
+                </div>
+            </template>
+            <div class="login__checkPassword">
                 <input type="checkbox" id="checkPassword" v-model="checkPassword">
                 <p>Сменить пароль</p>
             </div>
@@ -80,11 +106,14 @@
           name: '',
           email: '',
           phone: null,
+          address: '',
+          location: '',
           oldPassword: '',
           newPassword: '',
           newPassword_confirmation: '',
         },
         checkPassword: false,
+        checkAddress: false,
         successMsg: false,
         errorMsg: false,
         validateErrors: {},
@@ -112,6 +141,7 @@
         const response = await this.update(this.form);
         if (response.status === 200) {
           this.successMsg = true;
+          this.validateErrors = {};
           setTimeout(this.successMsgClose, 4000)
         }
         if (response.status === 422) {
@@ -168,7 +198,7 @@
     }
     .alert-msg-error {
         width: 100%;
-        background-color: #F03517;
+        background-color: #dc7362;
         padding: 10px;
     }
 

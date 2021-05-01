@@ -4167,6 +4167,125 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Profile",
@@ -4177,14 +4296,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: '',
         email: '',
         phone: null,
+        address: '',
+        location: '',
         oldPassword: '',
         newPassword: '',
         newPassword_confirmation: ''
       },
       checkPassword: false,
+      checkAddress: false,
       successMsg: false,
       errorMsg: false,
-      validateErrors: {}
+      validateErrors: {},
+      cities: []
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
@@ -4200,6 +4323,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     errorMsgClose: function errorMsgClose() {
       this.errorMsg = false;
     },
+    cities: function cities() {},
     submit: function submit() {
       var _this = this;
 
@@ -4217,6 +4341,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
                 if (response.status === 200) {
                   _this.successMsg = true;
+                  _this.validateErrors = {};
                   setTimeout(_this.successMsgClose, 4000);
                 }
 
@@ -4226,12 +4351,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   setTimeout(_this.errorMsgClose, 4000);
                 }
 
-                console.log('in vue', response.status);
                 _this.form.oldPassword = '';
                 _this.form.newPassword = '';
                 _this.form.newPassword_confirmation = '';
 
-              case 9:
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -5077,7 +5201,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".login__group-phone[data-v-622c31ce] {\n  position: relative;\n}\n.login-phone-7[data-v-622c31ce] {\n  position: absolute;\n  top: 38.4px;\n  left: 9px;\n  font-size: 16px;\n}\n.login__title[data-v-622c31ce] {\n  font-size: 34px;\n  font-weight: 700;\n  color: #333333;\n  margin: 16px 0;\n}\n.login__form[data-v-622c31ce] {\n  display: flex;\n  flex-direction: column;\n  width: 50%;\n}\n.login__label[data-v-622c31ce] {\n  font-size: 16px;\n  font-weight: 400;\n  color: #333333;\n  margin-bottom: 10px;\n}\n.login__group[data-v-622c31ce] {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 16px;\n}\n.login__input[data-v-622c31ce] {\n  border: solid 1px #cccccc;\n  border-radius: 5px;\n  color: #333333;\n  padding: 6px 10px;\n  line-height: 24px;\n  background-color: #ffffff;\n  font-size: 16px;\n}\n.login__input-phone[data-v-622c31ce] {\n  padding-left: 23px;\n}\n.login__button[data-v-622c31ce] {\n  background-color: #1f7d63;\n  color: #ffffff;\n  padding: 16px;\n  line-height: 16px;\n  font-size: 16px;\n  border: solid 1px #cccccc;\n  border-radius: 10px;\n  margin-right: 15px;\n}\n.login__button[data-v-622c31ce]:hover {\n  background-color: #40a78a;\n}\n.login__href[data-v-622c31ce] {\n  color: #1f7d63;\n  font-size: 16px;\n  margin-right: 15px;\n}\n.login__href[data-v-622c31ce]:last-child {\n  margin-right: 0;\n}\n.profile[data-v-622c31ce] {\n  width: 100%;\n  position: relative;\n}\n.profile__title[data-v-622c31ce] {\n  font-size: 34px;\n  font-weight: 700;\n  color: #333333;\n}\n.login__checkPassword[data-v-622c31ce] {\n  display: flex;\n  align-items: center;\n  padding: 10px 0;\n}\n.login__checkPassword p[data-v-622c31ce] {\n  font-size: 20px;\n  font-weight: 400;\n  margin-left: 15px;\n}\n.login__error[data-v-622c31ce] {\n  margin-top: 5px;\n}\n.login__error p[data-v-622c31ce] {\n  color: #f10f0f;\n  font-size: 18px;\n}\n.alert-msg[data-v-622c31ce] {\n  width: 100%;\n  background-color: #dff0d8;\n  padding: 10px;\n}\n.alert-msg-error[data-v-622c31ce] {\n  width: 100%;\n  background-color: #F03517;\n  padding: 10px;\n}", ""]);
+exports.push([module.i, ".login__group-phone[data-v-622c31ce] {\n  position: relative;\n}\n.login-phone-7[data-v-622c31ce] {\n  position: absolute;\n  top: 38.4px;\n  left: 9px;\n  font-size: 16px;\n}\n.login__title[data-v-622c31ce] {\n  font-size: 34px;\n  font-weight: 700;\n  color: #333333;\n  margin: 16px 0;\n}\n.login__form[data-v-622c31ce] {\n  display: flex;\n  flex-direction: column;\n  width: 50%;\n}\n.login__label[data-v-622c31ce] {\n  font-size: 16px;\n  font-weight: 400;\n  color: #333333;\n  margin-bottom: 10px;\n}\n.login__group[data-v-622c31ce] {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 16px;\n}\n.login__input[data-v-622c31ce] {\n  border: solid 1px #cccccc;\n  border-radius: 5px;\n  color: #333333;\n  padding: 6px 10px;\n  line-height: 24px;\n  background-color: #ffffff;\n  font-size: 16px;\n}\n.login__input-phone[data-v-622c31ce] {\n  padding-left: 23px;\n}\n.login__button[data-v-622c31ce] {\n  background-color: #1f7d63;\n  color: #ffffff;\n  padding: 16px;\n  line-height: 16px;\n  font-size: 16px;\n  border: solid 1px #cccccc;\n  border-radius: 10px;\n  margin-right: 15px;\n}\n.login__button[data-v-622c31ce]:hover {\n  background-color: #40a78a;\n}\n.login__href[data-v-622c31ce] {\n  color: #1f7d63;\n  font-size: 16px;\n  margin-right: 15px;\n}\n.login__href[data-v-622c31ce]:last-child {\n  margin-right: 0;\n}\n.profile[data-v-622c31ce] {\n  width: 100%;\n  position: relative;\n}\n.profile__title[data-v-622c31ce] {\n  font-size: 34px;\n  font-weight: 700;\n  color: #333333;\n}\n.login__checkPassword[data-v-622c31ce] {\n  display: flex;\n  align-items: center;\n  padding: 10px 0;\n}\n.login__checkPassword p[data-v-622c31ce] {\n  font-size: 20px;\n  font-weight: 400;\n  margin-left: 15px;\n}\n.login__error[data-v-622c31ce] {\n  margin-top: 5px;\n}\n.login__error p[data-v-622c31ce] {\n  color: #f10f0f;\n  font-size: 18px;\n}\n.alert-msg[data-v-622c31ce] {\n  width: 100%;\n  background-color: #dff0d8;\n  padding: 10px;\n}\n.alert-msg-error[data-v-622c31ce] {\n  width: 100%;\n  background-color: #dc7362;\n  padding: 10px;\n}\ninput[data-v-622c31ce]::-webkit-calendar-picker-indicator {\n  display: none;\n}", ""]);
 
 // exports
 
@@ -12042,6 +12166,163 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
+                  value: _vm.checkAddress,
+                  expression: "checkAddress"
+                }
+              ],
+              attrs: { type: "checkbox", id: "checkAddress" },
+              domProps: {
+                checked: Array.isArray(_vm.checkAddress)
+                  ? _vm._i(_vm.checkAddress, null) > -1
+                  : _vm.checkAddress
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.checkAddress,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.checkAddress = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.checkAddress = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.checkAddress = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Указать адрес доставки")])
+          ]),
+          _vm._v(" "),
+          _vm.checkAddress
+            ? [
+                _c("div", { staticClass: "login__group" }, [
+                  _c(
+                    "label",
+                    { staticClass: "login__label", attrs: { for: "location" } },
+                    [_vm._v("Населенный пункт")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.location,
+                        expression: "form.location"
+                      }
+                    ],
+                    staticClass: "login__input",
+                    attrs: {
+                      type: "text",
+                      name: "location",
+                      list: "locations",
+                      id: "location",
+                      placeholder: "Населенный пункт"
+                    },
+                    domProps: { value: _vm.form.location },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "location", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.validateErrors.location,
+                          expression: "validateErrors.location"
+                        }
+                      ],
+                      staticClass: "login__error"
+                    },
+                    _vm._l(_vm.validateErrors.location, function(error) {
+                      return _c("p", [_vm._v(_vm._s(error))])
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "login__group" }, [
+                  _c(
+                    "label",
+                    { staticClass: "login__label", attrs: { for: "address" } },
+                    [_vm._v("Адрес доставки")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.address,
+                        expression: "form.address"
+                      }
+                    ],
+                    staticClass: "login__input",
+                    attrs: {
+                      type: "text",
+                      name: "address",
+                      id: "address",
+                      placeholder: "Адрес доставки"
+                    },
+                    domProps: { value: _vm.form.address },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "address", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.validateErrors.address,
+                          expression: "validateErrors.address"
+                        }
+                      ],
+                      staticClass: "login__error"
+                    },
+                    _vm._l(_vm.validateErrors.address, function(error) {
+                      return _c("p", [_vm._v(_vm._s(error))])
+                    }),
+                    0
+                  )
+                ])
+              ]
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { staticClass: "login__checkPassword" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
                   value: _vm.checkPassword,
                   expression: "checkPassword"
                 }
@@ -12260,7 +12541,7 @@ var render = function() {
               ]
             : _vm._e(),
           _vm._v(" "),
-          _vm._m(2)
+          _vm._m(3)
         ],
         2
       )
@@ -12283,6 +12564,210 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "alert-msg-error" }, [
       _c("p", [_vm._v("Не удалось сохранить изменения")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("datalist", { attrs: { id: "locations" } }, [
+      _c("option", { attrs: { value: "Чита" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Чита2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } }),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "Москва2" } })
     ])
   },
   function() {
