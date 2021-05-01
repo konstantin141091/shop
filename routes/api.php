@@ -48,7 +48,7 @@ Route::group([
     'prefix' => 'user',
     'middleware' => 'auth:sanctum'
 ], function () {
-    Route::put('/edit', 'UserController@edit');
+    Route::put('/', 'UserController@update');
 });
 
 //Route::middleware('auth:sanctum')->get('/name', function (Request $request) {

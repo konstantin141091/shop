@@ -4120,19 +4120,71 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Profile",
   data: function data() {
     return {
       form: {
+        id: null,
         name: '',
         email: '',
         phone: null,
         oldPassword: '',
         newPassword: '',
-        password_confirmation: ''
-      }
+        newPassword_confirmation: ''
+      },
+      checkPassword: false,
+      successMsg: false,
+      errorMsg: false,
+      validateErrors: {}
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
@@ -4140,20 +4192,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     token: 'auth/USER_TOKEN'
   })),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
-    edit: 'auth/EDIT'
+    update: 'auth/UPDATE'
   })), {}, {
+    successMsgClose: function successMsgClose() {
+      this.successMsg = false;
+    },
+    errorMsgClose: function errorMsgClose() {
+      this.errorMsg = false;
+    },
     submit: function submit() {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.edit(_this.form);
+                return _this.update(_this.form);
 
               case 2:
+                response = _context.sent;
+
+                if (response.status === 200) {
+                  _this.successMsg = true;
+                  setTimeout(_this.successMsgClose, 4000);
+                }
+
+                if (response.status === 422) {
+                  _this.errorMsg = true;
+                  _this.validateErrors = _objectSpread({}, response.data.errors);
+                  setTimeout(_this.errorMsgClose, 4000);
+                }
+
+                console.log('in vue', response.status);
+                _this.form.oldPassword = '';
+                _this.form.newPassword = '';
+                _this.form.newPassword_confirmation = '';
+
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -4166,6 +4244,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.form.name = this.user.name;
     this.form.email = this.user.email;
     this.form.phone = this.user.phone;
+    this.form.id = this.user.id;
   }
 });
 
@@ -4998,7 +5077,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".login__group-phone[data-v-622c31ce] {\n  position: relative;\n}\n.login-phone-7[data-v-622c31ce] {\n  position: absolute;\n  top: 38.4px;\n  left: 9px;\n  font-size: 16px;\n}\n.login__title[data-v-622c31ce] {\n  font-size: 34px;\n  font-weight: 700;\n  color: #333333;\n  margin: 16px 0;\n}\n.login__form[data-v-622c31ce] {\n  display: flex;\n  flex-direction: column;\n  width: 50%;\n}\n.login__label[data-v-622c31ce] {\n  font-size: 16px;\n  font-weight: 400;\n  color: #333333;\n  margin-bottom: 10px;\n}\n.login__group[data-v-622c31ce] {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 16px;\n}\n.login__input[data-v-622c31ce] {\n  border: solid 1px #cccccc;\n  border-radius: 5px;\n  color: #333333;\n  padding: 6px 10px;\n  line-height: 24px;\n  background-color: #ffffff;\n  font-size: 16px;\n}\n.login__input-phone[data-v-622c31ce] {\n  padding-left: 23px;\n}\n.login__button[data-v-622c31ce] {\n  background-color: #1f7d63;\n  color: #ffffff;\n  padding: 16px;\n  line-height: 16px;\n  font-size: 16px;\n  border: solid 1px #cccccc;\n  border-radius: 10px;\n  margin-right: 15px;\n}\n.login__button[data-v-622c31ce]:hover {\n  background-color: #40a78a;\n}\n.login__href[data-v-622c31ce] {\n  color: #1f7d63;\n  font-size: 16px;\n  margin-right: 15px;\n}\n.login__href[data-v-622c31ce]:last-child {\n  margin-right: 0;\n}\n.profile[data-v-622c31ce] {\n  width: 100%;\n}\n.profile__title[data-v-622c31ce] {\n  font-size: 34px;\n  font-weight: 700;\n  color: #333333;\n}", ""]);
+exports.push([module.i, ".login__group-phone[data-v-622c31ce] {\n  position: relative;\n}\n.login-phone-7[data-v-622c31ce] {\n  position: absolute;\n  top: 38.4px;\n  left: 9px;\n  font-size: 16px;\n}\n.login__title[data-v-622c31ce] {\n  font-size: 34px;\n  font-weight: 700;\n  color: #333333;\n  margin: 16px 0;\n}\n.login__form[data-v-622c31ce] {\n  display: flex;\n  flex-direction: column;\n  width: 50%;\n}\n.login__label[data-v-622c31ce] {\n  font-size: 16px;\n  font-weight: 400;\n  color: #333333;\n  margin-bottom: 10px;\n}\n.login__group[data-v-622c31ce] {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 16px;\n}\n.login__input[data-v-622c31ce] {\n  border: solid 1px #cccccc;\n  border-radius: 5px;\n  color: #333333;\n  padding: 6px 10px;\n  line-height: 24px;\n  background-color: #ffffff;\n  font-size: 16px;\n}\n.login__input-phone[data-v-622c31ce] {\n  padding-left: 23px;\n}\n.login__button[data-v-622c31ce] {\n  background-color: #1f7d63;\n  color: #ffffff;\n  padding: 16px;\n  line-height: 16px;\n  font-size: 16px;\n  border: solid 1px #cccccc;\n  border-radius: 10px;\n  margin-right: 15px;\n}\n.login__button[data-v-622c31ce]:hover {\n  background-color: #40a78a;\n}\n.login__href[data-v-622c31ce] {\n  color: #1f7d63;\n  font-size: 16px;\n  margin-right: 15px;\n}\n.login__href[data-v-622c31ce]:last-child {\n  margin-right: 0;\n}\n.profile[data-v-622c31ce] {\n  width: 100%;\n  position: relative;\n}\n.profile__title[data-v-622c31ce] {\n  font-size: 34px;\n  font-weight: 700;\n  color: #333333;\n}\n.login__checkPassword[data-v-622c31ce] {\n  display: flex;\n  align-items: center;\n  padding: 10px 0;\n}\n.login__checkPassword p[data-v-622c31ce] {\n  font-size: 20px;\n  font-weight: 400;\n  margin-left: 15px;\n}\n.login__error[data-v-622c31ce] {\n  margin-top: 5px;\n}\n.login__error p[data-v-622c31ce] {\n  color: #f10f0f;\n  font-size: 18px;\n}\n.alert-msg[data-v-622c31ce] {\n  width: 100%;\n  background-color: #dff0d8;\n  padding: 10px;\n}\n.alert-msg-error[data-v-622c31ce] {\n  width: 100%;\n  background-color: #F03517;\n  padding: 10px;\n}", ""]);
 
 // exports
 
@@ -11766,137 +11845,446 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "profile" }, [
-    _c("h1", { staticClass: "profile__title" }, [_vm._v("Данные профиля")]),
-    _vm._v(" "),
-    _c(
-      "form",
-      {
-        staticClass: "login__form",
-        attrs: { action: "#" },
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.submit($event)
+  return _c(
+    "div",
+    { staticClass: "profile" },
+    [
+      _vm.successMsg ? [_vm._m(0)] : _vm._e(),
+      _vm._v(" "),
+      _vm.errorMsg ? [_vm._m(1)] : _vm._e(),
+      _vm._v(" "),
+      _c("h1", { staticClass: "profile__title" }, [_vm._v("Данные профиля")]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "login__form",
+          attrs: { action: "#" },
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit($event)
+            }
           }
-        }
-      },
-      [
-        _c("div", { staticClass: "login__group" }, [
-          _c("label", { staticClass: "login__label", attrs: { for: "name" } }, [
-            _vm._v("Имя")
+        },
+        [
+          _c("div", { staticClass: "login__group" }, [
+            _c(
+              "label",
+              { staticClass: "login__label", attrs: { for: "name" } },
+              [_vm._v("Имя")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.name,
+                  expression: "form.name"
+                }
+              ],
+              staticClass: "login__input",
+              attrs: {
+                type: "text",
+                name: "name",
+                id: "name",
+                placeholder: "Имя"
+              },
+              domProps: { value: _vm.form.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "name", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.validateErrors.name,
+                    expression: "validateErrors.name"
+                  }
+                ],
+                staticClass: "login__error"
+              },
+              _vm._l(_vm.validateErrors.name, function(error) {
+                return _c("p", [_vm._v(_vm._s(error))])
+              }),
+              0
+            )
           ]),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.name,
-                expression: "form.name"
-              }
-            ],
-            staticClass: "login__input",
-            attrs: {
-              type: "text",
-              name: "name",
-              id: "name",
-              placeholder: "Имя"
-            },
-            domProps: { value: _vm.form.name },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c("div", { staticClass: "login__group" }, [
+            _c(
+              "label",
+              { staticClass: "login__label", attrs: { for: "email" } },
+              [_vm._v("Email")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.email,
+                  expression: "form.email"
                 }
-                _vm.$set(_vm.form, "name", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "login__group" }, [
-          _c(
-            "label",
-            { staticClass: "login__label", attrs: { for: "email" } },
-            [_vm._v("Email")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.email,
-                expression: "form.email"
-              }
-            ],
-            staticClass: "login__input",
-            attrs: {
-              type: "email",
-              name: "email",
-              id: "email",
-              placeholder: "Email"
-            },
-            domProps: { value: _vm.form.email },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "email", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "login__group login__group-phone" }, [
-          _c(
-            "label",
-            { staticClass: "login__label", attrs: { for: "phone" } },
-            [_vm._v("Телефон")]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "login-phone-7" }, [_vm._v("+7")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model.number",
-                value: _vm.form.phone,
-                expression: "form.phone",
-                modifiers: { number: true }
-              }
-            ],
-            staticClass: "login__input login__input-phone",
-            attrs: {
-              type: "tel",
-              name: "phone",
-              id: "phone",
-              placeholder: "9225663344"
-            },
-            domProps: { value: _vm.form.phone },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "phone", _vm._n($event.target.value))
+              ],
+              staticClass: "login__input",
+              attrs: {
+                type: "email",
+                name: "email",
+                id: "email",
+                placeholder: "Email"
               },
-              blur: function($event) {
-                return _vm.$forceUpdate()
+              domProps: { value: _vm.form.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "email", $event.target.value)
+                }
               }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _vm._m(0)
-      ]
-    )
-  ])
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.validateErrors.email,
+                    expression: "validateErrors.email"
+                  }
+                ],
+                staticClass: "login__error"
+              },
+              _vm._l(_vm.validateErrors.email, function(error) {
+                return _c("p", [_vm._v(_vm._s(error))])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "login__group login__group-phone" }, [
+            _c(
+              "label",
+              { staticClass: "login__label", attrs: { for: "phone" } },
+              [_vm._v("Телефон")]
+            ),
+            _vm._v(" "),
+            _c("span", { staticClass: "login-phone-7" }, [_vm._v("+7")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model.number",
+                  value: _vm.form.phone,
+                  expression: "form.phone",
+                  modifiers: { number: true }
+                }
+              ],
+              staticClass: "login__input login__input-phone",
+              attrs: {
+                type: "tel",
+                name: "phone",
+                id: "phone",
+                placeholder: "9225663344"
+              },
+              domProps: { value: _vm.form.phone },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "phone", _vm._n($event.target.value))
+                },
+                blur: function($event) {
+                  return _vm.$forceUpdate()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.validateErrors.phone,
+                    expression: "validateErrors.phone"
+                  }
+                ],
+                staticClass: "login__error"
+              },
+              _vm._l(_vm.validateErrors.phone, function(error) {
+                return _c("p", [_vm._v(_vm._s(error))])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "login__checkPassword" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.checkPassword,
+                  expression: "checkPassword"
+                }
+              ],
+              attrs: { type: "checkbox", id: "checkPassword" },
+              domProps: {
+                checked: Array.isArray(_vm.checkPassword)
+                  ? _vm._i(_vm.checkPassword, null) > -1
+                  : _vm.checkPassword
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.checkPassword,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.checkPassword = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.checkPassword = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.checkPassword = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", [_vm._v("Сменить пароль")])
+          ]),
+          _vm._v(" "),
+          _vm.checkPassword
+            ? [
+                _c("div", { staticClass: "login__group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "login__label",
+                      attrs: { for: "oldPassword" }
+                    },
+                    [_vm._v("Текущий пароль")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.oldPassword,
+                        expression: "form.oldPassword"
+                      }
+                    ],
+                    staticClass: "login__input",
+                    attrs: {
+                      type: "password",
+                      name: "oldPassword",
+                      id: "oldPassword",
+                      placeholder: "Текущий пароль"
+                    },
+                    domProps: { value: _vm.form.oldPassword },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "oldPassword", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.validateErrors.oldPassword,
+                          expression: "validateErrors.oldPassword"
+                        }
+                      ],
+                      staticClass: "login__error"
+                    },
+                    _vm._l(_vm.validateErrors.oldPassword, function(error) {
+                      return _c("p", [_vm._v(_vm._s(error))])
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "login__group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "login__label",
+                      attrs: { for: "newPassword" }
+                    },
+                    [_vm._v("Новый пароль")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.newPassword,
+                        expression: "form.newPassword"
+                      }
+                    ],
+                    staticClass: "login__input",
+                    attrs: {
+                      type: "password",
+                      name: "newPassword",
+                      id: "newPassword",
+                      placeholder: "Новый пароль"
+                    },
+                    domProps: { value: _vm.form.newPassword },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "newPassword", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.validateErrors.newPassword,
+                          expression: "validateErrors.newPassword"
+                        }
+                      ],
+                      staticClass: "login__error"
+                    },
+                    _vm._l(_vm.validateErrors.newPassword, function(error) {
+                      return _c("p", [_vm._v(_vm._s(error))])
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "login__group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "login__label",
+                      attrs: { for: "newPassword_confirmation" }
+                    },
+                    [_vm._v("Повторите новый пароль")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.newPassword_confirmation,
+                        expression: "form.newPassword_confirmation"
+                      }
+                    ],
+                    staticClass: "login__input",
+                    attrs: {
+                      type: "password",
+                      name: "newPassword_confirmation",
+                      id: "newPassword_confirmation",
+                      placeholder: "Повторите новый пароль"
+                    },
+                    domProps: { value: _vm.form.newPassword_confirmation },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form,
+                          "newPassword_confirmation",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.validateErrors.newPassword_confirmation,
+                          expression: "validateErrors.newPassword_confirmation"
+                        }
+                      ],
+                      staticClass: "login__error"
+                    },
+                    _vm._l(
+                      _vm.validateErrors.newPassword_confirmation,
+                      function(error) {
+                        return _c("p", [_vm._v(_vm._s(error))])
+                      }
+                    ),
+                    0
+                  )
+                ])
+              ]
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._m(2)
+        ],
+        2
+      )
+    ],
+    2
+  )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "alert-msg" }, [
+      _c("p", [_vm._v("Данные успешно изменены")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "alert-msg-error" }, [
+      _c("p", [_vm._v("Не удалось сохранить изменения")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -34885,7 +35273,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   state: {
     AUTHENTICATED: false,
     USER: null,
-    USER_TOKEN: null
+    USER_TOKEN: null,
+    ANSWER: null
   },
   getters: {
     AUTHENTICATED: function AUTHENTICATED(state) {
@@ -34984,28 +35373,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
-    EDIT: function EDIT(_ref4, credentials) {
+    UPDATE: function UPDATE(_ref4, credentials) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var dispatch, state;
+        var dispatch, state, answer;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 dispatch = _ref4.dispatch, state = _ref4.state;
-                console.log(credentials);
-                _context4.next = 4;
+                _context4.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/sanctum/csrf-cookie');
 
-              case 4:
-                _context4.next = 6;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('/api/user/edit', credentials, {
-                  headers: {
-                    Authorization: state.USER_TOKEN
+              case 3:
+                _context4.next = 5;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('/api/user', credentials).then(function (response) {
+                  if (response.status === 200) {
+                    dispatch('ME');
                   }
+
+                  return response;
+                })["catch"](function (error) {
+                  return error.response;
                 });
 
-              case 6:
-                return _context4.abrupt("return", dispatch('ME'));
+              case 5:
+                answer = _context4.sent;
+                return _context4.abrupt("return", answer);
 
               case 7:
               case "end":
@@ -35021,15 +35414,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/user').then(function (response) {
         commit('SET_AUTHENTICATED', true);
         commit('SET_USER', response.data);
-      }).then(function () {
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/user/token', {
-          params: {
-            email: state.USER.email
-          }
-        }).then(function (response) {
-          commit('SET_USER_TOKEN', response.data.token);
-        });
-      })["catch"](function (error) {
+      }) // .then(() => {
+      //   axios.get('/api/user/token', {params: {email: state.USER.email}})
+      //     .then((response) => {
+      //       commit('SET_USER_TOKEN', response.data.token);
+      //     })
+      // })
+      ["catch"](function (error) {
         console.log(error);
         commit('SET_AUTHENTICATED', false);
         commit('SET_USER', null);

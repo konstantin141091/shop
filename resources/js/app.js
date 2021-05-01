@@ -19,8 +19,8 @@ axios.defaults.withCredentials = true
 axios.defaults.baseURL = APP_URL
 Vue.filter('date', dateFilter)
 
-Vue.use(VueRouter)
-Vue.use(Vuelidate)
+Vue.use(VueRouter);
+Vue.use(Vuelidate);
 
 store.dispatch('auth/ME').then(() => {
     new Vue({

@@ -37,4 +37,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Правила валидация для сены пароля в личном кабинете юзера
+     *
+     */
+    public static function rulesForUpdatePasswordInProfile() {
+        return [
+            'oldPassword' => ['required', 'string', 'min:8'],
+            'newPassword' => ['required', 'string', 'min:8', 'confirmed'],
+        ];
+    }
+
+    public static function attributesNameForPasswordInProfile() {
+        return [
+            'oldPassword' => 'Текущий пароль',
+            'newPassword' => 'Новый пароль',
+            'newPassword_confirmation' => 'Повторите новый пароль',
+        ];
+    }
 }

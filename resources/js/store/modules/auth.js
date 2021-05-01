@@ -7,6 +7,7 @@ export default {
     AUTHENTICATED: false,
     USER: null,
     USER_TOKEN: null,
+    ANSWER: null,
   },
 
   getters: {
@@ -56,14 +57,19 @@ export default {
       return dispatch('ME')
     },
 
-    async EDIT ({dispatch, state}, credentials) {
-      console.log(credentials);
+    async UPDATE ({dispatch, state}, credentials) {
       await axios.get('/sanctum/csrf-cookie');
-      await axios.put('/api/user/edit', credentials, {
-        headers: {Authorization: state.USER_TOKEN},
-      });
-
-      return dispatch('ME')
+      const answer = await axios.put('/api/user', credentials,)
+        .then((response) => {
+          if (response.status === 200) {
+            dispatch('ME');
+          }
+          return response;
+        })
+        .catch((error) => {
+          return error.response;
+        });
+      return answer;
     },
 
     ME ({ commit, state }) {
@@ -71,12 +77,13 @@ export default {
         .then((response) => {
         commit('SET_AUTHENTICATED', true);
         commit('SET_USER', response.data);
-      }).then(() => {
-          axios.get('/api/user/token', {params: {email: state.USER.email}})
-            .then((response) => {
-              commit('SET_USER_TOKEN', response.data.token);
-            })
-        })
+      })
+        // .then(() => {
+        //   axios.get('/api/user/token', {params: {email: state.USER.email}})
+        //     .then((response) => {
+        //       commit('SET_USER_TOKEN', response.data.token);
+        //     })
+        // })
         .catch((error) => {
           console.log(error);
         commit('SET_AUTHENTICATED', false);
