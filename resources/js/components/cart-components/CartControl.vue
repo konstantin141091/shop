@@ -2,7 +2,7 @@
     <div class="total">
         <div class="total__price">
             <span>Итого</span>
-            <span>{{ cartTotalCost }}&nbsp;руб</span>
+            <span>{{ TOTAL_PRICE_CART }}&nbsp;руб</span>
         </div>
         <router-link
             class="total__btn"
@@ -21,23 +21,8 @@ export default {
 
     computed: {
         ...mapGetters([
-           'CART'
+           'TOTAL_PRICE_CART'
         ]),
-        cartTotalCost() {
-            let result = []
-            if(this.CART.length) {
-                for (let item of this.CART) {
-                    result.push(item.price * item.count)
-                }
-                result = result.reduce( (sum, el) => {
-                    return sum + el
-                })
-                return result
-            } else {
-                return result = 0
-            }
-
-        }
     }
 }
 </script>

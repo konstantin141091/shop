@@ -3,11 +3,11 @@
 
         <div class="cart-item__description">
             <div class="cart-item__img">
-                <img :src="imageUrl" :alt="cartDataItem.name">
+                <img :src="imageUrl" :alt="name">
             </div>
             <div class="cart-item__text">
-                <router-link class="cart-item__name" to="#">{{ cartDataItem.name }}</router-link>
-                <p class="cart-item__price">{{ cartDataItem.price }} руб/{{ cartDataItem.unit }}</p>
+                <router-link class="cart-item__name" to="#">{{ name }}</router-link>
+                <p class="cart-item__price">{{ price }} руб/{{ unit }}</p>
             </div>
         </div>
 
@@ -16,21 +16,23 @@
                 <button
                     class="field-control__btn"
                     @click="decrementItem"
-                >-</button>
+                >-
+                </button>
                 <input
                     class="field-control__input"
                     type="number"
                     min="1"
                     max="999"
                     value="1"
-                    v-model="cartDataItem.count"
+                    v-model="quantity"
                     required>
                 <button
                     class="field-control__btn"
                     @click="incrementItem"
-                >+</button>
+                >+
+                </button>
             </div>
-            <p class="field-control__total">{{ itemTotalCost }}&nbsp;руб</p>
+            <p class="field-control__total">{{ totalPriceProduct }}&nbsp;руб</p>
             <div class="field-control__del">
                 <button @click="deleteFromCart">x</button>
             </div>
@@ -45,31 +47,33 @@ import {mapGetters} from "vuex";
 export default {
     name: 'CartItem',
     props: {
-        cartDataItem: {
-            type: Object,
-            default: () => {
-                return {}
-            }
+        name: {
+            type: String,
+            default: ''
+        },
+        price: {
+            type: Number,
+            // default: 0
+        },
+        unit: {
+            type: String,
+            default: ''
+        },
+        quantity: {
+            type: Number,
+            default: ''
         },
         imageUrl: {
             type: String
+        },
+        totalPriceProduct: {
+            type: Number,
         }
-    },
-    data() {
-        return {
-
-        }
-    },
-    mounted() {
-        this.$set(this.cartDataItem, 'count', 1)
     },
     computed: {
         ...mapGetters([
             'CART'
         ]),
-        itemTotalCost() {
-            return this.cartDataItem.count * this.cartDataItem.price
-        },
     },
     methods: {
         deleteFromCart() {
@@ -96,8 +100,10 @@ export default {
     margin-bottom: 1rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
+
     &__img {
         margin-right: 3rem;
+
         img {
             width: 100px;
         }
@@ -130,6 +136,7 @@ export default {
 .field-control {
     width: 40%;
     margin-left: 3rem;
+
     &__btn {
         width: 25px;
         height: 25px;
@@ -158,6 +165,7 @@ export default {
 
     &__del {
         margin-left: 3rem;
+
         button {
             background: $grey;
             color: #fff;

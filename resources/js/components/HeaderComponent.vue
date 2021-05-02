@@ -68,7 +68,7 @@
                         <img src="storage/icons/shopping_cart_black.svg" alt="корзина">
                         <span class="header__cart-badge">{{ CART.length }}</span>
                     </span>
-                    <span class="header__cart-text">0&nbsp;руб</span>
+                    <span class="header__cart-text">{{ TOTAL_PRICE_CART }}&nbsp;руб</span>
                 </router-link>
             </div>
         </div>
@@ -83,7 +83,7 @@ export default {
     computed: {
       // TODO не разобрался как объеденить эти два запроса к стору
       ...mapGetters([
-        'CART',
+        'CART', 'TOTAL_PRICE_CART'
       ]),
       ...mapGetters({
         authenticated: 'auth/AUTHENTICATED',
@@ -98,8 +98,7 @@ export default {
 
     async signOut () {
       await this.signOutAction();
-
-      this.$router.push('/');
+      await this.$router.push('/catalog');
       // await
     }
   }
