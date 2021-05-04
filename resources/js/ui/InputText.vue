@@ -1,38 +1,47 @@
 <template>
     <div class="form-item">
-        <label v-if="label" class="form-label">{{ label }}</label>
+        <label
+            v-if="label"
+            class="form-label"
+            :class="{'form-label_required' : requiredField}"
+        >{{ label }}</label>
         <input
             type="text"
             :name="uniq"
             :id="uniq"
             :placeholder="placeholder"
-            :class="{ 'form-error': error }"
+            :autocomplete="autocomplete"
+            :class="error ? 'form-error' : ''"
             class="form-input"
-            :maxlength="maxLength"
             :disabled="disabled"
-            ref="autocomplete"
+            :value="title"
+            @change="$emit('change', $event.target.value)"
         />
-        <label v-if="error" class="error-label">{{ error }}</label>
+        <small v-if="error" class="error-label">{{ error }}</small>
     </div>
 </template>
 
 <script>
 export default {
     name: 'InputText',
+
+    model: {
+        prop: 'title',
+        event: 'change'
+    },
+
     props: {
+        title: String,
+        value: String,
+        autocomplete: [String, Boolean],
+
         disabled: {
             type: Boolean,
             default: false
         },
         error: {
             type: [String, Boolean],
-            default: "",
         },
-        maxLength: {
-            type: Number,
-            default: 1000
-        },
-        value: [String, Number],
         placeholder: {
             type: String,
             default: ""
@@ -45,16 +54,26 @@ export default {
             type: String,
             default: ""
         },
-        required: {
+        requiredField: {
             type: Boolean,
             default: false
         }
     },
+
+
 }
 </script>
 
 <style lang="scss" scoped>
 @import "../../sass/variables";
 
-
+.form-label_required {
+    &:after {
+        content: '*';
+        font-size: 0.9em;
+        margin-left: 0.2em;
+        line-height: 0.7em;
+        color: #D53128;
+    }
+}
 </style>

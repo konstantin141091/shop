@@ -1,31 +1,34 @@
 <template>
   <div class="form-item">
-    <input
+      <input
       type="radio"
       class="form-radio"
       :name="name"
       :id="uniq"
-      :value="val"
-      @change="change"
-      v-model="modelInput"
-    />
-    <label
-      class="form-radio-label"
-      :class="labelclass"
-      v-if="label"
-      :for="uniq"
-    >
-      <span v-if="!isButton"></span>
-      {{ label }}
-    </label>
+      :value="title"
+      @change="$emit('change', $event.target.value)"
+      />
+      <label
+          v-if="label"
+          class="form-radio-label"
+          :class="[{'form-label_required' : requiredField}, labelClass]"
+          :for="uniq"
+      >
+          {{ label }}
+      </label>
   </div>
 </template>
 
 <script>
 export default {
+
+    model: {
+        prop: 'title',
+        event: 'change'
+    },
   props: {
-    value: [String, Number, Object, Array, Boolean],
-    val: [String, Number, Object, Boolean],
+      title: [String, Number, Object, Array, Boolean],
+      value: [String, Number, Object, Boolean],
     name: {
       type: String,
       default: "uniq",
@@ -38,28 +41,17 @@ export default {
       type: String,
       default: "",
     },
-    labelclass: {
+    labelClass: {
       type: String,
       default: "",
     },
-    isButton: {
-      type: Boolean,
-      default: false,
-    },
+    requiredField: {
+        type: Boolean,
+        default: false
+    }
   },
 
-  computed: {
-    modelInput: {
-
-    },
-  },
-  methods: {
-    change(e) {
-      // console.log(e.target.value);
-      this.$emit("radioChange", e.target.value);
-    },
-  },
-};
+}
 </script>
 
 <style lang="scss" scoped>
