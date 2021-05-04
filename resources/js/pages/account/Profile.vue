@@ -15,28 +15,28 @@
             <div class="login__group">
                 <label for="name" class="login__label">Имя</label>
                 <input type="text" name="name" id="name" class="login__input" v-model="form.name" placeholder="Имя">
-                <div class="login__error" v-show="validateErrors.name">
-                    <p v-for="error in validateErrors.name">{{ error }}</p>
+                <div class="login__validate">
+                    <validate-message-component v-show="validateErrors.name" :messages="validateErrors.name"></validate-message-component>
                 </div>
             </div>
             <div class="login__group">
                 <label for="email" class="login__label">Email</label>
                 <input type="email" name="email" id="email" class="login__input" v-model="form.email" placeholder="Email">
-                <div class="login__error" v-show="validateErrors.email">
-                    <p v-for="error in validateErrors.email">{{ error }}</p>
+                <div class="login__validate">
+                    <validate-message-component v-show="validateErrors.email" :messages="validateErrors.email"></validate-message-component>
                 </div>
             </div>
             <div class="login__group login__group-phone">
                 <label for="phone" class="login__label">Телефон</label>
                 <span class="login-phone-7">+7</span>
                 <input type="tel" name="phone" id="phone" class="login__input login__input-phone" v-model.number="form.phone" placeholder="9225663344">
-                <div class="login__error" v-show="validateErrors.phone">
-                    <p v-for="error in validateErrors.phone">{{ error }}</p>
+                <div class="login__validate">
+                    <validate-message-component v-show="validateErrors.phone" :messages="validateErrors.phone"></validate-message-component>
                 </div>
             </div>
             <div class="login__checkPassword">
                 <input type="checkbox" id="checkAddress" v-model="checkAddress">
-                <p>Указать адрес доставки</p>
+                <label for="checkAddress">Указать адрес доставки</label>
             </div>
             <template v-if="checkAddress">
                 <div class="login__group">
@@ -48,43 +48,40 @@
                         <option value="Москва"></option>
                         <option value="Москва2"></option>
                     </datalist>
-                    <div class="login__error" v-show="validateErrors.location">
-                        <p v-for="error in validateErrors.location">{{ error }}</p>
+                    <div class="login__validate">
+                        <validate-message-component v-show="validateErrors.location" :messages="validateErrors.location"></validate-message-component>
                     </div>
                 </div>
                 <div class="login__group">
                     <label for="address" class="login__label">Адрес доставки</label>
                     <input type="text" name="address" id="address" class="login__input" v-model="form.address" placeholder="Адрес доставки">
-                    <div class="login__error" v-show="validateErrors.address">
-                        <p v-for="error in validateErrors.address">{{ error }}</p>
+                    <div class="login__validate">
+                        <validate-message-component v-show="validateErrors.address" :messages="validateErrors.address"></validate-message-component>
                     </div>
                 </div>
             </template>
             <div class="login__checkPassword">
                 <input type="checkbox" id="checkPassword" v-model="checkPassword">
-                <p>Сменить пароль</p>
+                <label for="checkPassword">Сменить пароль</label>
             </div>
             <template v-if="checkPassword">
                 <div class="login__group">
                     <label for="oldPassword" class="login__label">Текущий пароль</label>
                     <input type="password" name="oldPassword" id="oldPassword" class="login__input" v-model="form.oldPassword" placeholder="Текущий пароль">
-                    <div class="login__error" v-show="validateErrors.oldPassword">
-                        <p v-for="error in validateErrors.oldPassword">{{ error }}</p>
+                    <div class="login__validate">
+                        <validate-message-component v-show="validateErrors.oldPassword" :messages="validateErrors.oldPassword"></validate-message-component>
                     </div>
                 </div>
                 <div class="login__group">
                     <label for="newPassword" class="login__label">Новый пароль</label>
                     <input type="password" name="newPassword" id="newPassword" class="login__input" v-model="form.newPassword" placeholder="Новый пароль">
-                    <div class="login__error" v-show="validateErrors.newPassword">
-                        <p v-for="error in validateErrors.newPassword">{{ error }}</p>
+                    <div class="login__validate">
+                        <validate-message-component v-show="validateErrors.newPassword" :messages="validateErrors.newPassword"></validate-message-component>
                     </div>
                 </div>
                 <div class="login__group">
                     <label for="newPassword_confirmation" class="login__label">Повторите новый пароль</label>
                     <input type="password" name="newPassword_confirmation" id="newPassword_confirmation" class="login__input" v-model="form.newPassword_confirmation" placeholder="Повторите новый пароль">
-                    <div class="login__error" v-show="validateErrors.newPassword_confirmation">
-                        <p v-for="error in validateErrors.newPassword_confirmation">{{ error }}</p>
-                    </div>
                 </div>
             </template>
             <div class="login__btns">
@@ -97,8 +94,12 @@
 </template>
 <script>
   import { mapGetters, mapActions } from 'vuex'
+  import ValidateMessageComponent from '../../components/ValidateMessageComponent'
   export default {
     name: "Profile",
+    components: {
+      ValidateMessageComponent
+    },
     data () {
       return {
         form: {
@@ -178,18 +179,14 @@
         display: flex;
         align-items: center;
         padding: 10px 0;
-        & p {
+        & label {
             font-size: 20px;
             font-weight: 400;
             margin-left: 15px;
         }
     }
-    .login__error {
+    .login__validate {
         margin-top: 5px;
-        & p {
-            color: #f10f0f;
-            font-size: 18px;
-        }
     }
     .alert-msg {
         width: 100%;
@@ -201,5 +198,4 @@
         background-color: #dc7362;
         padding: 10px;
     }
-
 </style>

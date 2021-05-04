@@ -52,9 +52,17 @@ export default {
 
     async REGISTER ({ dispatch }, credentials) {
       await axios.get('/sanctum/csrf-cookie');
-      await axios.post('/register', credentials);
-
-      return dispatch('ME')
+      const answer = await axios.post('/register', credentials)
+        .then((response) => {
+          if (response.status === 201) {
+            dispatch('ME');
+          }
+          return response;
+        })
+        .catch((error) => {
+          return error.response;
+        });
+      return answer;
     },
 
     async UPDATE ({dispatch, state}, credentials) {
@@ -85,7 +93,6 @@ export default {
         //     })
         // })
         .catch((error) => {
-          console.log(error);
         commit('SET_AUTHENTICATED', false);
         commit('SET_USER', null)
       })

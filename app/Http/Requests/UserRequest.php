@@ -31,8 +31,8 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'phone' => ['nullable', 'digits_between:4,20'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['nullable', 'digits_between:4,20', 'unique:users'],
             'location' => ['nullable', 'min:4', 'max:300'],
             'address' => ['nullable', 'min:4', 'max:500'],
         ];
