@@ -15,10 +15,14 @@
                     v-for="(item, index) in cartList"
                     :key="item.id"
                     :imageUrl="item.img ? imageUrl + item.img : 'storage/images/no_photo.png'"
-                    :cartDataItem="item"
+                    :name = item.name
+                    :price = item.price
+                    :unit = item.unit
+                    :quantity="item.quantity"
+                    :totalPriceProduct="item.quantity*item.price"
                     @deleteFromCart="deleteFromCart(index)"
-                    @incrementItem="incrementItem(index)"
-                    @decrementItem="decrementItem(index)"
+                    @incrementItem="incrementItem(item.id)"
+                    @decrementItem="decrementItem(item.id)"
                 />
             </div>
 
@@ -37,14 +41,6 @@ import {mapActions, mapGetters} from "vuex/dist/vuex.mjs";
 export default {
     name: 'Cart',
     components: {CartControl, CartItem, CartEmpty},
-    props: {
-
-    },
-    data() {
-        return {
-
-        }
-    },
     computed: {
         ...mapGetters ([
             'CART'
@@ -55,21 +51,21 @@ export default {
         imageUrl() {
             return `storage/images/products/`
         },
+
     },
     methods: {
         ...mapActions([
-           'DELETE_FROM_CART', 'DECREMENT_CART_ITEM', 'INCREMENT_CART_ITEM'
+           'DELETE_FROM_CART', 'DECREMENT_TO_PRODUCT', 'INCREMENT_TO_PRODUCT'
         ]),
         deleteFromCart(index) {
             this.DELETE_FROM_CART(index)
         },
         incrementItem(index) {
-            this.INCREMENT_CART_ITEM(index)
+            this.INCREMENT_TO_PRODUCT(index)
         },
         decrementItem(index) {
-            this.DECREMENT_CART_ITEM(index)
+            this.DECREMENT_TO_PRODUCT(index)
         }
-
     }
 }
 </script>

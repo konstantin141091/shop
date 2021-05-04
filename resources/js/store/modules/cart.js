@@ -1,67 +1,77 @@
+window.Vue = require('vue')
+
 export default {
     state: {
         cart: JSON.parse(localStorage.getItem('cart' ) || '[]'),
+        // cartCount: 0,
     },
     getters: {
         CART: state => {
             return state.cart
         },
-
+        TOTAL_PRICE_CART: state => {
+            return state.cart.reduce((total, product) => {
+                return total + product.quantity * product.price
+            }, 0)
+        },
     },
     mutations: {
-        SET_CART: (state, product) => {
-            if(state.cart.length) {
-                let isProductExists = false
-                state.cart.map(item => {
-                    if(item.id === product.id) {
-                        isProductExists = true
-                        item.count++
-                    }
-                })
-                if (!isProductExists) {
-                    state.cart.push(product)
-                }
-            } else {
-                state.cart.push(product)
-            }
+        PUSH_PRODUCT_TO_CART: (state, product) => {
+            state.cart.push(product)
+            Vue.set(product, 'quantity', 1)
+            Vue.set(product, 'totalPriceProduct', product.price)
         },
 
         SAVE_CART: (state) => {
-            window.localStorage.setItem('cart', JSON.stringify(state.cart))
+            localStorage.setItem('cart', JSON.stringify(state.cart))
         },
 
-        REMOVE_FROM_CART: (state, productIndex) => {
-            state.cart.splice(productIndex, 1)
+        REMOVE_FROM_CART: (state, index) => {
+            state.cart.splice(index, 1)
         },
 
         INCREMENT: (state, index) => {
-            state.cart[index].count++
+            const cartItem = state.cart.find(item => item.id === index)
+            cartItem.quantity++
+            cartItem.totalPriceProduct = cartItem.quantity * cartItem.totalPriceProduct
         },
 
-        DECREMENT: (state, index) => {
-            if(state.cart[index].count > 1) {
-                state.cart[index].count--
+        DECREMENT: ( state, index) => {
+            console.log(state)
+            console.log(state.cart)
+            const cartItem = state.cart.find(item => item.id === index)
+            if (cartItem.quantity > 1) {
+                cartItem.quantity--
+                cartItem.totalPriceProduct = cartItem.quantity * cartItem.totalPriceProduct
             }
         }
-
     },
     actions: {
-        ADD_TO_CART: ({commit}, product) => {
-            commit('SET_CART', product)
+        ADD_TO_CART: ({commit, state}, product) => {
+            const cartItem = state.cart.find(item => item.id === product.id)
+            if (!cartItem) {
+                commit('PUSH_PRODUCT_TO_CART', product)
+            } else {
+                commit('INCREMENT', product.id)
+            }
             commit('SAVE_CART')
         },
 
-        DECREMENT_CART_ITEM: ({commit}, index) => {
+        DECREMENT_TO_PRODUCT: ({commit}, index) => {
             commit('DECREMENT', index)
-        },
-
-        INCREMENT_CART_ITEM: ({commit}, index) => {
-            commit('INCREMENT', index)
-        },
-
-        DELETE_FROM_CART: ({commit}, productIndex) => {
-            commit('REMOVE_FROM_CART', productIndex)
             commit('SAVE_CART')
+        },
+        INCREMENT_TO_PRODUCT: ({commit}, index) => {
+            commit('INCREMENT', index)
+            commit('SAVE_CART')
+        },
+
+        DELETE_FROM_CART: ({commit}, index) => {
+            commit('REMOVE_FROM_CART', index)
+            commit('SAVE_CART')
+        },
+        CHECKOUT: ( context ) => {
+            const savedCartItems = [...context.state.cart]
         }
     }
 }
