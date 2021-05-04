@@ -1,17 +1,26 @@
 <template>
-        <label class="checkbox">
-            <input type="checkbox" checked="checked">
-            <span class="checkmark"></span>
-            <span :class="labelClass">
+    <label class="checkbox">
+        <input
+            type="checkbox"
+            :checked="checked"
+            @change="$emit('change', $event.target.checked)"
+        >
+        <span class="checkmark"></span>
+        <span :class="labelClass">
                  {{ labelText }}
             </span>
-        </label>
+    </label>
 </template>
 
 <script>
 export default {
     name: 'InputCheck',
+    model: {
+        prop: 'checked',
+        event: 'change'
+    },
     props: {
+        checked: Boolean,
         labelText: {
             type: String,
         },

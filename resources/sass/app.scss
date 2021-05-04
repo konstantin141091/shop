@@ -72,13 +72,6 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 1.6rem;
         color: $colorText;
 
-        &:after {
-            content: '*';
-            font-size: 0.9em;
-            margin-left: 0.2em;
-            line-height: 0.7em;
-            color: #D53128;
-        }
     }
     &-input {
         padding: 0 15px;
@@ -100,6 +93,12 @@ h1, h2, h3, h4, h5, h6 {
     }
     &-input.invalid {
         box-shadow: 0 0 0 0.2rem #D53128;
+    }
+    &-textarea {
+        height: 115px;
+        resize: none;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 }
 .error-label {

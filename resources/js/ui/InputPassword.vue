@@ -1,7 +1,10 @@
 <template>
     <div class="form-item">
         <div class="form-item__password">
-            <label v-if="label" :for="uniq" class="form-label">{{ label }}</label>
+            <label
+                :for="uniq"
+                class="form-label form-label_required"
+            >Пароль</label>
             <input
                 type="password"
                 :name="uniq"
@@ -9,14 +12,14 @@
                 :placeholder="placeholder"
                 class="form-input"
                 :class="{'form-error': error}"
-                autocomplete="new-password"
+                autocomplete="off"
                 v-model="modelInput"
             >
-            <label v-if="error" class="error-label">{{ error }}</label>
+            <small v-if="error" class="error-label">{{ error }}</small>
         </div>
 
         <div v-if="isRepass" class="form-item__repass">
-            <label class="form-label">{{ label }}</label>
+            <label class="form-label form-label_required">Повторите пароль</label>
             <input
                 type="password"
                 :name="'re'+uniq"
@@ -24,16 +27,21 @@
                 :placeholder="placeholder"
                 class="form-input"
                 :class="{'form-error': error}"
-                autocomplete="new-password"
+                autocomplete="off"
                 v-model="repass"
             >
-            <label v-if="error" class="error-label">{{ error }}</label>
+            <small v-if="error" class="error-label">{{ error }}</small>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    model: {
+        prop: 'title',
+        event: 'change'
+    },
+
     props: {
         isRepass: {
             type: Boolean,
@@ -57,7 +65,6 @@ export default {
         },
         error: {
             type: String,
-            default: ""
         },
     },
     data: () => ({
@@ -65,12 +72,28 @@ export default {
     }),
     computed: {
         modelInput: {
-
+            get () {
+                return this.value;
+            },
+            set (val) {
+                this.$emit('change', val);
+            }
         },
     }
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.form-label_required {
+&:after {
+     content: '*';
+     font-size: 0.9em;
+     margin-left: 0.2em;
+     line-height: 0.7em;
+     color: #D53128;
+ }
+}
+.form-item__repass {
+    margin-top: 1.5rem;
+}
 </style>

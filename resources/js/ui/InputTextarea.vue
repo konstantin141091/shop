@@ -8,10 +8,10 @@
       :class="[{
         resize: !resize,
         'form-error': error,
-      },classTextArea]"
+      }, classTextArea]"
       class="form-textarea form-input"
     ></textarea>
-  <label v-if="error" class="error-label">{{ error }}</label>
+  <small v-if="error" class="error-label">{{ error }}</small>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "Placeholder"
+      default: ""
     },
     error: {
       type: String,

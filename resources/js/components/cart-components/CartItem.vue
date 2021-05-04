@@ -70,6 +70,11 @@ export default {
             type: Number,
         }
     },
+    data() {
+        return ({
+
+        })
+    },
     computed: {
         ...mapGetters([
             'CART'
