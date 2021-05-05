@@ -158,14 +158,6 @@ h6 {
   color: #333333;
 }
 
-.form-label:after {
-  content: "*";
-  font-size: 0.9em;
-  margin-left: 0.2em;
-  line-height: 0.7em;
-  color: #D53128;
-}
-
 .form-input {
   padding: 0 15px;
   border: 1px solid #808080;
@@ -189,6 +181,13 @@ h6 {
 
 .form-input.invalid {
   box-shadow: 0 0 0 0.2rem #D53128;
+}
+
+.form-textarea {
+  height: 115px;
+  resize: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .error-label {

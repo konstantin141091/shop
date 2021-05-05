@@ -23,7 +23,7 @@ class UserController extends Controller
         $user = Auth::user();
         $user->fill($request->all());
         if ($request->newPassword) {
-            $request->validate(User::rulesForUpdatePasswordInProfile(), [], User::attributesNameForPasswordInProfile());
+            $request->validate(UserRequest::rulesForUpdatePasswordInProfile(), [], UserRequest::attributesNameForPasswordInProfile());
             if (Hash::check($request->oldPassword , Auth::user()->getAuthPassword())) {
                 $password = Hash::make($request->newPassword);
                 $user->password = $password;
