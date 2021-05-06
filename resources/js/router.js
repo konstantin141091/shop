@@ -16,6 +16,9 @@ import Register from "./pages/Register";
 import Account from "./pages/Account";
 import AccountHistory from "./pages/account/History";
 import AccountProfile from "./pages/account/Profile";
+import AdminMain from "./pages/admin/AdminMain";
+import AdminProduct from "./pages/admin/AdminProduct";
+import AdminCategory from "./pages/admin/AdminCategory";
 
 export default new VueRouter( {
   mode: 'history',
@@ -86,13 +89,6 @@ export default new VueRouter( {
       path: '/account',
       name: 'account',
       component: Account,
-      // beforeEnter: (to, from, next) => {
-      //   if (to.name === 'account' && !this.$store.getters.authenticated) {
-      //     next({name: login})
-      //   } else {
-      //     next()
-      //   }
-      // },
       children: [
         {
           path: 'history',
@@ -101,6 +97,18 @@ export default new VueRouter( {
         {
           path: 'profile',
           component: AccountProfile
+        },
+        {
+          path: 'admin',
+          component: AdminMain,
+        },
+        {
+          path: 'admin/product',
+          component: AdminProduct,
+        },
+        {
+          path: 'admin/category',
+          component: AdminCategory,
         },
       ],
     },

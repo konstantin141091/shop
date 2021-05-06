@@ -6,8 +6,7 @@ export default {
   state: {
     AUTHENTICATED: false,
     USER: null,
-    USER_TOKEN: null,
-    ANSWER: null,
+    ADMIN: false,
   },
 
   getters: {
@@ -17,8 +16,8 @@ export default {
     USER (state) {
       return state.USER
     },
-    USER_TOKEN (state) {
-      return state.USER_TOKEN
+    ADMIN (state) {
+      return state.ADMIN
     },
   },
 
@@ -26,13 +25,11 @@ export default {
     SET_AUTHENTICATED (state, value) {
       state.AUTHENTICATED = value
     },
-
     SET_USER (state, value) {
       state.USER = value
     },
-
-    SET_USER_TOKEN(state, value) {
-      state.USER_TOKEN = value
+    SET_ADMIN(state, value) {
+      state.ADMIN = value
     }
   },
 
@@ -88,22 +85,20 @@ export default {
       return answer;
     },
 
-    ME ({ commit, state }) {
+    ME ({ commit }) {
       return axios.get('/api/user')
         .then((response) => {
-        commit('SET_AUTHENTICATED', true);
-        commit('SET_USER', response.data);
+          commit('SET_AUTHENTICATED', true);
+          commit('SET_USER', response.data);
+          if(response.data.is_admin) {
+            commit('SET_ADMIN', true);
+          }
       })
-        // .then(() => {
-        //   axios.get('/api/user/token', {params: {email: state.USER.email}})
-        //     .then((response) => {
-        //       commit('SET_USER_TOKEN', response.data.token);
-        //     })
-        // })
         .catch((error) => {
-        commit('SET_AUTHENTICATED', false);
-        commit('SET_USER', null)
-      })
+          commit('SET_AUTHENTICATED', false);
+          commit('SET_USER', null);
+          console.log(error);
+        })
     }
   }
 }

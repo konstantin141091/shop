@@ -4,6 +4,11 @@
             <ul>
                 <li class="account__li"><router-link to="/account/history" class="account__link">История заказов</router-link></li>
                 <li class="account__li"><router-link to="/account/profile" class="account__link">Мои данные</router-link></li>
+                <template v-if="isAdmin">
+                    <li class="account__li"><router-link to="/account/admin" class="account__link">Админ панель</router-link></li>
+                    <li class="account__li"><router-link to="/account/admin/product" class="account__link">Админ продукты</router-link></li>
+                    <li class="account__li"><router-link to="/account/admin/category" class="account__link">Админ категории</router-link></li>
+                </template>
                 <li class="account__li"><a href="#" @click.prevent="signOut" class="account__link">Выйти</a></li>
             </ul>
         </nav>
@@ -17,11 +22,9 @@
     name: "Account",
 
     computed: {
-      isAuth() {
-        return this.$store.getters.authenticated;
-      },
       ...mapGetters({
         authenticated: 'auth/AUTHENTICATED',
+        isAdmin: 'auth/ADMIN',
       })
     },
 
@@ -71,5 +74,4 @@
             text-decoration: none;
         }
     }
-
 </style>
