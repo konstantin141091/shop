@@ -51,54 +51,52 @@
                 </div>
 
                 <div class="feedback__field feedback__text">
-                    <textarea
-                        name="content"
-                        placeholder="Ваш вопрос, отзыв или пожелание*"
-                        class="form-control"
-                        v-model="message"
-                        :class="{invalid: ($v.message.$dirty && !$v.message.required) || ($v.message.$dirty && !$v.message.maxLength) }"
-                    />
-                    <div
-                        class="feedback__error"
-                        v-if="$v.message.$dirty && !$v.message.required"
-                    >Поле не должно быть пустым
-                    </div>
-                    <div
-                        class="feedback__error"
-                        v-else-if="$v.message.$dirty && !$v.message.maxLength"
-                    >Введите корректный email
-                    </div>
+                <InputTextarea
+                    name="message-feedback"
+                    placeholder="Ваш вопрос, отзыв или пожелание*"
+                    class="form-control"
+                    :uniq="'message-feedback'"
+                    :resize="false"
+                    :error="errorsFeedback.messageFeedback"
+                    v-model="messageFeedback"
+                />
+
                 </div>
 
-<!--                <div class="feedback__field agree">
-                    <label class="checkbox">
-                        Согласие
-                        <input
-                            type="checkbox"
-                            checked="checked"
-                            v-model="agreeWithRules"
-                        >
-                    </label>
-                    &lt;!&ndash;                    <InputCheck&ndash;&gt;
-                    &lt;!&ndash;                        :labelText="'Настоящим подтверждаю, что я ознакомлен и согласен с условиями оферты и политики конфиденциальности *'"&ndash;&gt;
-                    &lt;!&ndash;                        :labelClass="'agree__label'"&ndash;&gt;
-                    &lt;!&ndash;                        v-model="checkbox"&ndash;&gt;
-                    &lt;!&ndash;                    />&ndash;&gt;
-                    <div
-                        class="feedback__field-error"
-                        v-if="$v.agreeWithRules.$dirty && !$v.agreeWithRules.mustBeTrue"
-                    >
 
-                    </div>
-                </div>-->
+<!--                <div class="feedback__field feedback__text">-->
+<!--                    <textarea-->
+<!--                        name="content"-->
+<!--                        placeholder="Ваш вопрос, отзыв или пожелание*"-->
+<!--                        class="form-control"-->
+<!--                        :class="{invalid: ($v.message.$dirty && !$v.message.required) || ($v.message.$dirty && !$v.message.maxLength) }"-->
+<!--                    />-->
+<!--                    <div-->
+<!--                        class="feedback__error"-->
+<!--                        v-if="$v.message.$dirty && !$v.message.required"-->
+<!--                    >Поле не должно быть пустым-->
+<!--                    </div>-->
+<!--                    <div-->
+<!--                        class="feedback__error"-->
+<!--                        v-else-if="$v.message.$dirty && !$v.message.maxLength"-->
+<!--                    >Введите корректный email-->
+<!--                    </div>-->
+<!--                </div>-->
 
-                <div class="feedback__submit">
-                    <Button
-                        :btn-type="'submit'"
-                        :btnText="'Отправить'"
-                        :btn-class="'feedback__btn'"
-                    />
-                </div>
+                <InputCheck
+                    labelText="Настоящим подтверждаю, что я ознакомлен и согласен с условиями оферты и политики конфиденциальности *"
+                    :labelClass="'agree__label'"
+                    :error="errorsFeedback.agreeWithRules"
+                    v-model="agreeWithRules"
+                />
+            </div>
+
+            <div class="feedback__submit">
+                <Button
+                    :btn-type="'submit'"
+                    :btnText="'Отправить'"
+                    :btn-class="'feedback__btn'"
+                />
             </div>
         </form>
     </section>
@@ -107,24 +105,32 @@
 <script>
 import InputCheck from "../../ui/InputCheck";
 import Button from "../../ui/Button";
+import InputTextarea from "../../ui/InputTextarea";
 
-import {required, minLength, maxLength, email } from 'vuelidate/lib/validators'
+import {required, minLength, maxLength, email} from 'vuelidate/lib/validators'
+
 
 export default {
     name: 'FeedbackComponent',
-    components: {Button, InputCheck},
+    components: {InputTextarea, Button, InputCheck},
     data() {
         return ({
             userName: '',
             email: '',
-            message: '',
-            agreeWithRules: true,
+            messageFeedback: '',
+            agreeWithRules: false,
+            errorsFeedback: {
+                userName: '',
+                email: '',
+                messageFeedback: '',
+                agreeWithRules: null
+            }
         })
     },
     validations: {
-        userName: {minLength: minLength(2), required},
+        userName: {minLength: minLength(5), required},
         email: {email, required},
-        message: { maxLength: maxLength(2048), required},
+        messageFeedback: {maxLength: maxLength(2048), required},
         agreeWithRules: {
             mustBeTrue(value) {
                 return value
@@ -132,19 +138,45 @@ export default {
         },
     },
     methods: {
-        submitHandler() {
-            console.log(this.$v.$invalid)
+        formIsValid() {
+            let isValid = true
+
+            this.errorsFeedback = {
+                userName: '',
+                email: '',
+                messageFeedback: '',
+                agreeWithRules: null
+            }
+
             this.$v.$touch()
-            if (this.$v.$invalid) {
-                return
+
+            if (this.$v.$error) {
+                isValid = false
             }
-            const formData = {
-                userName: this.userName,
-                email: this.email,
-                message: this.message,
-                agreeWithRules: this.agreeWithRules
+
+            if (!this.$v.messageFeedback.required) {
+                this.messageFeedback.required = "Поле не должно быть пустым";
+                isValid = false
             }
-            console.log(formData)
+
+            if (!this.$v.agreeWithRules.mustBeTrue) {
+                this.errorsFeedback.agreeWithRules = "Необходимо подтвердить согласие";
+                isValid = false
+            }
+
+            return isValid
+        },
+        submitHandler() {
+            if (this.formIsValid()) {
+                const formData = {
+                    userName: this.userName,
+                    email: this.email,
+                    messageFeedback: this.messageFeedback,
+                    agreeWithRules: this.agreeWithRules
+                }
+                console.log(formData)
+            }
+
         }
     }
 
@@ -172,6 +204,25 @@ export default {
 }
 
 .feedback__field {
+    margin-bottom: 2rem;
+    text-align: left;
+    position: relative;
+
+    & input {
+        background: #f7f7f7;
+        width: 100%;
+        border-radius: 5px;
+        font-size: 16px;
+        padding: 6px 10px;
+    }
+
+    & textarea {
+        height: 115px;
+        resize: none;
+    }
+}
+
+.form-item {
     margin-bottom: 2rem;
     text-align: left;
     position: relative;
