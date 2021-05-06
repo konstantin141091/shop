@@ -1,11 +1,7 @@
 <template>
     <div class="container">
         <h1 class="login__title">Регистрация</h1>
-        <template v-if="errorMsg">
-            <div class="alert-msg-error">
-                <p>Не удалось зарегистрировать нового пользователя</p>
-            </div>
-        </template>
+        <error-message-component :message="'Не удалось зарегестрировать пользователя'" v-show="errorMsg"></error-message-component>
         <form action="#" @submit.prevent="submit" class="login__form">
             <div class="login__group">
                 <label for="name" class="login__label">Имя</label>
@@ -55,10 +51,11 @@
   // TODO продублировал стили из Login.vue Нужно их объеденить
   import { mapActions } from 'vuex'
   import ValidateMessageComponent from '../components/ValidateMessageComponent'
+  import ErrorMessageComponent from '../components/ErrorMessageComponent'
   export default {
     name: "Register",
     components: {
-      ValidateMessageComponent
+      ValidateMessageComponent, ErrorMessageComponent
     },
     data () {
       return {
@@ -77,9 +74,6 @@
       ...mapActions({
         register: 'auth/REGISTER'
       }),
-      errorMsgClose() {
-        this.errorMsg = false;
-      },
       async submit () {
         const response = await this.register(this.form);
         if (response.status === 201) {
@@ -88,10 +82,10 @@
         if (response.status === 422) {
           this.errorMsg = true;
           this.validateErrors = {...response.data.errors};
-          setTimeout(this.errorMsgClose, 4000)
+          setTimeout(() => {this.errorMsg = false}, 4000)
         } else {
           this.errorMsg = true;
-          setTimeout(this.errorMsgClose, 4000)
+          setTimeout(() => {this.errorMsg = false}, 4000)
         }
       }
     },
@@ -100,7 +94,4 @@
 
 <style lang="scss" scoped>
     @import "../../sass/login-register";
-    .login__validate {
-        margin-top: 5px;
-    }
 </style>

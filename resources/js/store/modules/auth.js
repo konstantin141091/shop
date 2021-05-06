@@ -39,9 +39,17 @@ export default {
   actions: {
     async SIGN_IN ({ dispatch }, credentials) {
       await axios.get('/sanctum/csrf-cookie');
-      await axios.post('/login', credentials);
-
-      return dispatch('ME')
+      const answer = await axios.post('/login', credentials)
+        .then((response) => {
+          if (response.status === 204) {
+            dispatch('ME');
+          }
+          return response;
+        })
+        .catch((error) => {
+          return error.response;
+        });
+      return answer;
     },
 
     async SIGN_OUT ({ dispatch }) {

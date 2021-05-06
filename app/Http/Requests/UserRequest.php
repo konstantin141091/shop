@@ -46,7 +46,7 @@ class UserRequest extends FormRequest
             'address' => 'Адрес доставки',
         ];
     }
-
+//TODO  убрать эти статические правила и вызывать в зависимотси от флага-смены пароля!
     public static function rulesForUpdatePasswordInProfile() {
         return [
             'oldPassword' => ['required', 'string', 'min:8'],

@@ -1,15 +1,7 @@
 <template>
     <div class="profile">
-        <template v-if="successMsg">
-            <div class="alert-msg">
-                <p>Данные успешно изменены</p>
-            </div>
-        </template>
-        <template v-if="errorMsg">
-            <div class="alert-msg-error">
-                <p>Не удалось сохранить изменения</p>
-            </div>
-        </template>
+        <success-message-component :message="'Данные успешно изменены'" v-show="successMsg"></success-message-component>
+        <error-message-component :message="'Не удалось сохранить изменения'" v-show="errorMsg"></error-message-component>
         <h1 class="profile__title">Данные профиля</h1>
         <form action="#" @submit.prevent="submit" class="login__form">
             <div class="login__group">
@@ -95,10 +87,12 @@
 <script>
   import { mapGetters, mapActions } from 'vuex'
   import ValidateMessageComponent from '../../components/ValidateMessageComponent'
+  import ErrorMessageComponent from '../../components/ErrorMessageComponent'
+  import SuccessMessageComponent from '../../components/SuccessMessageComponent'
   export default {
     name: "Profile",
     components: {
-      ValidateMessageComponent
+      ValidateMessageComponent, ErrorMessageComponent, SuccessMessageComponent
     },
     data () {
       return {
@@ -123,7 +117,6 @@
     computed: {
       ...mapGetters({
         user: 'auth/USER',
-        token: 'auth/USER_TOKEN'
       })
     },
 
@@ -131,24 +124,18 @@
       ...mapActions({
         update: 'auth/UPDATE',
       }),
-      successMsgClose() {
-        this.successMsg = false;
-      },
-      errorMsgClose() {
-        this.errorMsg = false;
-      },
 
       async submit () {
         const response = await this.update(this.form);
-        if (response.status === 200) {
+        if (response.status === 204) {
           this.successMsg = true;
           this.validateErrors = {};
-          setTimeout(this.successMsgClose, 4000)
+          setTimeout(() => {this.successMsg = false}, 4000)
         }
         if (response.status === 422) {
           this.errorMsg = true;
           this.validateErrors = {...response.data.errors};
-          setTimeout(this.errorMsgClose, 4000)
+          setTimeout(() => {this.errorMsg = false}, 4000)
         }
         this.form.oldPassword = '';
         this.form.newPassword = '';
@@ -173,29 +160,8 @@
             font-size: 34px;
             font-weight: 700;
             color: #333333;
+            margin-bottom: 10px;
         }
     }
-    .login__checkPassword {
-        display: flex;
-        align-items: center;
-        padding: 10px 0;
-        & label {
-            font-size: 20px;
-            font-weight: 400;
-            margin-left: 15px;
-        }
-    }
-    .login__validate {
-        margin-top: 5px;
-    }
-    .alert-msg {
-        width: 100%;
-        background-color: #dff0d8;
-        padding: 10px;
-    }
-    .alert-msg-error {
-        width: 100%;
-        background-color: #dc7362;
-        padding: 10px;
-    }
+
 </style>

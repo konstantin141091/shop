@@ -32,6 +32,6 @@ class UserController extends Controller
             }
         }
         $user->update();
-        return response()->json(['answer' => 'success']);
+        return response()->json(['answer' => 'success'], '204');
     }
 }
