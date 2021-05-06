@@ -8,7 +8,7 @@
       :class="[{
         resize: !resize,
         'form-error': error,
-      }, classTextArea]"
+      }, classTextarea]"
       class="form-textarea form-input"
     ></textarea>
   <small v-if="error" class="error-label">{{ error }}</small>
@@ -32,7 +32,6 @@ export default {
     },
     uniq: {
       type: String,
-      default: "uniq"
     },
     label: {
       type: String,
@@ -42,7 +41,7 @@ export default {
       type: Boolean,
       default: true
     },
-    classTextArea:{
+    classTextarea:{
       type: String,
       default: ""
     }

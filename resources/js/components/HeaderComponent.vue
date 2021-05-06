@@ -17,11 +17,9 @@
                             <router-link to="/contacts" class="menu__link">Контакты</router-link>
                         </li>
                         <li class="menu__item">
-                            <router-link to="/delivery" class="menu__link">Доставка</router-link>
+                            <router-link to="/delivery" class="menu__link">Доставка и оплата</router-link>
                         </li>
-                        <li class="menu__item">
-                            <router-link to="/payment" class="menu__link">Оплата</router-link>
-                        </li>
+
                         <template v-if="!authenticated">
                             <li class="menu__item">
                                 <router-link to="/login" class="menu__link">Войти</router-link>
@@ -38,7 +36,7 @@
                         </template>
                     </ul>
                 </nav>
-                <p class="header__work-time">Доставка с 8:00 до 18:00</p>
+                <p class="header__work-time">Доставка с 9:00 до 22:00</p>
                 <div class="header__phone">
                     <a class="header__phone-value" href="tel:+78008008080">+7(3519)46-66-11</a>
                 </div>
@@ -51,14 +49,24 @@
                     <img src="storage/images/logo.png" alt="Logo">
                 </router-link>
             </div>
+
             <div class="header__search">
-                <form class="header__search-form">
-                    <input type="text" class="header__search-input" placeholder="Поиск">
-                    <button class="header__search-btn">
+                <div class="header__search-form">
+                    <input
+                        type="text"
+                        class="header__search-input"
+                        placeholder="Поиск"
+                        v-model="searchValue"
+                    >
+                    <button
+                        class="header__search-btn"
+                        @click="search(searchValue)"
+                    >
                         <img src="storage/icons/search_white.svg" alt="найти">
                     </button>
-                </form>
+                </div>
             </div>
+
             <div class="header__controls">
                 <router-link to="/">
                     <img src="storage/icons/person_black.svg" alt="аккаунт">
@@ -80,28 +88,44 @@ import {mapGetters, mapActions} from "vuex/dist/vuex.mjs";
 
 export default {
     name: "HeaderComponent",
-    computed: {
-      // TODO не разобрался как объеденить эти два запроса к стору
-      ...mapGetters([
-        'CART', 'TOTAL_PRICE_CART'
-      ]),
-      ...mapGetters({
-        authenticated: 'auth/AUTHENTICATED',
-        user: 'auth/USER',
-      })
+    data() {
+        return ({
+            searchValue: '',
+        })
     },
 
-  methods: {
-    ...mapActions({
-      signOutAction: 'auth/SIGN_OUT'
-    }),
+    computed: {
+        // TODO не разобрался как объединить эти два запроса к стору
+        ...mapGetters([
+            'CART', 'TOTAL_PRICE_CART', 'SEARCH_VALUE'
+        ]),
+        ...mapGetters({
+            authenticated: 'auth/AUTHENTICATED',
+            user: 'auth/USER',
+        })
+    },
 
-    async signOut () {
-      await this.signOutAction();
-      await this.$router.push('/catalog');
-      // await
+    methods: {
+        ...mapActions({
+            signOutAction: 'auth/SIGN_OUT'
+        }),
+        ...mapActions([
+            'GET_SEARCH_VALUE'
+        ]),
+
+        search(value) {
+            this.GET_SEARCH_VALUE(value)
+            if(this.$route.path !== '/catalog') {
+                this.$router.push('/catalog')
+            }
+        },
+
+        async signOut() {
+            await this.signOutAction();
+            await this.$router.push('/catalog');
+            // await
+        }
     }
-  }
 }
 </script>
 
@@ -137,6 +161,9 @@ export default {
 
         &:hover {
             color: $colorBtn;
+        }
+        &:active {
+            color: $colorBtn !important;
         }
     }
 }

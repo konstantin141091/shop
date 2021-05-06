@@ -1,4 +1,5 @@
 <template>
+    <div class="form-item">
     <label class="checkbox">
         <input
             type="checkbox"
@@ -10,6 +11,8 @@
                  {{ labelText }}
             </span>
     </label>
+    <small v-if="error" class="error-label">{{ error }}</small>
+</div>
 </template>
 
 <script>
@@ -26,7 +29,10 @@ export default {
         },
         labelClass: {
             type: String,
-        }
+        },
+        error: {
+            type: [String, Boolean],
+        },
     }
 }
 </script>

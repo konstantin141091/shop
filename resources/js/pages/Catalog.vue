@@ -56,6 +56,8 @@ import ProductCardComponent from "../components/ProductCardComponent";
 import PaginationCatalog from "../components/catalog-components/PaginationCatalog";
 import FilterComponent from "../components/catalog-components/FiltersComponent";
 
+import {mapGetters} from "vuex/dist/vuex.mjs";
+
 
 export default {
     components: {FilterComponent, PaginationCatalog, ProductCardComponent, Button, InputCheck, Select},
@@ -69,7 +71,7 @@ export default {
                 {value: 'name', title: 'по названию'},
                 {value: 'min_price', title: 'по убыванию цены'},
                 {value: 'max_price', title: 'по возрастанию цены'},
-                {value: 'new_products', title: 'сначала новые'},
+                // {value: 'new_products', title: 'сначала новые'},
             ],
             sortedProducts: [],
             pageNumber: 0,
@@ -79,11 +81,17 @@ export default {
     },
 
     computed: {
+        ...mapGetters([
+            'PRODUCTS',
+            'CATEGORIES',
+            'SEARCH_VALUE',
+        ]),
+
         productList() {
-            return this.$store.getters.PRODUCTS
+            return this.PRODUCTS
         },
         categoryList() {
-            return this.$store.getters.CATEGORIES
+            return this.CATEGORIES
         },
         filterProducts() {
             if (this.sortedProducts.length) {
@@ -105,6 +113,7 @@ export default {
             this.categoryName = category.name
         },
 
+        //сортировка по селекту
         sortItem() {
             if (this.sortType === 'name') {
                 return this.filterProducts.sort((a, b) => a.name.localeCompare(b.name))
@@ -115,7 +124,23 @@ export default {
             if (this.sortType === 'max_price') {
                 return this.filterProducts.sort((a, b) => b.price - a.price)
             }
+
         },
+
+        //сортировка по поиску
+        sortProductsBySearchValue(value) {
+            this.sortedProducts = [...this.PRODUCTS]
+            if(value) {
+                this.sortedProducts = this.sortedProducts.filter( item => item.name.toLowerCase().includes(value.toLowerCase()) )
+            } else {
+                console.log('по вашему запросу ничего не найдено')
+            }
+        }
+    },
+    watch: {
+        SEARCH_VALUE() {
+            this.sortProductsBySearchValue(this.SEARCH_VALUE)
+        }
     }
 }
 </script>

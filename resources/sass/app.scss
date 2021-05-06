@@ -112,3 +112,36 @@ h1, h2, h3, h4, h5, h6 {
     color: #D53128;
 }
 
+//header
+.router-link-exact-active {
+    color: $colorBtn !important;
+}
+
+//стили для текстовых страниц
+
+.page {
+    &__title {
+        font-size: 32px;
+        margin-bottom: 1.5rem;
+    }
+    &__info {
+        h3 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        p {
+            margin-bottom: 1.5rem;
+        }
+    }
+    &__block {
+        margin-bottom: 1.5rem;
+
+        h3 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        p {
+            line-height: 2.2rem;
+        }
+    }
+}
