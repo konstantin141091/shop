@@ -87,6 +87,7 @@
                     <InputTextarea
                         :label="'Комментарии к заказу'"
                         :resize="false"
+                        :uniq="'comment'"
                         v-model="deliveryText"
                     />
 
@@ -210,14 +211,13 @@ export default {
     methods: {
         formIsValid() {
             const regNumPhone = new RegExp(/^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/)
-
-
             let isValid = true
 
             this.errors = {
                 userName: '',
                 userNumberPhone: '',
                 deliveryAddress: '',
+                email: '',
             }
 
             if (!this.$v.userName.minLength || !this.$v.userName.maxLength) {
@@ -225,7 +225,7 @@ export default {
                 isValid = false
             }
 
-            if (this.$v.userName.required && !this.$v.userName.required) {
+            if (!this.$v.userName.required) {
                 this.errors.userName = "Поле не может быть пустым";
                 isValid = false
             }
@@ -258,8 +258,6 @@ export default {
                 this.errors.email = "Введите корректный email";
                 isValid = false
             }
-
-
 
             return isValid
         },
@@ -302,9 +300,6 @@ export default {
         margin-right: 3rem;
     }
 }
-
-
-
 
 //form
 
