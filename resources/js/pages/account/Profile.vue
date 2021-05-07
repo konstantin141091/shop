@@ -38,7 +38,6 @@
                         <option value="Чита"></option>
                         <option value="Чита2"></option>
                         <option value="Москва"></option>
-                        <option value="Москва2"></option>
                     </datalist>
                     <div class="login__validate">
                         <validate-message-component v-show="validateErrors.location" :messages="validateErrors.location"></validate-message-component>

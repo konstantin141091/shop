@@ -201,3 +201,34 @@ h6 {
   color: #D53128;
 }
 
+.router-link-exact-active {
+  color: #b63334 !important;
+}
+
+.page__title {
+  font-size: 32px;
+  margin-bottom: 1.5rem;
+}
+
+.page__info h3 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.page__info p {
+  margin-bottom: 1.5rem;
+}
+
+.page__block {
+  margin-bottom: 1.5rem;
+}
+
+.page__block h3 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.page__block p {
+  line-height: 2.2rem;
+}
+

@@ -74,7 +74,7 @@ export default {
       await axios.get('/sanctum/csrf-cookie');
       const answer = await axios.put('/api/user', credentials,)
         .then((response) => {
-          if (response.status === 200) {
+          if (response.status === 204) {
             dispatch('ME');
           }
           return response;
