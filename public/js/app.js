@@ -4644,31 +4644,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -14078,57 +14053,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("option", { attrs: { value: "Чита2" } }),
       _vm._v(" "),
-      _c("option", { attrs: { value: "Москва" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } }),
-      _vm._v(" "),
-      _c("option", { attrs: { value: "Москва2" } })
+      _c("option", { attrs: { value: "Москва" } })
     ])
   },
   function() {
