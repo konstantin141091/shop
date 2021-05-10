@@ -54,34 +54,15 @@
                 <InputTextarea
                     name="message-feedback"
                     placeholder="Ваш вопрос, отзыв или пожелание*"
-                    class="form-control"
+                    :classTextarea="'form-item'"
                     :uniq="'message-feedback'"
                     :resize="false"
+                    :greyBackground="true"
                     :error="errorsFeedback.messageFeedback"
                     v-model="messageFeedback"
                 />
 
                 </div>
-
-
-<!--                <div class="feedback__field feedback__text">-->
-<!--                    <textarea-->
-<!--                        name="content"-->
-<!--                        placeholder="Ваш вопрос, отзыв или пожелание*"-->
-<!--                        class="form-control"-->
-<!--                        :class="{invalid: ($v.message.$dirty && !$v.message.required) || ($v.message.$dirty && !$v.message.maxLength) }"-->
-<!--                    />-->
-<!--                    <div-->
-<!--                        class="feedback__error"-->
-<!--                        v-if="$v.message.$dirty && !$v.message.required"-->
-<!--                    >Поле не должно быть пустым-->
-<!--                    </div>-->
-<!--                    <div-->
-<!--                        class="feedback__error"-->
-<!--                        v-else-if="$v.message.$dirty && !$v.message.maxLength"-->
-<!--                    >Введите корректный email-->
-<!--                    </div>-->
-<!--                </div>-->
 
                 <InputCheck
                     labelText="Настоящим подтверждаю, что я ознакомлен и согласен с условиями оферты и политики конфиденциальности *"
@@ -237,7 +218,6 @@ export default {
 
     & textarea {
         height: 115px;
-        resize: none;
     }
 }
 

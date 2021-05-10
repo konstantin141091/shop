@@ -4,8 +4,8 @@
             <ProductCardComponent
                 v-for="item in paginatedData"
                 :key="'product' + item.id"
-                :imageUrl="item.img ? imageUrl + item.img : 'storage/images/no_photo.png'"
-                :product_data="item"
+                :imageUrl="item.img ? imageUrl + item.img : '/images/no_photo.png'"
+                :product-data="item"
                 @addToCart="addToCart"
             />
         </div>
@@ -57,7 +57,7 @@ export default {
     },
     computed: {
         imageUrl() {
-            return `storage/images/products/`
+            return `/images/products/`
         },
         pages() {
             return Math.ceil(this.catalogData.length / 9)
@@ -74,6 +74,7 @@ export default {
         ]),
         addToCart(data) {
             this.ADD_TO_CART(data)
+            console.log(data)
         },
         pageClick(page) {
             this.pageNumber = page

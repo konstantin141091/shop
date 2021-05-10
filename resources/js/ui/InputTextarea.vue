@@ -5,11 +5,13 @@
       :name="uniq"
       :id="uniq"
       :placeholder="placeholder"
+      class="form-textarea"
       :class="[{
         resize: !resize,
         'form-error': error,
+        'grey-background': greyBackground,
+        'form-input': formInput
       }, classTextarea]"
-      class="form-textarea form-input"
     ></textarea>
   <small v-if="error" class="error-label">{{ error }}</small>
   </div>
@@ -44,7 +46,15 @@ export default {
     classTextarea:{
       type: String,
       default: ""
-    }
+    },
+      greyBackground: {
+          type: Boolean,
+          default: false
+      },
+      formInput: {
+          type: Boolean,
+          default: false
+      }
   },
 
   computed: {
@@ -54,21 +64,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "resources/sass/variables";
-.light {
-  background: #ffffff;
-  border: 0.5px solid #979797;
-  box-sizing: border-box;
-  border-radius: 4px;
- // height: 210px;
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  &::placeholder {
-    color: $grey;
-  }
-}
 
 .resize {
   resize: none;
+}
+
+.grey-background {
+    background: #f7f7f7;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 6px 10px;
 }
 </style>

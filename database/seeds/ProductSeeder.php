@@ -35,7 +35,12 @@ class ProductSeeder extends Seeder
                 'news' => true,
                 'price' => 600,
                 'img' => 'Ohotnich_kolbaski_GOST.png',
-                'description' => 'product description ',
+                'description' => 'свинина, говядина, шпик, посолочная
+смесь(соль поваренная пищевая, фиксатор окраски
+Е 250), пищевые добавки(антиокислитель Е 300,
+усилитель вкуса и аромата Е 621,регулятор
+кислотности Е 325), чеснок свежий, пряности,
+сахар-песок.',
                 'shelf_life' => 'product shelf_life ',
                 'category_id' => rand(1, 4)
             ],
@@ -57,7 +62,13 @@ class ProductSeeder extends Seeder
                 'news' => true,
                 'price' => 100,
                 'img' => 'Sosiski_kroha.png',
-                'description' => 'product description ',
+                'description' => 'Состав: свинина, говядина, вода питьевая,
+молоко сухое, посолочная смесь(соль поваренная
+пищевая, фиксатор окраски Е 250), яичный
+порошок, комплексная пищевая добавка
+(стабилизаторы Е 450, Е 451, пряности и экстракты
+пряностей, усилитель вкуса и аромата глутамат
+натрия, антиоксидант- аскорбиновая кислота).',
                 'shelf_life' => 'product shelf_life ',
                 'category_id' => rand(1, 4)
             ],

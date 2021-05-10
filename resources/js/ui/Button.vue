@@ -41,7 +41,7 @@ export default {
 @import "../../sass/variables";
 
 .button {
-    min-width: 250px;
+    min-width: 150px;
     display: inline-flex;
     align-items: center;
     justify-content: center;

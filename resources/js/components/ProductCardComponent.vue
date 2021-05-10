@@ -2,14 +2,14 @@
     <div>
         <div class="product">
             <router-link
-                :to="{name: 'product', params: { id: product_data.id } }"
+                :to="{name: 'product', params: { id: productData.id } }"
                 class="product__img"
             >
-                <img :src="imageUrl" :alt="product_data.name">
+                <img :src="imageUrl" :alt="productData.name">
             </router-link>
             <div class="product__text">
-                <router-link to="#" class="product__title">{{ product_data.name }}, 1 {{ product_data.unit }}</router-link>
-                <p class="product__price">{{ product_data.price }} руб.</p>
+                <router-link :to="{name: 'product', params: { id: productData.id } }" class="product__title">{{ productData.name }}, 1 {{ productData.unit }}</router-link>
+                <p class="product__price">{{ productData.price }} руб.</p>
             </div>
             <div class="product__btn">
                 <button
@@ -24,7 +24,7 @@
 export default {
     name: 'ProductCardComponent',
     props: {
-        product_data: {
+        productData: {
             type: Object,
             default: () => {
                 return {}
@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         addToCart() {
-            this.$emit('addToCart', this.product_data)
+            this.$emit('addToCart', this.productData)
         }
     }
 }
@@ -60,6 +60,7 @@ export default {
         object-fit: cover;
         border-top-left-radius: inherit;
         border-top-right-radius: inherit;
+        //padding: 10px;
     }
 
     &__img {
