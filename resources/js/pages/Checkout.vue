@@ -87,6 +87,7 @@
                     <InputTextarea
                         :label="'Комментарии к заказу'"
                         :resize="false"
+                        :form-input="true"
                         :uniq="'comment'"
                         v-model="deliveryText"
                     />

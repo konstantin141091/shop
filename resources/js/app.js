@@ -1,11 +1,14 @@
 import axios from 'axios'
 import Vue from 'vue'
 import Vuelidate from "vuelidate/src"
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import VueRouter from 'vue-router'
 import router from './router'
 import {store} from './store'
 import Main from './layout/MainLayout'
 import dateFilter from "./utils/date.filter"
+
 
 //Global styles
 import '../sass/app.scss'
@@ -18,6 +21,7 @@ Vue.filter('date', dateFilter);
 
 Vue.use(VueRouter);
 Vue.use(Vuelidate);
+Vue.component('VueSlickCarousel', VueSlickCarousel)
 
 store.dispatch('auth/ME').then(() => {
     new Vue({

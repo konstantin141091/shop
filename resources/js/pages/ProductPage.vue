@@ -2,9 +2,9 @@
     <div class="container">
         <div class="flex-box">
             <div class="left">
-                <img :src="`storage/images/products/${product.img}`" :alt="product.name">
+                <img :src="`/images/products/${product.img}`" :alt="product.name">
             </div>
-            <div class="right">
+            <div class="right product">
                 <h1 class="product__title">{{ product.name }}</h1>
                 <div class="product__info">
                     <div class="product__buy">
@@ -63,8 +63,9 @@ export default {
         ...mapActions([
             'ADD_TO_CART'
         ]),
-        addToCart(data) {
-            this.ADD_TO_CART(data)
+        addToCart() {
+            this.ADD_TO_CART(this.product)
+            console.log(this.product)
         },
     }
 }
@@ -79,10 +80,15 @@ export default {
 
 .left {
     width: 50%;
+    margin-right: 5%;
 
     img {
         width: 100%;
     }
+}
+
+.right {
+    width: 45%;
 }
 
 .product {
@@ -111,6 +117,16 @@ export default {
     &__btn {
         padding: 8px 16px;
         min-width: 200px;
+    }
+}
+
+.product__description {
+    div {
+        margin-bottom: 1.5rem;
+    }
+    h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
     }
 }
 </style>

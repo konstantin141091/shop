@@ -76,9 +76,11 @@
                 </div>
             </template>
             <div class="login__btns">
-                <button type="submit" class="login__button">
-                    Сохранить изменения
-                </button>
+                <Button
+                    btn-type="submit"
+                    btn-text="Сохранить изменения"
+                    btn-class="login__button"
+                />
             </div>
         </form>
     </div>
@@ -88,9 +90,11 @@
   import ValidateMessageComponent from '../../components/ValidateMessageComponent'
   import ErrorMessageComponent from '../../components/ErrorMessageComponent'
   import SuccessMessageComponent from '../../components/SuccessMessageComponent'
+  import Button from "../../ui/Button";
   export default {
     name: "Profile",
     components: {
+        Button,
       ValidateMessageComponent, ErrorMessageComponent, SuccessMessageComponent
     },
     data () {

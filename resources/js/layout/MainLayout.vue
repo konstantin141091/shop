@@ -3,7 +3,7 @@
         <Header/>
         <div class="main-layout">
             <keep-alive>
-                <router-view :key="$route.path"></router-view>
+                <router-view></router-view>
             </keep-alive>
         </div>
         <Footer/>
