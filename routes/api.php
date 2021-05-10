@@ -18,31 +18,29 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-
 Route::group([
     'namespace' => 'API',
     'prefix' => 'product',
 ], function () {
-    Route::get('/', 'ProductController@index');
-});
+    Route::group([
+        'prefix' => 'product',
+    ], function () {
+        Route::get('/', 'ProductController@index');
+    });
 
-Route::group([
-    'namespace' => 'API',
-    'prefix' => 'category',
-], function () {
-    Route::get('/', 'CategoryController@index');
-});
+    Route::group([
+        'prefix' => 'category',
+    ], function () {
+        Route::get('/', 'CategoryController@index');
+    });
 
-Route::group([
-    'namespace' => 'Auth',
-    'prefix' => 'user',
-], function () {
-    Route::get('/token', 'UserController@token');
+    Route::group([
+        'prefix' => 'basket',
+    ], function () {
+        Route::get('/', 'BasketController@show');
+        Route::post('/', 'BasketController@store');
+    });
 });
-
 Route::group([
     'namespace' => 'Auth',
     'prefix' => 'user',
@@ -50,6 +48,15 @@ Route::group([
 ], function () {
     Route::put('/', 'UserController@update');
 });
+
+
+
+//Route::group([
+//    'namespace' => 'Auth',
+//    'prefix' => 'user',
+//], function () {
+//    Route::get('/token', 'UserController@token');
+//});
 
 //Route::middleware('auth:sanctum')->get('/name', function (Request $request) {
 //    return response()->json(['name' => $request->user()->name]);

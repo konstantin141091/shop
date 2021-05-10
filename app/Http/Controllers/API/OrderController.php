@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class BasketController extends Controller
+class OrderController extends Controller
 {
+    public function index(Request $request) {
+
+    }
+
     public function show(Request $request) {
-        dd($request);
+
     }
 
     public function store(Request $request) {

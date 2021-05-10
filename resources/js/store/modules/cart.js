@@ -17,9 +17,9 @@ export default {
     },
     mutations: {
         PUSH_PRODUCT_TO_CART: (state, product) => {
-            state.cart.push(product)
-            Vue.set(product, 'quantity', 1)
-            Vue.set(product, 'totalPriceProduct', product.price)
+            state.cart.push(product);
+            Vue.set(product, 'quantity', 1);
+            Vue.set(product, 'totalPriceProduct', product.price);
         },
 
         SAVE_CART: (state) => {
@@ -31,15 +31,15 @@ export default {
         },
 
         INCREMENT: (state, index) => {
-            const cartItem = state.cart.find(item => item.id === index)
+            const cartItem = state.cart.find(item => item.id === index);
             cartItem.quantity++
             cartItem.totalPriceProduct = cartItem.quantity * cartItem.totalPriceProduct
         },
 
         DECREMENT: ( state, index) => {
-            console.log(state)
-            console.log(state.cart)
-            const cartItem = state.cart.find(item => item.id === index)
+            console.log(state);
+            console.log(state.cart);
+            const cartItem = state.cart.find(item => item.id === index);
             if (cartItem.quantity > 1) {
                 cartItem.quantity--
                 cartItem.totalPriceProduct = cartItem.quantity * cartItem.totalPriceProduct
