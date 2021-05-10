@@ -18,9 +18,11 @@
                 </div>
             </div>
             <div class="login__btns">
-                <button type="submit" class="login__button">
-                    Войти
-                </button>
+                <Button
+                    btn-type="submit"
+                    btn-text="Войти"
+                    btn-class="login__button"
+                />
                 <router-link to="/register" class="login__href">Регистрация</router-link>
                 <router-link to="/register" class="login__href">Восстановить пароль</router-link>
             </div>
@@ -32,10 +34,12 @@
   import { mapActions } from 'vuex'
   import ValidateMessageComponent from '../components/ValidateMessageComponent'
   import ErrorMessageComponent from '../components/ErrorMessageComponent'
+  import Button from "../ui/Button";
 
   export default {
     name: "Login",
     components: {
+        Button,
       ValidateMessageComponent, ErrorMessageComponent
     },
     data () {

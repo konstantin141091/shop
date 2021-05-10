@@ -1,36 +1,48 @@
 <template>
     <div class="container">
-        <Carousel/>
+        <PromoComponent/>
 
-        <CarouselProductComponent :title="'Новое поступление'" :flag="'sale'" />
+        <NewArrivalComponent/>
 
-        <BenefitListComponent />
+        <BenefitListComponent/>
 
-        <PromotionsComponent />
+        <PromotionsComponent/>
 
-        <ReviewsComponent />
+        <ReviewsComponent/>
 
-        <FeedbackComponent />
+        <FeedbackComponent/>
     </div>
 
 </template>
 
 <script>
-import Carousel from "../components/home-components/CarouselComponent";
+import PromoComponent from "../components/home-components/PromoComponent";
 import BenefitListComponent from "../components/home-components/BenefitListComponent";
 import ReviewsComponent from "../components/home-components/ReviewsComponent";
 import FeedbackComponent from "../components/home-components/FeedbackComponent";
 import CarouselProductComponent from "../components/CarouselProductsComponent"
 import PromotionsComponent from "../components/home-components/PromotionsComponent";
+import NewArrivalComponent from "../components/home-components/NewArrivalComponent";
+import Carousel from "../components/Carousel";
+import ProductCardComponent from "../components/ProductCardComponent";
+
 
 export default {
     name: "Home",
     components: {
+        Carousel,
+        ProductCardComponent,
+        NewArrivalComponent,
         PromotionsComponent,
-        FeedbackComponent, ReviewsComponent, BenefitListComponent, Carousel, CarouselProductComponent}
+        FeedbackComponent,
+        ReviewsComponent,
+        BenefitListComponent,
+        PromoComponent,
+        CarouselProductComponent
+    }
 }
 </script>
 
-<style>
+<style lang="scss">
 
 </style>

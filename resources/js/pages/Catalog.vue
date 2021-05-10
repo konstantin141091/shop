@@ -106,7 +106,7 @@ export default {
         sortByCategories(category) {
             this.sortedProducts = []
             this.productList.map(item => {
-                if (item.category_id === category.name) {
+                if (item.category_id === category.id) {
                     this.sortedProducts.push(item)
                 }
             })

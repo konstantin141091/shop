@@ -46,7 +46,7 @@
         <div class="header__bottom container">
             <div class="header__logo">
                 <router-link to="/" class="navbar-brand">
-                    <img src="storage/images/logo.png" alt="Logo">
+                    <img src="/images/logo.png" alt="Logo">
                 </router-link>
             </div>
 
@@ -62,18 +62,18 @@
                         class="header__search-btn"
                         @click="search(searchValue)"
                     >
-                        <img src="storage/icons/search_white.svg" alt="найти">
+                        <img src="/icons/search_white.svg" alt="найти">
                     </button>
                 </div>
             </div>
 
             <div class="header__controls">
                 <router-link to="/">
-                    <img src="storage/icons/person_black.svg" alt="аккаунт">
+                    <img src="/icons/person_black.svg" alt="аккаунт">
                 </router-link>
                 <router-link to="/cart">
                     <span class="header__cart">
-                        <img src="storage/icons/shopping_cart_black.svg" alt="корзина">
+                        <img src="/icons/shopping_cart_black.svg" alt="корзина">
                         <span class="header__cart-badge">{{ CART.length }}</span>
                     </span>
                     <span class="header__cart-text">{{ TOTAL_PRICE_CART }}&nbsp;руб</span>
@@ -131,6 +131,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../sass/variables";
+
+.header {
+    margin-bottom: 3rem;
+}
 
 .header__top {
     padding-top: 15px;

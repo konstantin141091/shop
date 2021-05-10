@@ -2,22 +2,7 @@ import axios from "axios";
 
 export default {
     state: {
-        products: [
-            {
-                id: 1,
-                name: 'Сосиски Кроха',
-                img: 'Sosiski_kroha.png',
-                price: 100,
-                unit: "кг"
-            },
-            {
-                id: 2,
-                name: 'Колбаса вареная молочная',
-                img: 'Kolbasa_varennaya_Molochnaya.png',
-                price: 500,
-                unit: 'шт'
-            },
-        ],
+        products: [],
     },
 
     getters: {
@@ -33,22 +18,24 @@ export default {
     },
 
     mutations: {
-        SET_PRODUCTS: (state, payload) => {
-            state.products = payload;
+        SET_PRODUCTS: (state, products) => {
+            state.products = products;
         },
     },
 
     actions: {
-        GET_PRODUCTS: async (context) => {
+        GET_PRODUCTS: async ({commit}) => {
             axios.get('/api/product')
                 .then(response => {
                     if (response.data.products) {
-                        context.commit('SET_PRODUCTS', response.data.products);
+                        commit('SET_PRODUCTS', response.data.products);
                     }
+                    return response
                 })
                 .catch(error => {
                     // TODO нужно обработать ошибку и что-то сделать если не придут продукты
                     console.log(error);
+                    return error
                 });
         },
     }

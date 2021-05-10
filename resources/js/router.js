@@ -64,6 +64,7 @@ export default new VueRouter( {
       path: '/product/:id',
       name: 'product',
       component: ProductPage,
+      props: true
     },
     {
       path: '/cart',
