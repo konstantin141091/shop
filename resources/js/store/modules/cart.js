@@ -1,4 +1,6 @@
-window.Vue = require('vue')
+import axios from "axios";
+
+window.Vue = require('vue');
 
 export default {
     state: {
@@ -44,6 +46,10 @@ export default {
                 cartItem.quantity--
                 cartItem.totalPriceProduct = cartItem.quantity * cartItem.totalPriceProduct
             }
+        },
+        DELETE_ALL_CART: (state) => {
+            state.cart = {};
+            console.log(state.cart);
         }
     },
     actions: {
@@ -72,6 +78,22 @@ export default {
         },
         CHECKOUT: ( context ) => {
             const savedCartItems = [...context.state.cart]
-        }
+        },
+        CLEAR_CART: ({commit}) => {
+            localStorage.clear();
+            commit('DELETE_ALL_CART');
+        },
+
+        async API_ADD_CART ({ dispatch }, credentials) {
+            await axios.get('/sanctum/csrf-cookie');
+            const answer = await axios.post('/api/basket', credentials)
+              .then((response) => {
+                  return response;
+              })
+              .catch((error) => {
+                  return error.response;
+              });
+            return answer;
+        },
     }
 }

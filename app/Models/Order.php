@@ -13,6 +13,9 @@ class Order extends Model
         'user_id',
         'name',
         'phone',
+        'email',
+        'address',
+        'comment',
         'status',
     ];
 }

@@ -12,7 +12,7 @@ class Basket extends Model
         'session_id',
         'user_id',
         'product_id',
-        'count',
+        'quantity',
         'price',
         'total',
     ];

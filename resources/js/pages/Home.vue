@@ -23,14 +23,14 @@ import FeedbackComponent from "../components/home-components/FeedbackComponent";
 import CarouselProductComponent from "../components/CarouselProductsComponent"
 import PromotionsComponent from "../components/home-components/PromotionsComponent";
 import NewArrivalComponent from "../components/home-components/NewArrivalComponent";
-import Carousel from "../components/Carousel";
+// import Carousel from "../components/Carousel";
 import ProductCardComponent from "../components/ProductCardComponent";
 
 
 export default {
     name: "Home",
     components: {
-        Carousel,
+        // Carousel,
         ProductCardComponent,
         NewArrivalComponent,
         PromotionsComponent,

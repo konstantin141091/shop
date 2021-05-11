@@ -21,7 +21,7 @@ Vue.filter('date', dateFilter);
 
 Vue.use(VueRouter);
 Vue.use(Vuelidate);
-Vue.component('VueSlickCarousel', VueSlickCarousel)
+Vue.component('VueSlickCarousel', VueSlickCarousel);
 
 store.dispatch('auth/ME').then(() => {
     new Vue({

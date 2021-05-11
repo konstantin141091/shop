@@ -20,7 +20,10 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
             $table->unsignedBigInteger('phone');
-            $table->enum('status', ['created', 'in_working', 'finished'])->default('created');
+            $table->string('email')->nullable();
+            $table->string('address');
+            $table->string('comment')->nullable();
+            $table->enum('status', ['оформлен', 'в работе', 'выполнен'])->default('оформлен');
             $table->timestamps();
         });
     }

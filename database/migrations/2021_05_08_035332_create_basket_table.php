@@ -20,7 +20,7 @@ class CreateBasketTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->unsignedBigInteger('count');
+            $table->unsignedBigInteger('quantity');
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('total');
             $table->timestamps();

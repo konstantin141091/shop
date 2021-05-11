@@ -160,8 +160,7 @@ import Button from "../ui/Button"
 import {required, minLength, maxLength, email} from 'vuelidate/lib/validators'
 import InputPassword from "../ui/InputPassword";
 import BasketItemList from "../components/checkout/BasketItemList";
-
-
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 
 export default {
     components: {
@@ -207,19 +206,23 @@ export default {
         }
     },
 
-    computed: {},
+  computed: {
+    ...mapGetters([
+      'CART',
+    ]),
+  },
 
     methods: {
-        formIsValid() {
+      formIsValid() {
             const regNumPhone = new RegExp(/^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/)
-            let isValid = true
+            let isValid = true;
 
             this.errors = {
                 userName: '',
                 userNumberPhone: '',
                 deliveryAddress: '',
                 email: '',
-            }
+            };
 
             if (!this.$v.userName.minLength || !this.$v.userName.maxLength) {
                 this.errors.userName = "Количество символов (min 5 max 35)";
@@ -249,33 +252,75 @@ export default {
             }
 
             // Блок email
+// TODO закомитил пока блок с email . Нужно пофиксить.При заполненом email всё равно не проходит валидацию
+            // if (!this.$v.email.required) {
+            //     this.errors.email = "Поле не может быть пустым";
+            //     isValid = false
+            // }
+            //
+            // if (!this.$v.email.email) {
+            //     this.errors.email = "Введите корректный email";
+            //     isValid = false
+            // }
 
-            if (!this.$v.email.required) {
-                this.errors.email = "Поле не может быть пустым";
-                isValid = false
-            }
-
-            if (!this.$v.email.email) {
-                this.errors.email = "Введите корректный email";
-                isValid = false
-            }
-
-            return isValid
+        return isValid
         },
-        submitHandler() {
-            if (this.formIsValid()) {
-                console.group('Form Data')
-                console.log('Name:', this.userName)
-                console.log('Number:', this.userNumberPhone)
-                console.log('Address:', this.deliveryAddress)
-                console.log('deliveryMethod:', this.deliveryMethod)
-                console.log('email:', this.email)
-                console.log('emailNotRegistration:', this.emailNotRegistration)
-                console.log('checkPassword:', this.checkPassword)
-                console.groupEnd()
-            }
-        },
+      submitHandler() {
+        console.log(this.formIsValid());
+        if (this.formIsValid()) {
+          console.group('Form Data')
+          console.log('Name:', this.userName)
+          console.log('Number:', this.userNumberPhone)
+          console.log('Address:', this.deliveryAddress)
+          console.log('deliveryMethod:', this.deliveryMethod)
+          console.log('email:', this.email)
+          console.log('emailNotRegistration:', this.emailNotRegistration)
+          console.log('checkPassword:', this.checkPassword)
+          console.groupEnd()
+          this.handleCreateOrder();
+        }
+      },
 
+      async handleCreateOrder() {
+        const basketResponse = await this.$store.dispatch('API_ADD_CART', this.CART);
+        if (basketResponse.status === 204) {
+
+          const order = {
+            name: this.userName,
+            phone: this.userNumberPhone,
+            email: this.email,
+            address: this.deliveryAddress,
+            comment: this.deliveryText
+          };
+          const orderResponse = await this.$store.dispatch('API_ADD_ORDER', order);
+          if (orderResponse.status === 204) {
+            console.log('Заказ добавился в бд. Нужно как то сказать об этом юзеру');
+            console.log('Нужно скинуть корзину в local storage');
+            this.$store.dispatch('CLEAR_CART');
+            this.$router.push('/');
+          } else {
+            console.log('Ошибка. Не удалось добавить заказ в бд!');
+          }
+
+        } else {
+          console.log('Ошибка. Не удалось добавить корзину в бд!');
+        }
+      },
+
+      async createBasket () {
+        response = await this.$store.dispatch('API_ADD_CART', this.CART);
+        return response;
+      },
+
+      async createOrder() {
+        const order = {
+          name: this.userName,
+          phone: this.userNumberPhone,
+          email: this.email
+        };
+        response = await this.$store.dispatch('API_ADD_ORDER', order);
+        return response;
+      }
     },
 
 }

@@ -20,7 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group([
     'namespace' => 'API',
-    'prefix' => 'product',
 ], function () {
     Route::group([
         'prefix' => 'product',
@@ -39,6 +38,12 @@ Route::group([
     ], function () {
         Route::get('/', 'BasketController@show');
         Route::post('/', 'BasketController@store');
+    });
+
+    Route::group([
+        'prefix' => 'order',
+    ], function () {
+        Route::post('/', 'OrderController@store');
     });
 });
 Route::group([
