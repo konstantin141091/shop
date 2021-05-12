@@ -20,7 +20,6 @@ import PromoComponent from "../components/home-components/PromoComponent";
 import BenefitListComponent from "../components/home-components/BenefitListComponent";
 import ReviewsComponent from "../components/home-components/ReviewsComponent";
 import FeedbackComponent from "../components/home-components/FeedbackComponent";
-import CarouselProductComponent from "../components/CarouselProductsComponent"
 import PromotionsComponent from "../components/home-components/PromotionsComponent";
 import NewArrivalComponent from "../components/home-components/NewArrivalComponent";
 // import Carousel from "../components/Carousel";
@@ -38,7 +37,6 @@ export default {
         ReviewsComponent,
         BenefitListComponent,
         PromoComponent,
-        CarouselProductComponent
     }
 }
 </script>

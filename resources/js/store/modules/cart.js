@@ -48,7 +48,7 @@ export default {
             }
         },
         DELETE_ALL_CART: (state) => {
-            state.cart = {};
+            state.cart = [];
             console.log(state.cart);
         }
     },

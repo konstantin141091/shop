@@ -20,8 +20,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "date-fns": "^2.20.1",
-        "hooper": "^0.3.4",
         "vue-router": "^3.5.1",
         "vue-slick-carousel": "^1.0.6",
         "vuelidate": "^0.7.6",
