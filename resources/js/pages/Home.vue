@@ -1,5 +1,9 @@
 <template>
     <div class="container">
+<!--        <Carousel
+            :carousel-data="carouselData"
+        />-->
+
         <PromoComponent/>
 
         <NewArrivalComponent/>
@@ -37,6 +41,15 @@ export default {
         ReviewsComponent,
         BenefitListComponent,
         PromoComponent,
+    },
+    data() {
+        return {
+            carouselData: [
+                {id: 1, name: 'Первый слайд', img: 'http://dummyimage.com/1200x450/99cccc.gif&text=Первый+слайд!'},
+                {id: 2, name: 'Второй слайд', img: 'http://dummyimage.com/1200x450/99ccee.gif&text=Второй+слайд!'},
+                {id: 3, name: 'Третий слайд', img: 'http://dummyimage.com/1200x450/99cc99.gif&text=Третий+слайд!'}
+            ]
+        }
     }
 }
 </script>

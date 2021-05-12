@@ -54,7 +54,6 @@ import PaginationCatalog from "../components/catalog-components/PaginationCatalo
 
 import {mapGetters} from "vuex/dist/vuex.mjs";
 
-
 export default {
     components: { PaginationCatalog, ProductCardComponent, Button, InputCheck, Select},
 

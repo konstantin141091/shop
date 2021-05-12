@@ -76,9 +76,7 @@ export default {
             commit('REMOVE_FROM_CART', index)
             commit('SAVE_CART')
         },
-        CHECKOUT: ( context ) => {
-            const savedCartItems = [...context.state.cart]
-        },
+
         CLEAR_CART: ({commit}) => {
             localStorage.clear();
             commit('DELETE_ALL_CART');

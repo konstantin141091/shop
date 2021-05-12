@@ -68,7 +68,7 @@
             </div>
 
             <div class="header__controls">
-                <router-link to="/">
+                <router-link to="/account/history">
                     <img src="/icons/person_black.svg" alt="аккаунт">
                 </router-link>
                 <router-link to="/cart">

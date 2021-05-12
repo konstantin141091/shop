@@ -16,22 +16,22 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
             'name' => 'вареная',
             'slug' => 'varenaya',
-            'sale' => null,
+//            'sale' => null,
         ]);
         DB::table('categories')->insert([
             'name' => 'полукопченая',
             'slug' => 'polukopchenaya',
-            'sale' => 10,
+//            'sale' => 10,
         ]);
         DB::table('categories')->insert([
             'name' => 'сосиски',
             'slug' => 'sosiski',
-            'sale' => 25,
+//            'sale' => 25,
         ]);
         DB::table('categories')->insert([
             'name' => 'ветчина',
             'slug' => 'vetchina',
-            'sale' => null,
+//            'sale' => null,
         ]);
     }
 }

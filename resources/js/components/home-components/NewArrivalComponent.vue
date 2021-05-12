@@ -1,31 +1,35 @@
 <template>
     <div class="new-arrival">
-        <div class="new-arrival__head">
-            <h2 class="new-arrival__title">Новое поступление</h2>
-            <div class="new-arrival__arrows">
-                <button @click="prevSlide" class="btn-prev" :class="{disabled: isDisabled}" :style="{background: 'url(\'/icons/arrow-left.svg\') 0 0 / 100% no-repeat'}">🠐</button>
-                <button @click="nextSlide" class="btn-next" :style="{background: 'url(\'/icons/arrow-right.svg\') 0 0 / 100% no-repeat'}">🠒</button>
+        <Loader v-if="loading" />
+        <div v-else>
+            <div class="new-arrival__head">
+                <h2 class="new-arrival__title">Новое поступление</h2>
+                <div class="new-arrival__arrows">
+                    <button @click="prevSlide" class="btn-prev" :class="{disabled: isDisabled}" :style="{background: 'url(\'/icons/arrow-left.svg\') 0 0 / 100% no-repeat'}">🠐</button>
+                    <button @click="nextSlide" class="btn-next" :style="{background: 'url(\'/icons/arrow-right.svg\') 0 0 / 100% no-repeat'}">🠒</button>
+                </div>
             </div>
-        </div>
 
-        <VueSlickCarousel v-bind="newProductsSliderSettings" ref="slider">
-            <ProductCardComponent
-                v-for="item in sliderItems"
-                :key="item.id"
-                :product-data="item"
-                :image-url="item.img ? imageUrl + item.img : '/images/no_photo.png'"
-            />
-        </VueSlickCarousel>
+            <VueSlickCarousel v-bind="newProductsSliderSettings" ref="slider">
+                <ProductCardComponent
+                    v-for="item in sliderItems"
+                    :key="item.id"
+                    :product-data="item"
+                    :image-url="item.img ? imageUrl + item.img : '/images/no_photo.png'"
+                />
+            </VueSlickCarousel>
+        </div>
     </div>
 </template>
 
 <script>
 import ProductCardComponent from "../ProductCardComponent";
 import {mapGetters, mapActions} from "vuex/dist/vuex.mjs";
+import Loader from "../../ui/Loader";
 
 export default {
     name: 'NewArrivalComponent',
-    components: {ProductCardComponent},
+    components: {Loader, ProductCardComponent},
     data() {
         return {
             sliderItems: [
@@ -37,12 +41,14 @@ export default {
                 {id: 6, name: 'Полукопченная Армавирская ГОСТ', price: 250, unit: 'шт', img: 'Polukopchyonnaya_Armavarskaya_GOST.png'},
                 {id: 7, name: 'Cтаромосковская вареная копченая', price: 200, unit: 'шт', img: 'Staromoskovskaya_varyono_kopchyonnaya.png'},
             ],
+            arrayProducts: [],
             newProductsSliderSettings: {
                 arrows: false,
                 slidesToShow: 4,
                 infinite: false,
             },
             isDisabled: false,
+            loading: true
         }
     },
     computed: {
@@ -66,13 +72,22 @@ export default {
             this.$refs.slider.next()
         }
     },
-    created() {
+/*    created() {
         this.GET_PRODUCTS()
             .then(response => {
                 if(response) {
                     console.log('Data arrived created')
                 }
             })
+    },*/
+    async mounted() {
+        // this.arrayProducts = [...this.PRODUCTS]
+        console.log(this.arrayProducts)
+        //продукты еще не пришли, изменить actions в Продуктах, потом все перенести в MainLayout
+        //или VUEX?
+        setTimeout(() => {
+            this.loading = false
+        }, 3000)
     }
 }
 </script>

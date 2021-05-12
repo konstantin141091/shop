@@ -13,7 +13,7 @@
 
                 <div class="menu__item">
                     <p class="menu__title">Покупателям</p>
-                    <router-link to="/account/profile" class="menu__link">Личный кабинет</router-link>
+                    <router-link to="/account/history" class="menu__link">Личный кабинет</router-link>
                     <router-link to="/" class="menu__link">Мои заказы</router-link>
 <!--                    <router-link to="/" class="menu__link">Вопросы и ответы</router-link>-->
                     <router-link to="/return-policy" class="menu__link">Политика возврата</router-link>
