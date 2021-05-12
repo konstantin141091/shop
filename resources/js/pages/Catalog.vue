@@ -24,9 +24,6 @@
 
         <div class="flex-box">
             <aside class="catalog__aside aside">
-                <h3 class="aside__title">Фильтры</h3>
-                <FilterComponent/>
-
                 <h3 class="aside__title">Виды колбасы</h3>
                 <ul class="aside__categories">
                     <li
@@ -54,13 +51,12 @@ import InputCheck from "../ui/InputCheck";
 import Button from "../ui/Button";
 import ProductCardComponent from "../components/ProductCardComponent";
 import PaginationCatalog from "../components/catalog-components/PaginationCatalog";
-import FilterComponent from "../components/catalog-components/FiltersComponent";
 
 import {mapGetters} from "vuex/dist/vuex.mjs";
 
 
 export default {
-    components: {FilterComponent, PaginationCatalog, ProductCardComponent, Button, InputCheck, Select},
+    components: { PaginationCatalog, ProductCardComponent, Button, InputCheck, Select},
 
     props: {},
 
@@ -218,16 +214,5 @@ export default {
     padding: 10px;
 }
 
-.filter {
-    margin-bottom: 3rem;
-
-    &__content {
-        margin-bottom: 1.5rem;
-    }
-
-    &__btn {
-        height: 40px;
-    }
-}
 
 </style>
