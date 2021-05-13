@@ -46,12 +46,21 @@ Route::group([
         Route::post('/', 'OrderController@store');
     });
 });
+
 Route::group([
     'namespace' => 'Auth',
     'prefix' => 'user',
     'middleware' => 'auth:sanctum'
 ], function () {
     Route::put('/', 'UserController@update');
+});
+
+Route::group([
+    'namespace' => 'API_ADMIN',
+    'prefix' => 'admin',
+    'middleware' => ['auth:sanctum', 'isAdmin']
+], function () {
+    Route::post('/product/import', 'ProductController@import');
 });
 
 
