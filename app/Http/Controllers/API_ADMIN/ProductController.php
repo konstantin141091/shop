@@ -11,18 +11,24 @@ class ProductController extends Controller
 {
     public function import(Request $request) {
         if (!$request->hasFile('products')) {
-            return response()->json(['answer' => 'error'], 422);
+            return response()->json(['answer' => 'error'], '422');
         } else {
+
+            $path = $request->file('products')->store('storage');
+            $import = new ProductsImport();
+            $import->import($path);
+            dd('123');
+
+
+
             try {
                 $path = $request->file('products')->store('storage');
                 $import = new ProductsImport();
                 $import->import($path);
 
-                dd('wewe');
-//                return redirect()->back()->with('success', $msg);
+                return response()->json(['answer' => 'success'], '204');
             } catch (\Exception $exception) {
-                dd($exception);
-                return redirect()->back()->with('error', 'Сбой базы данных. Попробуйте еще раз');
+                return response()->json(['answer' => 'error'], '500');
             }
         }
     }

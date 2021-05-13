@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin141091'),
             'phone' => 9145226691,
             'location' => 'г Чита, Забайкальский край',
-            'address' => 'Ленина 122, кв. 44'
+            'address' => 'Ленина 122, кв. 44',
+            'is_admin' => true,
         ]);
         DB::table('users')->insert([
             'name' => 'admin1',

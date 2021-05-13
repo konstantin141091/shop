@@ -24,31 +24,48 @@ class ProductsImport implements ToModel, WithHeadingRow, SkipsOnFailure, WithVal
     */
     public function model(array $row)
     {
-        dd($row);
-        if (Product::query()->where('name', '=', $row['protokol'])->first()) {
+        if (Product::query()->where('name', '=', $row['nazvanie'])->first()) {
             return null;
         }
 
+        if (!$row['opisanie']) {
+            $description = 'Описания нет';
+        } else {
+            $description = $row['opisanie'];
+        }
+
+        if (!$row['srok_xraneniya']) {
+            $shelf_life = 'Описания нет';
+        } else {
+            $shelf_life = $row['srok_xraneniya'];
+        }
+
+        if (!$row['novyi_tovar_ili_net']) {
+            $news = false;
+        } else {
+            $news = $row['novyi_tovar_ili_net'];
+        }
+
         return new Product([
-            'name' => $row['protokol'],
-            'unit'    => $row['familiya'],
-            'sale' => $row['otcestvo'],
-            'news' => $row['razryad'],
-            'price' => $row['svidetelstvo'],
-            'img' => $row['udostoverenie'],
-            'description' => $row['udostoverenie'],
-            'shelf_life' => $row['kvalifikaciya'],
+            'name' => $row['nazvanie'],
+            'unit'    => $row['unit'],
+            'sale' => $row['skidka_tovara'],
+            'news' => $news,
+            'price' => $row['cena'],
+            'img' => $row['izobrazenie'],
+            'description' => $description,
+            'shelf_life' => $shelf_life,
+            'category_id' => $row['category_id'],
         ]);
     }
 
     public function rules(): array
     {
         return [
-//            'name' => 'required',
-//            'unit' => 'required',
-//            'imya' => 'required',
-//            'otcestvo' => 'required',
-//            'data' => 'required',
+            'nazvanie' => 'required',
+            'cena' => 'required',
+            'unit' => 'required',
+            'category_id' => 'required',
         ];
     }
 
