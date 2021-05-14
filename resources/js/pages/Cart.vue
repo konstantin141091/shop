@@ -14,7 +14,7 @@
                 <CartItem
                     v-for="(item, index) in cartList"
                     :key="item.id"
-                    :imageUrl="item.img ? imageUrl + item.img : 'storage/images/no_photo.png'"
+                    :imageUrl="item.img ? imageUrl + item.img : '/images/no_photo.png'"
                     :name = item.name
                     :price = item.price
                     :unit = item.unit
@@ -49,7 +49,7 @@ export default {
             return this.CART
         },
         imageUrl() {
-            return `storage/images/products/`
+            return `/images/products/`
         },
 
     },

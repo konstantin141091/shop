@@ -12,7 +12,7 @@
 
             <VueSlickCarousel v-bind="newProductsSliderSettings" ref="slider">
                 <ProductCardComponent
-                    v-for="item in sliderItems"
+                    v-for="item in PRODUCTS_NEWS"
                     :key="item.id"
                     :product-data="item"
                     :image-url="item.img ? imageUrl + item.img : '/images/no_photo.png'"
