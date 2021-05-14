@@ -36,28 +36,13 @@
                         v-model="deliveryAddress"
                     />
 
-                    <!--<InputRadio
-                        :label="'Самовывоз'"
-                        :uniq="'pickup'"
-                        :name="'delivery'"
-                        :title="'pickup'"
-                        v-model="deliveryMethod"
-                    />
-                    <InputRadio
-                        :label="'Курьером'"
-                        :uniq="'deliveryByCourier'"
-                        :name="'delivery'"
-                        :title="'deliveryByCourier'"
-                        v-model="deliveryMethod"
-                    />-->
-
                     <div class="form-item">
                         <input
                             type="radio"
                             class="form-radio"
                             name="delivery"
                             id="pickup"
-                            value="pickup"
+                            value="самовывоз"
                             v-model="deliveryMethod"
                         />
                         <label
@@ -73,8 +58,10 @@
                             class="form-radio"
                             name="delivery"
                             id="deliveryByCourier"
-                            value="deliveryByCourier"
+                            value="курьер"
                             v-model="deliveryMethod"
+                            :required-field="true"
+                            :error="errors.deliveryMethod"
                         />
                         <label
                             class="form-radio-label"
@@ -90,42 +77,16 @@
                         :form-input="true"
                         :uniq="'comment'"
                         v-model="deliveryText"
-                    />
-
-                </div>
-
-                <div class="checkout-block">
-                    <h3 class="form__title">Покупатель</h3>
-
-                    <InputText
-                        v-if="!isCheckPassword"
-                        label="Email"
-                        :uniq="'client-email'"
-                        v-model="emailNotRegistration"
+                        :error="errors.deliveryText"
                     />
 
                     <InputText
-                        v-if="isCheckPassword"
-                        label="Email"
-                        :uniq="'client-email'"
-                        :error="errors.email"
-                        :required-field="true"
-                        v-model="email"
+                            label="Email"
+                            :uniq="'client-email'"
+                            :form-input="true"
+                            :error="errors.email"
+                            v-model="email"
                     />
-
-                    <InputCheck
-                        label-text="Стать постоянным покупателем"
-                        label-class="c"
-                        v-model="isCheckPassword"
-                    />
-
-                    <template v-if="isCheckPassword">
-                        <InputPassword
-                            label="Пароль"
-                            uniq="client-pass"
-                            is-repass
-                        />
-                    </template>
                 </div>
 
                 <div class="checkout-block">
@@ -149,6 +110,8 @@
 </template>
 
 <script>
+    // TODO Камиль, посмотри следущее. Я не могу в валидаторе настроить чтобы показывал ошибку что не выбран способ доставки,
+    //  в errors она есть а вывести её не могу и почему-то коментарий не залитает в v-model="deliveryText" текс пишется а переменная пустая
 import InputText from "../ui/InputText"
 import InputNumber from "../ui/InputNumber"
 import InputTextarea from "../ui/InputTextarea"
@@ -168,160 +131,169 @@ export default {
         InputPassword, Button, InputRadio, InputCheck, InputEmail, InputTextarea, InputNumber, InputText},
     data() {
         return {
+          userName: '',
+          userNumberPhone: '',
+          deliveryAddress: '',
+          deliveryMethod: '',
+          deliveryText: '',
+          email: '',
+          errors: {
             userName: '',
             userNumberPhone: '',
             deliveryAddress: '',
+            email: '',
             deliveryMethod: '',
             deliveryText: '',
-            email: '',
-            emailNotRegistration: '',
-            isCheckPassword: null,
-            errors: {
-                userName: '',
-                userNumberPhone: '',
-                deliveryAddress: '',
-                email: '',
-            }
+          }
+
         }
     },
     validations: {
-        userName: {
-            required,
-            minLength: minLength(5),
-            maxLength: maxLength(35),
-        },
-        userNumberPhone: {
-            required,
-            minLength: minLength(5),
-            maxLength: maxLength(35),
-        },
-        deliveryAddress: {
-            required,
-            minLength: minLength(5),
-            maxLength: maxLength(35),
-        },
-        email: {
-            required,
-            email
-        }
+      userName: {
+        required,
+        minLength: minLength(5),
+        maxLength: maxLength(35),
+      },
+      userNumberPhone: {
+        required,
+        minLength: minLength(5),
+        maxLength: maxLength(35),
+      },
+      deliveryAddress: {
+        required,
+        minLength: minLength(5),
+        maxLength: maxLength(150),
+      },
+      email: {
+        email
+      },
+      deliveryMethod: {
+          required,
+      },
+      deliveryText: {
+        maxLength: maxLength(300),
+      }
     },
 
   computed: {
     ...mapGetters([
       'CART',
     ]),
+    ...mapGetters({
+      authenticated: 'auth/AUTHENTICATED',
+      user: 'auth/USER',
+    })
   },
 
-    methods: {
-      formIsValid() {
-            const regNumPhone = new RegExp(/^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/)
-            let isValid = true;
+  methods: {
 
-            this.errors = {
-                userName: '',
-                userNumberPhone: '',
-                deliveryAddress: '',
-                email: '',
-            };
+    formIsValid() {
+      const regNumPhone = new RegExp(/^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/)
+      let isValid = true;
 
-            if (!this.$v.userName.minLength || !this.$v.userName.maxLength) {
-                this.errors.userName = "Количество символов (min 5 max 35)";
-                isValid = false
-            }
+      this.errors = {
+        userName: '',
+        userNumberPhone: '',
+        deliveryAddress: '',
+        email: '',
+        deliveryMethod: '',
+        deliveryText: '',
+      };
 
-            if (!this.$v.userName.required) {
-                this.errors.userName = "Поле не может быть пустым";
-                isValid = false
-            }
+      if (!this.$v.userName.minLength || !this.$v.userName.maxLength) {
+        this.errors.userName = "Количество символов (min 5 max 35)";
+        isValid = false
+      }
 
-            if (!this.$v.userNumberPhone.required) {
-                this.errors.userNumberPhone = "Поле не может быть пустым";
-                isValid = false
-            }
+      if (!this.$v.userName.required) {
+        this.errors.userName = "Поле не может быть пустым";
+        isValid = false
+      }
 
-            if (!regNumPhone.test(this.userNumberPhone) ) {
-                console.log(this.userNumberPhone.length)
-                console.log(typeof this.userNumberPhone.length)
-                this.errors.userNumberPhone = "Введите номер в формате 8900123456 или +7900123456";
-                isValid = false
-            }
+      if (!this.$v.userNumberPhone.required) {
+        this.errors.userNumberPhone = "Поле не может быть пустым";
+        isValid = false
+      }
 
-            if (!this.$v.deliveryAddress.required) {
-                this.errors.deliveryAddress = "Поле не может быть пустым";
-                isValid = false
-            }
+      if (!regNumPhone.test(this.userNumberPhone) ) {
+        this.errors.userNumberPhone = "Введите номер в формате 8900123456 или +7900123456";
+        isValid = false
+      }
 
-            // Блок email
-// TODO закомитил пока блок с email . Нужно пофиксить.При заполненом email всё равно не проходит валидацию
-            // if (!this.$v.email.required) {
-            //     this.errors.email = "Поле не может быть пустым";
-            //     isValid = false
-            // }
-            //
-            // if (!this.$v.email.email) {
-            //     this.errors.email = "Введите корректный email";
-            //     isValid = false
-            // }
+      if (!this.$v.deliveryAddress.required) {
+        this.errors.deliveryAddress = "Поле не может быть пустым";
+        isValid = false
+      }
 
-        return isValid
-        },
-      submitHandler() {
-        console.log(this.formIsValid());
-        if (this.formIsValid()) {
-          console.group('Form Data')
-          console.log('Name:', this.userName)
-          console.log('Number:', this.userNumberPhone)
-          console.log('Address:', this.deliveryAddress)
-          console.log('deliveryMethod:', this.deliveryMethod)
-          console.log('email:', this.email)
-          console.log('emailNotRegistration:', this.emailNotRegistration)
-          console.log('checkPassword:', this.checkPassword)
-          console.groupEnd()
-          this.handleCreateOrder();
-        }
-      },
+      if (!this.$v.deliveryMethod.required) {
+        this.errors.deliveryMethod = "Выберите способ доставки";
+        isValid = false
+      }
 
-      async handleCreateOrder() {
-        const basketResponse = await this.$store.dispatch('API_ADD_CART', this.CART);
-        if (basketResponse.status === 204) {
+      if (!this.$v.email.email) {
+        this.errors.email = "Заполните коректный email";
+        isValid = false
+      }
 
-          const order = {
-            name: this.userName,
-            phone: this.userNumberPhone,
-            email: this.email,
-            address: this.deliveryAddress,
-            comment: this.deliveryText
-          };
-          const orderResponse = await this.$store.dispatch('API_ADD_ORDER', order);
-          if (orderResponse.status === 204) {
-            console.log('Заказ добавился в бд. Нужно как то сказать об этом юзеру');
-            console.log('Нужно скинуть корзину в local storage');
-            this.$store.dispatch('CLEAR_CART');
-            this.$router.push('/');
-          } else {
-            console.log('Ошибка. Не удалось добавить заказ в бд!');
-          }
+      if (!this.$v.deliveryText.maxLength) {
+        this.errors.deliveryText = "Максимум 300 символов";
+        isValid = false
+      }
 
-        } else {
-          console.log('Ошибка. Не удалось добавить корзину в бд!');
-        }
-      },
+      return isValid
+    },
 
-      async createBasket () {
-        response = await this.$store.dispatch('API_ADD_CART', this.CART);
-        return response;
-      },
+    submitHandler() {
+      if (this.formIsValid()) {
+        console.group('Form Data');
+        console.log('Name:', this.userName);
+        console.log('Number:', this.userNumberPhone);
+        console.log('Address:', this.deliveryAddress);
+        console.log('deliveryMethod:', this.deliveryMethod);
+        console.log('email:', this.email);
+        console.groupEnd()
+        this.handleCreateOrder();
+      }
+    },
 
-      async createOrder() {
+    async handleCreateOrder() {
+      const basketResponse = await this.$store.dispatch('API_ADD_CART', this.CART);
+      if (basketResponse.status === 204) {
+
         const order = {
           name: this.userName,
           phone: this.userNumberPhone,
-          email: this.email
+          email: this.email,
+          address: this.deliveryAddress,
+          comment: this.deliveryText,
+          delivery_method: this.delevery_method,
+          delivery_cost: 1000,
         };
-        response = await this.$store.dispatch('API_ADD_ORDER', order);
-        return response;
+        const orderResponse = await this.$store.dispatch('API_ADD_ORDER', order);
+        if (orderResponse.status === 204) {
+          console.log('Заказ добавился в бд. Нужно как то сказать об этом юзеру');
+          console.log('Нужно скинуть корзину в local storage');
+          this.$store.dispatch('CLEAR_CART');
+          this.$router.push('/');
+        } else {
+          console.log('Ошибка. Не удалось добавить заказ в бд!');
+        }
+
+      } else {
+        console.log('Ошибка. Не удалось добавить корзину в бд!');
       }
     },
+  },
+
+  mounted() {
+      if (this.authenticated) {
+        this.userName = this.user.name;
+        this.userNumberPhone = String(this.user.phone);
+        this.deliveryAddress = this.user.location + ', ' + this.user.address;
+        this.email = this.user.email;
+      }
+  }
+
 
 }
 </script>

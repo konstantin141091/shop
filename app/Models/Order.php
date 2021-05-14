@@ -15,7 +15,9 @@ class Order extends Model
         'phone',
         'email',
         'address',
+        'delivery_method',
         'comment',
         'status',
+        'delivery_cost'
     ];
 }

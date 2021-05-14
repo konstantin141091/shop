@@ -22,8 +22,10 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('phone');
             $table->string('email')->nullable();
             $table->string('address');
+            $table->enum('delivery_method', ['курьер', 'самовывоз'])->default('самовывоз');
             $table->string('comment')->nullable();
             $table->enum('status', ['оформлен', 'в работе', 'выполнен'])->default('оформлен');
+            $table->unsignedBigInteger('delivery_cost')->default(0);
             $table->timestamps();
         });
     }
