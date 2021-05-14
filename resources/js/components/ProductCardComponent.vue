@@ -8,7 +8,7 @@
                 <img :src="imageUrl" :alt="productData.name">
             </router-link>
             <div class="product__text">
-                <router-link :to="{name: 'product', params: { id: productData.id } }" class="product__title">{{ productData.name }}, 1 {{ productData.unit }}</router-link>
+                <router-link :to="{path: `/catalog/${productData.id}`}" class="product__title">{{ productData.name }}, 1 {{ productData.unit }}</router-link>
                 <p class="product__price">{{ productData.price }} руб.</p>
             </div>
             <div class="product__btn">
@@ -38,7 +38,7 @@ export default {
         addToCart() {
             this.$emit('addToCart', this.productData)
         }
-    }
+    },
 }
 </script>
 

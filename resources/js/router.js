@@ -31,9 +31,14 @@ export default new VueRouter( {
       component: Home
     },
     {
-      path: '/catalog',
-      name: 'catalog',
-      component: Catalog
+        path: '/catalog',
+        name: 'catalog',
+        component: () => import('./pages/Catalog'),
+    },
+    {
+        path: '/catalog/:id',
+        name: 'product',
+        component: () => import('./pages/ProductPage'),
     },
     {
       path: '/about',
@@ -59,12 +64,6 @@ export default new VueRouter( {
       path: '/payment',
       name: 'payment',
       component: Payment
-    },
-    {
-      path: '/product/:id',
-      name: 'product',
-      component: ProductPage,
-      props: true
     },
     {
       path: '/cart',
