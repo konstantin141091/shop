@@ -86,6 +86,11 @@ export default new VueRouter( {
       component: Checkout
     },
     {
+      path: '/order',
+      name: 'order',
+        component: () => import('./pages/Order'),
+    },
+    {
       path: '/account',
       name: 'account',
       component: Account,
