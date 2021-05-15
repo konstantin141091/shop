@@ -1,6 +1,7 @@
 <template>
     <div class="container checkout">
         <h1 class="checkout__title">Оформление заказа</h1>
+        <loader v-show="loading"></loader>
 
         <div class="checkout__box">
             <form class="checkout__form" @submit.prevent="submitHandler">
@@ -15,11 +16,12 @@
                         v-model.trim="userName"
                     />
 
-                    <InputText
+                    <InputPhone
                         :label="'Контактный телефон'"
                         :uniq="'client_tel'"
                         :required-field="true"
                         :error="errors.userNumberPhone"
+                        :placeholder="'9145220980'"
                         v-model="userNumberPhone"
                     />
                 </div>
@@ -118,17 +120,19 @@ import InputTextarea from "../ui/InputTextarea"
 import InputEmail from "../ui/InputEmail"
 import InputCheck from "../ui/InputCheck"
 import InputRadio from "../ui/InputRadio"
+import InputPhone from "../ui/InputPhone"
 import Button from "../ui/Button"
+import Loader from "../ui/Loader"
 
 import {required, minLength, maxLength, email} from 'vuelidate/lib/validators'
 import InputPassword from "../ui/InputPassword";
 import BasketItemList from "../components/checkout/BasketItemList";
-import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
     components: {
-        BasketItemList,
-        InputPassword, Button, InputRadio, InputCheck, InputEmail, InputTextarea, InputNumber, InputText},
+        BasketItemList, Loader,
+        InputPassword, Button, InputRadio, InputCheck, InputEmail, InputTextarea, InputNumber, InputText, InputPhone},
     data() {
         return {
           userName: '',
@@ -144,7 +148,8 @@ export default {
             email: '',
             deliveryMethod: '',
             deliveryText: '',
-          }
+          },
+          loading: false,
 
         }
     },
@@ -188,6 +193,7 @@ export default {
   methods: {
 
     formIsValid() {
+      // TODO нужно поправить регулярку с учетом того что +7 не нужно и вызвать её в валидации
       const regNumPhone = new RegExp(/^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/)
       let isValid = true;
 
@@ -215,8 +221,8 @@ export default {
         isValid = false
       }
 
-      if (!regNumPhone.test(this.userNumberPhone) ) {
-        this.errors.userNumberPhone = "Введите номер в формате 8900123456 или +7900123456";
+      if (!this.$v.userNumberPhone.minLength || !this.$v.userNumberPhone.maxLength) {
+        this.errors.userNumberPhone = "Введите номер в формате +7900123456";
         isValid = false
       }
 
@@ -244,6 +250,7 @@ export default {
     },
 
     submitHandler() {
+      console.log('start');
       if (this.formIsValid()) {
         console.group('Form Data');
         console.log('Name:', this.userName);
@@ -254,9 +261,11 @@ export default {
         console.groupEnd()
         this.handleCreateOrder();
       }
+      console.log('no');
     },
 
     async handleCreateOrder() {
+      this.loading = true;
       const basketResponse = await this.$store.dispatch('API_ADD_CART', this.CART);
       if (basketResponse.status === 204) {
 
@@ -282,6 +291,7 @@ export default {
       } else {
         console.log('Ошибка. Не удалось добавить корзину в бд!');
       }
+      this.loading = false;
     },
   },
 
@@ -293,8 +303,6 @@ export default {
         this.email = this.user.email;
       }
   }
-
-
 }
 </script>
 
@@ -302,6 +310,7 @@ export default {
 @import "resources/sass/variables";
 
 .checkout {
+    position: relative;
     &__title {
         font-size: 3.2rem;
         font-weight: bold;

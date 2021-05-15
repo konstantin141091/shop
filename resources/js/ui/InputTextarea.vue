@@ -47,14 +47,14 @@ export default {
       type: String,
       default: ""
     },
-      greyBackground: {
-          type: Boolean,
-          default: false
-      },
-      formInput: {
-          type: Boolean,
-          default: false
-      }
+    greyBackground: {
+      type: Boolean,
+      default: false
+    },
+    formInput: {
+      type: Boolean,
+      default: false
+    }
   },
 
   computed: {
