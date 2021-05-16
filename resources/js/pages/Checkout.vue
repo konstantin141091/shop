@@ -100,9 +100,7 @@
                     type="submit"
                     btn-class="form__btn"
                     btn-text="Подтвердить заказ"
-                    @click="click()"
-                >
-                </Button>
+                />
 
             </form>
 
@@ -139,7 +137,7 @@ export default {
           userName: '',
           userNumberPhone: '',
           deliveryAddress: '',
-          deliveryMethod: '',
+          deliveryMethod: 'самовывоз',
           deliveryText: '',
           email: '',
           errors: {
@@ -258,6 +256,7 @@ export default {
         console.log('Number:', this.userNumberPhone);
         console.log('Address:', this.deliveryAddress);
         console.log('deliveryMethod:', this.deliveryMethod);
+        console.log('deliveryText:', this.deliveryText);
         console.log('email:', this.email);
         console.groupEnd()
         this.handleCreateOrder();
@@ -276,7 +275,7 @@ export default {
           email: this.email,
           address: this.deliveryAddress,
           comment: this.deliveryText,
-          delivery_method: this.delevery_method,
+          delivery_method: this.deliveryMethod,
           delivery_cost: 1000,
         };
         const orderResponse = await this.$store.dispatch('API_ADD_ORDER', order);
@@ -284,7 +283,7 @@ export default {
           console.log('Заказ добавился в бд. Нужно как то сказать об этом юзеру');
           console.log('Нужно скинуть корзину в local storage');
           await this.$store.dispatch('CLEAR_CART');
-          await this.$router.push('/');
+          await this.$router.push('/order');
         } else {
           console.log('Ошибка. Не удалось добавить заказ в бд!');
         }
@@ -295,9 +294,7 @@ export default {
       this.loading = false;
     },
 
-      click() {
-          this.$router.push('/order');
-      }
+
   },
 
   mounted() {

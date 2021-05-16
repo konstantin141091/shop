@@ -19,7 +19,7 @@
 <style lang="scss" scoped>
     .alert-msg {
         position: fixed;
-        top: 100px;
+        top: 175px;
         right: 30px;
         background-color: #8ec983;
         padding: 20px;

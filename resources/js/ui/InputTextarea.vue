@@ -12,6 +12,8 @@
         'grey-background': greyBackground,
         'form-input': formInput
       }, classTextarea]"
+      :value="title"
+      @change="$emit('change', $event.target.value)"
     ></textarea>
   <small v-if="error" class="error-label">{{ error }}</small>
   </div>
@@ -19,11 +21,14 @@
 
 <script>
 export default {
-  props: {
-    value: {
-      type: String,
-      default: ""
+    model: {
+        prop: 'title',
+        event: 'change'
     },
+
+  props: {
+      title: String,
+      value: String,
     placeholder: {
       type: String,
       default: ""
