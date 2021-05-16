@@ -1,5 +1,6 @@
 <template>
     <div>
+        <success-message-component message="Товар добавлен в корзину" v-show="successMsg"></success-message-component>
         <div class="catalog">
             <ProductCardComponent
                 v-for="item in paginatedData"
@@ -37,10 +38,11 @@
 <script>
 import ProductCardComponent from "../ProductCardComponent";
 import { mapActions } from "vuex/dist/vuex.mjs";
+import SuccessMessageComponent from "../SuccessMessageComponent";
 
 export default {
     name: 'PaginationCatalog',
-    components: {ProductCardComponent},
+    components: {SuccessMessageComponent, ProductCardComponent},
     props: {
         catalogData: {
             type: Array,
@@ -52,7 +54,8 @@ export default {
     data() {
         return {
             usersPerPage: 9,
-            pageNumber: 1
+            pageNumber: 1,
+            successMsg: false,
         }
     },
     computed: {
@@ -75,6 +78,8 @@ export default {
         addToCart(data) {
             this.ADD_TO_CART(data)
             console.log(data)
+            this.successMsg = true;
+            setTimeout(() => {this.successMsg = false}, 4000)
         },
         pageClick(page) {
             this.pageNumber = page

@@ -62,6 +62,16 @@
 </script>
 
 <style lang="scss" scoped>
+.form-label_required {
+    &:after {
+        content: '*';
+        font-size: 0.9em;
+        margin-left: 0.2em;
+        line-height: 0.7em;
+        color: #D53128;
+    }
+}
+
     .input-tel {
         &__7 {
             position: absolute;

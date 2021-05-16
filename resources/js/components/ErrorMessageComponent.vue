@@ -18,8 +18,13 @@
 
 <style lang="scss" scoped>
     .alert-msg-error {
-        width: 100%;
-        background-color: #dc7362;
-        padding: 10px;
+        position: fixed;
+        top: 100px;
+        right: 30px;
+        background-color: #ad594b;
+        padding: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        color: #ffffff;
     }
 </style>

@@ -18,8 +18,13 @@
 
 <style lang="scss" scoped>
     .alert-msg {
-        width: 100%;
-        background-color: #dff0d8;
-        padding: 10px;
+        position: fixed;
+        top: 175px;
+        right: 30px;
+        background-color: #8ec983;
+        padding: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        color: #ffffff;
     }
 </style>
