@@ -19,6 +19,8 @@ import AccountProfile from "./pages/account/Profile";
 import AdminMain from "./pages/admin/AdminMain";
 import AdminProduct from "./pages/admin/AdminProduct";
 import AdminCategory from "./pages/admin/AdminCategory";
+import UserAgreement from "./pages/UserAgreement";
+import ReturnPolicy from "./pages/ReturnPolicy";
 
 export default new VueRouter( {
   mode: 'history',
@@ -89,6 +91,16 @@ export default new VueRouter( {
       path: '/order',
       name: 'order',
         component: () => import('./pages/Order'),
+    },
+    {
+      path: '/user-agreement',
+      name: 'user-agreement',
+      component: UserAgreement
+    },
+    {
+      path: '/return-policy',
+      name: 'return-policy',
+      component: ReturnPolicy
     },
     {
       path: '/account',

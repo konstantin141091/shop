@@ -1,6 +1,7 @@
 <template>
     <div class="container checkout">
         <h1 class="checkout__title">Оформление заказа</h1>
+
         <loader v-show="loading"></loader>
 
         <div class="checkout__box">
@@ -35,7 +36,7 @@
                         placeholder="Челябинская область, г. Магнитогорск, ул. Полевая, д.0"
                         :required-field="true"
                         :error="errors.deliveryAddress"
-                        v-model="deliveryAddress"
+                        v-model.trim="deliveryAddress"
                     />
 
                     <div class="form-item">
@@ -78,16 +79,16 @@
                         :resize="false"
                         :form-input="true"
                         :uniq="'comment'"
-                        v-model="deliveryText"
+                        v-model.trim="deliveryText"
                         :error="errors.deliveryText"
                     />
 
                     <InputText
-                            label="Email"
-                            :uniq="'client-email'"
-                            :form-input="true"
-                            :error="errors.email"
-                            v-model="email"
+                        label="Email"
+                        :uniq="'client-email'"
+                        :form-input="true"
+                        :error="errors.email"
+                        v-model.trim="email"
                     />
                 </div>
 
@@ -104,15 +105,13 @@
 
             </form>
 
-           <BasketItemList />
+            <BasketItemList/>
         </div>
 
     </div>
 </template>
 
 <script>
-    // TODO Камиль, посмотри следущее. Я не могу в валидаторе настроить чтобы показывал ошибку что не выбран способ доставки,
-    //  в errors она есть а вывести её не могу и почему-то коментарий не залитает в v-model="deliveryText" текс пишется а переменная пустая
 import InputText from "../ui/InputText"
 import InputNumber from "../ui/InputNumber"
 import InputTextarea from "../ui/InputTextarea"
@@ -126,185 +125,178 @@ import Loader from "../ui/Loader"
 import {required, minLength, maxLength, email} from 'vuelidate/lib/validators'
 import InputPassword from "../ui/InputPassword";
 import BasketItemList from "../components/checkout/BasketItemList";
-import { mapGetters } from 'vuex'
+import {mapGetters} from 'vuex'
 
 export default {
-    components: {
-        BasketItemList, Loader,
-        InputPassword, Button, InputRadio, InputCheck, InputEmail, InputTextarea, InputNumber, InputText, InputPhone},
+    components: {BasketItemList, Loader, Button, InputRadio, InputTextarea, InputText, InputPhone},
     data() {
         return {
-          userName: '',
-          userNumberPhone: '',
-          deliveryAddress: '',
-          deliveryMethod: 'самовывоз',
-          deliveryText: '',
-          email: '',
-          errors: {
             userName: '',
             userNumberPhone: '',
             deliveryAddress: '',
-            email: '',
-            deliveryMethod: '',
+            deliveryMethod: 'самовывоз',
             deliveryText: '',
-          },
-          loading: false,
+            email: '',
+            errors: {
+                userName: '',
+                userNumberPhone: '',
+                deliveryAddress: '',
+                email: '',
+                deliveryMethod: '',
+                deliveryText: '',
+            },
+            loading: false,
 
         }
     },
     validations: {
-      userName: {
-        required,
-        minLength: minLength(5),
-        maxLength: maxLength(35),
-      },
-      userNumberPhone: {
-        required,
-        minLength: minLength(5),
-        maxLength: maxLength(35),
-      },
-      deliveryAddress: {
-        required,
-        minLength: minLength(5),
-        maxLength: maxLength(150),
-      },
-      email: {
-        email
-      },
-      deliveryMethod: {
-          required,
-      },
-      deliveryText: {
-        maxLength: maxLength(300),
-      }
-    },
-
-  computed: {
-    ...mapGetters([
-      'CART',
-    ]),
-    ...mapGetters({
-      authenticated: 'auth/AUTHENTICATED',
-      user: 'auth/USER',
-    })
-  },
-
-  methods: {
-
-    formIsValid() {
-      // TODO нужно поправить регулярку с учетом того что +7 не нужно и вызвать её в валидации
-      const regNumPhone = new RegExp(/^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/)
-      let isValid = true;
-
-      this.errors = {
-        userName: '',
-        userNumberPhone: '',
-        deliveryAddress: '',
-        email: '',
-        deliveryMethod: '',
-        deliveryText: '',
-      };
-
-      if (!this.$v.userName.minLength || !this.$v.userName.maxLength) {
-        this.errors.userName = "Количество символов (min 5 max 35)";
-        isValid = false
-      }
-
-      if (!this.$v.userName.required) {
-        this.errors.userName = "Поле не может быть пустым";
-        isValid = false
-      }
-
-      if (!this.$v.userNumberPhone.required) {
-        this.errors.userNumberPhone = "Поле не может быть пустым";
-        isValid = false
-      }
-
-      if (!this.$v.userNumberPhone.minLength || !this.$v.userNumberPhone.maxLength) {
-        this.errors.userNumberPhone = "Введите номер в формате +7900123456";
-        isValid = false
-      }
-
-      if (!this.$v.deliveryAddress.required) {
-        this.errors.deliveryAddress = "Поле не может быть пустым";
-        isValid = false
-      }
-
-      if (!this.$v.deliveryMethod.required) {
-        this.errors.deliveryMethod = "Выберите способ доставки";
-        isValid = false
-      }
-
-      if (!this.$v.email.email) {
-        this.errors.email = "Заполните коректный email";
-        isValid = false
-      }
-
-      if (!this.$v.deliveryText.maxLength) {
-        this.errors.deliveryText = "Максимум 300 символов";
-        isValid = false
-      }
-
-      return isValid
-    },
-
-    submitHandler() {
-      console.log('start');
-      if (this.formIsValid()) {
-        console.group('Form Data');
-        console.log('Name:', this.userName);
-        console.log('Number:', this.userNumberPhone);
-        console.log('Address:', this.deliveryAddress);
-        console.log('deliveryMethod:', this.deliveryMethod);
-        console.log('deliveryText:', this.deliveryText);
-        console.log('email:', this.email);
-        console.groupEnd()
-        this.handleCreateOrder();
-      }
-      console.log('no');
-    },
-
-    async handleCreateOrder() {
-      this.loading = true;
-      const basketResponse = await this.$store.dispatch('API_ADD_CART', this.CART);
-      if (basketResponse.status === 204) {
-
-        const order = {
-          name: this.userName,
-          phone: this.userNumberPhone,
-          email: this.email,
-          address: this.deliveryAddress,
-          comment: this.deliveryText,
-          delivery_method: this.deliveryMethod,
-          delivery_cost: 1000,
-        };
-        const orderResponse = await this.$store.dispatch('API_ADD_ORDER', order);
-        if (orderResponse.status === 204) {
-          console.log('Заказ добавился в бд. Нужно как то сказать об этом юзеру');
-          console.log('Нужно скинуть корзину в local storage');
-          await this.$store.dispatch('CLEAR_CART');
-          await this.$router.push('/order');
-        } else {
-          console.log('Ошибка. Не удалось добавить заказ в бд!');
+        userName: {
+            required,
+            minLength: minLength(5),
+            maxLength: maxLength(35),
+        },
+        userNumberPhone: {
+            required,
+            minLength: minLength(5),
+            maxLength: maxLength(35),
+        },
+        deliveryAddress: {
+            required,
+            minLength: minLength(5),
+            maxLength: maxLength(150),
+        },
+        email: {
+            email
+        },
+        deliveryMethod: {
+            required,
+        },
+        deliveryText: {
+            maxLength: maxLength(300),
         }
-
-      } else {
-        console.log('Ошибка. Не удалось добавить корзину в бд!');
-      }
-      this.loading = false;
     },
 
+    computed: {
+        ...mapGetters([
+            'CART',
+        ]),
+        ...mapGetters({
+            authenticated: 'auth/AUTHENTICATED',
+            user: 'auth/USER',
+        })
+    },
 
-  },
+    methods: {
 
-  mounted() {
-      if (this.authenticated) {
-        this.userName = this.user.name;
-        this.userNumberPhone = String(this.user.phone);
-        this.deliveryAddress = this.user.location + ', ' + this.user.address;
-        this.email = this.user.email;
-      }
-  }
+        formIsValid() {
+            // TODO нужно поправить регулярку с учетом того что +7 не нужно и вызвать её в валидации
+            const regNumPhone = new RegExp(/^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/)
+            let isValid = true;
+
+            this.errors = {
+                userName: '',
+                userNumberPhone: '',
+                deliveryAddress: '',
+                email: '',
+                deliveryMethod: '',
+                deliveryText: '',
+            };
+
+            if (!this.$v.userName.minLength || !this.$v.userName.maxLength) {
+                this.errors.userName = "Количество символов (min 5 max 35)";
+                isValid = false
+            }
+
+            if (!this.$v.userName.required) {
+                this.errors.userName = "Поле не может быть пустым";
+                isValid = false
+            }
+
+            if (!this.$v.userNumberPhone.required) {
+                this.errors.userNumberPhone = "Поле не может быть пустым";
+                isValid = false
+            }
+
+            if (!this.$v.userNumberPhone.minLength || !this.$v.userNumberPhone.maxLength) {
+                this.errors.userNumberPhone = "Введите номер в формате +7900123456";
+                isValid = false
+            }
+
+            if (!this.$v.deliveryAddress.required) {
+                this.errors.deliveryAddress = "Поле не может быть пустым";
+                isValid = false
+            }
+
+            if (!this.$v.email.email) {
+                this.errors.email = "Заполните корректный email";
+                isValid = false
+            }
+
+            if (!this.$v.deliveryText.maxLength) {
+                this.errors.deliveryText = "Максимум 300 символов";
+                isValid = false
+            }
+
+            return isValid
+        },
+
+        submitHandler() {
+            console.log('start');
+            if (this.formIsValid()) {
+                console.group('Form Data');
+                console.log('Name:', this.userName);
+                console.log('Number:', this.userNumberPhone);
+                console.log('Address:', this.deliveryAddress);
+                console.log('deliveryMethod:', this.deliveryMethod);
+                console.log('deliveryText:', this.deliveryText);
+                console.log('email:', this.email);
+                console.groupEnd()
+                this.handleCreateOrder();
+            }
+            console.log('no');
+        },
+
+        async handleCreateOrder() {
+            this.loading = true;
+            const basketResponse = await this.$store.dispatch('API_ADD_CART', this.CART);
+            if (basketResponse.status === 204) {
+
+                const order = {
+                    name: this.userName,
+                    phone: this.userNumberPhone,
+                    email: this.email,
+                    address: this.deliveryAddress,
+                    comment: this.deliveryText,
+                    delivery_method: this.deliveryMethod,
+                    delivery_cost: 1000,
+                };
+                const orderResponse = await this.$store.dispatch('API_ADD_ORDER', order);
+                if (orderResponse.status === 204) {
+                    // console.log('Заказ добавился в бд. Нужно как то сказать об этом юзеру');
+                    // console.log('Нужно скинуть корзину в local storage');
+                    await this.$store.dispatch('CLEAR_CART');
+                    await this.$router.push('/order');
+                } else {
+                    console.log('Ошибка. Не удалось добавить заказ в бд!');
+                }
+
+            } else {
+                console.log('Ошибка. Не удалось добавить корзину в бд!');
+            }
+            this.loading = false;
+        },
+
+
+    },
+
+    mounted() {
+        if (this.authenticated) {
+            this.userName = this.user.name;
+            this.userNumberPhone = String(this.user.phone);
+            this.deliveryAddress = this.user.location + ', ' + this.user.address;
+            this.email = this.user.email;
+        }
+    }
 }
 </script>
 
@@ -313,6 +305,7 @@ export default {
 
 .checkout {
     position: relative;
+
     &__title {
         font-size: 3.2rem;
         font-weight: bold;
@@ -348,5 +341,6 @@ export default {
 .regular-client {
     margin-bottom: 1.5rem;
 }
+
 </style>
 

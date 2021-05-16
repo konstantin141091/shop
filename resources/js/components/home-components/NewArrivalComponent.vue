@@ -87,7 +87,7 @@ export default {
         //или VUEX?
         setTimeout(() => {
             this.loading = false
-        }, 3000)
+        }, 1000)
     }
 }
 </script>
@@ -97,6 +97,7 @@ export default {
 .new-arrival {
     margin-bottom: 3rem;
     width: 100%;
+    text-align: center;
 
     &__head {
         display: flex;

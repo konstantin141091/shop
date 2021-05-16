@@ -36,7 +36,7 @@
       async signOut () {
         await this.signOutAction();
 
-        this.$router.push('/');
+        await this.$router.push('/');
       }
     },
     mounted() {
