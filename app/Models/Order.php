@@ -18,6 +18,7 @@ class Order extends Model
         'delivery_method',
         'comment',
         'status',
-        'delivery_cost'
+        'delivery_cost',
+        'total_price'
     ];
 }

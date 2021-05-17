@@ -181,7 +181,7 @@ export default {
 
   computed: {
     ...mapGetters([
-      'CART',
+      'CART', 'TOTAL_PRICE_CART'
     ]),
     ...mapGetters({
       authenticated: 'auth/AUTHENTICATED',
@@ -249,7 +249,6 @@ export default {
     },
 
     submitHandler() {
-      console.log('start');
       if (this.formIsValid()) {
         console.group('Form Data');
         console.log('Name:', this.userName);
@@ -261,7 +260,6 @@ export default {
         console.groupEnd()
         this.handleCreateOrder();
       }
-      console.log('no');
     },
 
     async handleCreateOrder() {
@@ -277,11 +275,11 @@ export default {
           comment: this.deliveryText,
           delivery_method: this.deliveryMethod,
           delivery_cost: 1000,
+          total_price: this.TOTAL_PRICE_CART,
         };
         const orderResponse = await this.$store.dispatch('API_ADD_ORDER', order);
-        if (orderResponse.status === 204) {
-          console.log('Заказ добавился в бд. Нужно как то сказать об этом юзеру');
-          console.log('Нужно скинуть корзину в local storage');
+        if (orderResponse.status === 201) {
+          await this.$store.dispatch('FIXED_LAST_CART');
           await this.$store.dispatch('CLEAR_CART');
           await this.$router.push('/order');
         } else {

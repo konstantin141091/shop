@@ -6,6 +6,7 @@ export default {
     state: {
         cart: JSON.parse(localStorage.getItem('cart' ) || '[]'),
         // cartCount: 0,
+        last_cart: [],
     },
     getters: {
         CART: state => {
@@ -16,6 +17,9 @@ export default {
                 return total + product.quantity * product.price
             }, 0)
         },
+        LAST_CART: state => {
+            return state.last_cart;
+        }
     },
     mutations: {
         PUSH_PRODUCT_TO_CART: (state, product) => {
@@ -39,8 +43,6 @@ export default {
         },
 
         DECREMENT: ( state, index) => {
-            console.log(state);
-            console.log(state.cart);
             const cartItem = state.cart.find(item => item.id === index);
             if (cartItem.quantity > 1) {
                 cartItem.quantity--
@@ -49,6 +51,10 @@ export default {
         },
         DELETE_ALL_CART: (state) => {
             state.cart = [];
+        },
+        SET_LAST_CART: (state) => {
+            state.last_cart = [];
+            state.last_cart = state.cart;
         }
     },
     actions: {
@@ -72,13 +78,17 @@ export default {
         },
 
         DELETE_FROM_CART: ({commit}, index) => {
-            commit('REMOVE_FROM_CART', index)
+            commit('REMOVE_FROM_CART', index);
             commit('SAVE_CART')
         },
 
         CLEAR_CART: ({commit}) => {
             localStorage.clear();
             commit('DELETE_ALL_CART');
+        },
+
+        FIXED_LAST_CART: ({commit}) => {
+            commit('SET_LAST_CART');
         },
 
         async API_ADD_CART ({ dispatch }, credentials) {

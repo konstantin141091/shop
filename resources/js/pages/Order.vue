@@ -1,33 +1,33 @@
 <template>
     <div class="container order">
-        <h1 class="order__title">Заказ №1051</h1>
+        <h1 class="order__title">Заказ №{{ ORDER_CURRENT.id }}</h1>
 
         <h3 class="order__subtitle">Информация о заказе</h3>
 
         <div class="order-info">
             <div class="order-row">
                 <p class="order-info__title">Дата оформления</p>
-                <p class="order-info__value">15.05.2021 12:36</p>
+                <p class="order-info__value">{{ this.order_date }}</p>
             </div>
 
             <div class="order-row">
                 <p class="order-info__title">Сумма</p>
-                <p class="order-info__value">{{ 230 }}&nbsp;руб</p>
+                <p class="order-info__value">{{ ORDER_CURRENT.total_price + ORDER_CURRENT.delivery_cost }}&nbsp;руб</p>
             </div>
 
             <div class="order-row">
                 <p class="order-info__title">Способ доставки</p>
-                <p class="order-info__value">Самовывоз (На пункте выдачи)</p>
+                <p class="order-info__value">{{ ORDER_CURRENT.delivery_method }}</p>
             </div>
 
             <div class="order-row">
                 <p class="order-info__title">Адрес доставки</p>
-                <p class="order-info__value">г. Магнитогорск</p>
+                <p class="order-info__value">{{ ORDER_CURRENT.address }}</p>
             </div>
 
             <div class="order-row">
                 <p class="order-info__title">Получатель</p>
-                <p class="order-info__value">Name&nbsp;+7(351)022-55-45</p>
+                <p class="order-info__value">{{ ORDER_CURRENT.name }}&nbsp;+7{{ ORDER_CURRENT.phone }}</p>
             </div>
 
         </div>
@@ -41,21 +41,13 @@
                 <td class="table-cell table-cell__head">Кол-во</td>
                 <td class="table-cell table-cell__head">Стоимость</td>
             </tr>
-
-            <tr class="table-row table-row__body">
-                <td class="table-cell table-cell__body" data-title="Наименование">{{'Колбаса варенная'}}</td>
-                <td class="table-cell table-cell__body" data-title="Кол-во">{{ 1 }}</td>
-                <td class="table-cell table-cell__body" data-title="Стоимость">{{ 79 }}&nbsp;руб</td>
+            <tr class="table-row table-row__body" v-for="(item, index) in LAST_CART" :key="'item' + index">
+                <td class="table-cell table-cell__body" data-title="Наименование">{{item.name}}</td>
+                <td class="table-cell table-cell__body" data-title="Кол-во">{{ item.quantity }}</td>
+                <td class="table-cell table-cell__body" data-title="Стоимость">{{ item.price }}&nbsp;руб</td>
             </tr>
-
-            <tr class="table-row table-row__body">
-                <td class="table-cell table-cell__body" data-title="Наименование">{{'Колбаса копченная'}}</td>
-                <td class="table-cell table-cell__body" data-title="Кол-во">{{ 1 }}</td>
-                <td class="table-cell table-cell__body" data-title="Стоимость">{{ 151 }}&nbsp;руб</td>
-            </tr>
-
             <tr class="table-row table-row__foot">
-                <td class="table-cell table-cell__foot" colspan="3">Итого:&nbsp;<strong>{{ 230 }}&nbsp;руб</strong></td>
+                <td class="table-cell table-cell__foot" colspan="3">Итого:&nbsp;<strong>{{ ORDER_CURRENT.total_price }}&nbsp;руб</strong></td>
             </tr>
             </tbody>
         </table>
@@ -64,9 +56,33 @@
 </template>
 
 <script>
-export default {
-    name: 'Order'
-}
+  import { mapGetters } from 'vuex'
+  export default {
+    name: 'Order',
+    data() {
+      return {
+        order_date: null,
+        order_date_options: {
+          day: 'numeric',
+          month: 'numeric',
+          year: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: false,
+        }
+      }
+    },
+    computed: {
+      ...mapGetters([
+        'ORDER_CURRENT', 'LAST_CART'
+      ]),
+    },
+    created() {
+      this.order_date = new Intl.DateTimeFormat('ru-Ru', this.order_date_options)
+        .format(new Date(this.ORDER_CURRENT.updated_at));
+    }
+  }
+
 </script>
 
 <style lang="scss" scoped>

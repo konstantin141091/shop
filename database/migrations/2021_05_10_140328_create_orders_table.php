@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->string('comment')->nullable();
             $table->enum('status', ['оформлен', 'в работе', 'выполнен'])->default('оформлен');
             $table->unsignedBigInteger('delivery_cost')->default(0);
+            $table->unsignedBigInteger('total_price');
             $table->timestamps();
         });
     }

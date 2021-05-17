@@ -31,7 +31,7 @@ class OrderController extends Controller
                 $order->user_id = $user_id;
                 $order->save();
                 session()->regenerate();
-                return response()->json(['answer' => 'success'], '204');
+                return response()->json(['order' => $order], '201');
             }
         }catch (Exception $exception) {
             return response()->json(['answer' => 'error'], '500');

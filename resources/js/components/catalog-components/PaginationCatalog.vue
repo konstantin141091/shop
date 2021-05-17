@@ -77,7 +77,6 @@ export default {
         ]),
         addToCart(data) {
             this.ADD_TO_CART(data)
-            console.log(data)
             this.successMsg = true;
             setTimeout(() => {this.successMsg = false}, 4000)
         },
