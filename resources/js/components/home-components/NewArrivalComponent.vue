@@ -2,6 +2,7 @@
     <div class="new-arrival">
         <Loader v-if="loading" />
         <div v-else>
+            <success-message-component message="Товар добавлен в корзину" v-if="successMsg"></success-message-component>
             <div class="new-arrival__head">
                 <h2 class="new-arrival__title">Новое поступление</h2>
                 <div class="new-arrival__arrows">
@@ -12,10 +13,11 @@
 
             <VueSlickCarousel v-bind="newProductsSliderSettings" ref="slider">
                 <ProductCardComponent
-                    v-for="item in PRODUCTS_NEWS"
+                    v-for="item in newProductList"
                     :key="item.id"
                     :product-data="item"
                     :image-url="item.img ? imageUrl + item.img : '/images/no_photo.png'"
+                    @addToCart="addToCart"
                 />
             </VueSlickCarousel>
         </div>
@@ -26,10 +28,11 @@
 import ProductCardComponent from "../ProductCardComponent";
 import {mapGetters, mapActions} from "vuex/dist/vuex.mjs";
 import Loader from "../../ui/Loader";
+import SuccessMessageComponent from "../SuccessMessageComponent";
 
 export default {
     name: 'NewArrivalComponent',
-    components: {Loader, ProductCardComponent},
+    components: {SuccessMessageComponent, Loader, ProductCardComponent},
     data() {
         return {
             sliderItems: [
@@ -48,7 +51,8 @@ export default {
                 infinite: false,
             },
             isDisabled: false,
-            loading: true
+            loading: true,
+            successMsg: false,
         }
     },
     computed: {
@@ -58,11 +62,14 @@ export default {
         ...mapGetters([
             'PRODUCTS', 'PRODUCTS_NEWS'
         ]),
+        newProductList() {
+            return this.PRODUCTS_NEWS
+        }
 
     },
     methods: {
         ...mapActions([
-            'GET_PRODUCTS'
+            'GET_PRODUCTS', 'ADD_TO_CART'
         ]),
         prevSlide() {
             this.$refs.slider.prev()
@@ -70,7 +77,13 @@ export default {
 
         nextSlide() {
             this.$refs.slider.next()
-        }
+        },
+        addToCart(data) {
+            this.ADD_TO_CART(data)
+            console.log(data)
+            this.successMsg = true;
+            setTimeout(() => {this.successMsg = false}, 4000)
+        },
     },
 /*    created() {
         this.GET_PRODUCTS()

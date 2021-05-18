@@ -18,6 +18,11 @@ export default {
         },
     },
     mutations: {
+        // TOTAL_PRICE_PRODUCT: (state, index) => {
+        //     const cartItem = state.cart.find(item => item.id === index);
+        //     cartItem.totalPriceProduct = cartItem.quantity * cartItem.price
+        // },
+
         PUSH_PRODUCT_TO_CART: (state, product) => {
             state.cart.push(product);
             Vue.set(product, 'quantity', 1);
@@ -35,7 +40,7 @@ export default {
         INCREMENT: (state, index) => {
             const cartItem = state.cart.find(item => item.id === index);
             cartItem.quantity++
-            cartItem.totalPriceProduct = cartItem.quantity * cartItem.totalPriceProduct
+            cartItem.totalPriceProduct = cartItem.quantity * cartItem.price
         },
 
         DECREMENT: ( state, index) => {
@@ -44,7 +49,7 @@ export default {
             const cartItem = state.cart.find(item => item.id === index);
             if (cartItem.quantity > 1) {
                 cartItem.quantity--
-                cartItem.totalPriceProduct = cartItem.quantity * cartItem.totalPriceProduct
+                cartItem.totalPriceProduct = cartItem.quantity * cartItem.price
             }
         },
         DELETE_ALL_CART: (state) => {
