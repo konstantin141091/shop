@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+        <Breadcrumbs />
+
         <h1 class="page-title">Пользовательское соглашение</h1>
         <div class="content">
             <article>

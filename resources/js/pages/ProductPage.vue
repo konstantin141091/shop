@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+        <Breadcrumbs />
+
         <div class="flex-box">
             <div class="left">
                 <img :src="`/images/products/${product.img}`" :alt="product.name">

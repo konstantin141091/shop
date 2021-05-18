@@ -1,5 +1,8 @@
 <template>
     <div class="container">
+
+        <Breadcrumbs />
+
         <div class="catalog__top">
             <h1 class="catalog__title">{{ categoryName || 'Каталог' }}</h1>
 
@@ -53,6 +56,7 @@ import ProductCardComponent from "../components/ProductCardComponent";
 import PaginationCatalog from "../components/catalog-components/PaginationCatalog";
 
 import {mapGetters} from "vuex/dist/vuex.mjs";
+// import BreadcrumbsComponent from "../ui/BreadcrumbsComponent";
 
 export default {
     components: { PaginationCatalog, ProductCardComponent, Button, InputCheck, Select},
@@ -136,6 +140,9 @@ export default {
         SEARCH_VALUE() {
             this.sortProductsBySearchValue(this.SEARCH_VALUE)
         }
+    },
+    breadcrumb () {
+
     }
 }
 </script>

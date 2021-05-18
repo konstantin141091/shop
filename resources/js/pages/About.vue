@@ -1,5 +1,7 @@
 <template>
     <div class="container page">
+        <Breadcrumbs />
+
         <h1 class="page__title">ООО "Абсолют"</h1>
         <div class="page__block">
             <p>Это эксклюзивный дистрибьютор колбасы и мясных деликатесов по всей России.</p>
