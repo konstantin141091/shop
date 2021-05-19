@@ -179,7 +179,7 @@ export default {
 
   computed: {
     ...mapGetters([
-      'CART', 'TOTAL_PRICE_CART'
+      'CART',
     ]),
     ...mapGetters({
       authenticated: 'auth/AUTHENTICATED',
