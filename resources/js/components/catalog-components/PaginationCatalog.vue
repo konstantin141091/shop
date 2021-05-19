@@ -1,13 +1,16 @@
 <template>
     <div>
-        <success-message-component message="Товар добавлен в корзину" v-show="successMsg"></success-message-component>
+        <Notification
+            :messages="messages"
+        />
+
         <div class="catalog">
             <ProductCardComponent
                 v-for="item in paginatedData"
                 :key="'product' + item.id"
                 :imageUrl="item.img ? imageUrl + item.img : '/images/no_photo.png'"
                 :product-data="item"
-                @addToCart="addToCart"
+                @addToCart="addToCart(item)"
             />
         </div>
         <div class="pagination" v-if="catalogData.length > usersPerPage">
@@ -39,10 +42,11 @@
 import ProductCardComponent from "../ProductCardComponent";
 import { mapActions } from "vuex/dist/vuex.mjs";
 import SuccessMessageComponent from "../SuccessMessageComponent";
+import Notification from "../../ui/Notification";
 
 export default {
     name: 'PaginationCatalog',
-    components: {SuccessMessageComponent, ProductCardComponent},
+    components: {Notification, SuccessMessageComponent, ProductCardComponent},
     props: {
         catalogData: {
             type: Array,
@@ -55,7 +59,7 @@ export default {
         return {
             usersPerPage: 9,
             pageNumber: 1,
-            successMsg: false,
+            messages: []
         }
     },
     computed: {
@@ -77,9 +81,12 @@ export default {
         ]),
         addToCart(data) {
             this.ADD_TO_CART(data)
-            console.log(data)
-            this.successMsg = true;
-            setTimeout(() => {this.successMsg = false}, 4000)
+            .then(() => {
+                let timeStamp = Date.now().toLocaleString()
+                this.messages.unshift(
+                    {name: 'Товар добавлен в корзину!', id: timeStamp}
+                )
+            })
         },
         pageClick(page) {
             this.pageNumber = page

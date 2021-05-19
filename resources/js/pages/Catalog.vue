@@ -56,7 +56,6 @@ import ProductCardComponent from "../components/ProductCardComponent";
 import PaginationCatalog from "../components/catalog-components/PaginationCatalog";
 
 import {mapGetters} from "vuex/dist/vuex.mjs";
-// import BreadcrumbsComponent from "../ui/BreadcrumbsComponent";
 
 export default {
     components: { PaginationCatalog, ProductCardComponent, Button, InputCheck, Select},

@@ -2,7 +2,10 @@
     <div class="new-arrival">
         <Loader v-if="loading" />
         <div v-else>
-            <success-message-component message="Товар добавлен в корзину" v-if="successMsg"></success-message-component>
+            <Notification
+                v-if="messages.length"
+                :messages="messages"
+            />
             <div class="new-arrival__head">
                 <h2 class="new-arrival__title">Новое поступление</h2>
                 <div class="new-arrival__arrows">
@@ -29,10 +32,11 @@ import ProductCardComponent from "../ProductCardComponent";
 import {mapGetters, mapActions} from "vuex/dist/vuex.mjs";
 import Loader from "../../ui/Loader";
 import SuccessMessageComponent from "../SuccessMessageComponent";
+import Notification from "../../ui/Notification";
 
 export default {
     name: 'NewArrivalComponent',
-    components: {SuccessMessageComponent, Loader, ProductCardComponent},
+    components: {Notification, SuccessMessageComponent, Loader, ProductCardComponent},
     data() {
         return {
             sliderItems: [
@@ -52,7 +56,7 @@ export default {
             },
             isDisabled: false,
             loading: true,
-            successMsg: false,
+            messages: [],
         }
     },
     computed: {
@@ -80,9 +84,12 @@ export default {
         },
         addToCart(data) {
             this.ADD_TO_CART(data)
-            console.log(data)
-            this.successMsg = true;
-            setTimeout(() => {this.successMsg = false}, 4000)
+                .then(() => {
+                    let timeStamp = Date.now().toLocaleString()
+                    this.messages.unshift(
+                        {name: 'Товар добавлен в корзину!', id: timeStamp}
+                    )
+                })
         },
     },
 /*    created() {
