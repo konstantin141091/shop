@@ -277,13 +277,13 @@ export default {
           delivery_cost: 1000,
         };
         const orderResponse = await this.$store.dispatch('API_ADD_ORDER', order);
-        if (orderResponse.status === 204) {
+        if (orderResponse.status === 201) {
           console.log('Заказ добавился в бд. Нужно как то сказать об этом юзеру');
           console.log('Нужно скинуть корзину в local storage');
           await this.$store.dispatch('CLEAR_CART');
           await this.$router.push('/order');
         } else {
-          console.log('Ошибка. Не удалось добавить заказ в бд!');
+          console.log('Ошибка. Не удалось добавить заказ в бд!', orderResponse.status);
         }
 
       } else {
