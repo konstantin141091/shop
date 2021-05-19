@@ -26,7 +26,7 @@ export default {
         margin: 8px;
         box-sizing: border-box;
         border: 32px solid;
-        border-color: chartreuse transparent cornflowerblue transparent;
+        border-color: #B63334 transparent #B63334 transparent;
         animation: lds-hourglass 1.2s infinite;
     }
 }

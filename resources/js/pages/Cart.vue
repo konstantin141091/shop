@@ -19,7 +19,7 @@
                     :price = item.price
                     :unit = item.unit
                     :quantity="item.quantity"
-                    :totalPriceProduct="item.quantity*item.price"
+                    :totalPriceProduct="item.totalPriceProduct"
                     @deleteFromCart="deleteFromCart(index)"
                     @incrementItem="incrementItem(item.id)"
                     @decrementItem="decrementItem(item.id)"
@@ -65,7 +65,7 @@ export default {
         },
         decrementItem(index) {
             this.DECREMENT_TO_PRODUCT(index)
-        }
+        },
     }
 }
 </script>

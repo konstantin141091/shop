@@ -35,7 +35,7 @@
                         placeholder="Челябинская область, г. Магнитогорск, ул. Полевая, д.0"
                         :required-field="true"
                         :error="errors.deliveryAddress"
-                        v-model="deliveryAddress"
+                        v-model.trim="deliveryAddress"
                     />
 
                     <div class="form-item">
@@ -78,7 +78,7 @@
                         :resize="false"
                         :form-input="true"
                         :uniq="'comment'"
-                        v-model="deliveryText"
+                        v-model.trim="deliveryText"
                         :error="errors.deliveryText"
                     />
 
@@ -87,7 +87,7 @@
                             :uniq="'client-email'"
                             :form-input="true"
                             :error="errors.email"
-                            v-model="email"
+                            v-model.trim="email"
                     />
                 </div>
 
@@ -104,15 +104,13 @@
 
             </form>
 
-           <BasketItemList />
+           <BasketItemList/>
         </div>
 
     </div>
 </template>
 
 <script>
-    // TODO Камиль, посмотри следущее. Я не могу в валидаторе настроить чтобы показывал ошибку что не выбран способ доставки,
-    //  в errors она есть а вывести её не могу и почему-то коментарий не залитает в v-model="deliveryText" текс пишется а переменная пустая
 import InputText from "../ui/InputText"
 import InputNumber from "../ui/InputNumber"
 import InputTextarea from "../ui/InputTextarea"
@@ -249,6 +247,7 @@ export default {
     },
 
     submitHandler() {
+      console.log('start');
       if (this.formIsValid()) {
         console.group('Form Data');
         console.log('Name:', this.userName);
@@ -260,6 +259,7 @@ export default {
         console.groupEnd()
         this.handleCreateOrder();
       }
+      console.log('no');
     },
 
     async handleCreateOrder() {
@@ -275,11 +275,11 @@ export default {
           comment: this.deliveryText,
           delivery_method: this.deliveryMethod,
           delivery_cost: 1000,
-          total_price: this.TOTAL_PRICE_CART,
         };
         const orderResponse = await this.$store.dispatch('API_ADD_ORDER', order);
-        if (orderResponse.status === 201) {
-          await this.$store.dispatch('FIXED_LAST_CART');
+        if (orderResponse.status === 204) {
+          console.log('Заказ добавился в бд. Нужно как то сказать об этом юзеру');
+          console.log('Нужно скинуть корзину в local storage');
           await this.$store.dispatch('CLEAR_CART');
           await this.$router.push('/order');
         } else {

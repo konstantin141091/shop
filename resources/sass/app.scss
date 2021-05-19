@@ -144,3 +144,39 @@ h1, h2, h3, h4, h5, h6 {
         }
     }
 }
+
+//---------------------- Breadcrumb -----------------------
+.breadcrumb {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style-type: none;
+    margin-bottom: 3rem;
+
+    &-item + &-item {
+        margin-left: 1rem;
+    }
+    &-item {
+        text-transform: capitalize;
+        &::after {
+            content: '>';
+            padding-left: 1rem;
+        }
+        &:last-child {
+            &::after {
+                content: '';
+                color: $grey;
+            }
+        }
+
+        .router-link-active {
+            color: $grey;
+
+            &:hover {
+                color: $colorBtn;
+            }
+        }
+
+    }
+
+}

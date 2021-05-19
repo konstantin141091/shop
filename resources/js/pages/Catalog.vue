@@ -1,5 +1,8 @@
 <template>
     <div class="container">
+
+        <Breadcrumbs />
+
         <div class="catalog__top">
             <h1 class="catalog__title">{{ categoryName || 'Каталог' }}</h1>
 
@@ -136,6 +139,9 @@ export default {
         SEARCH_VALUE() {
             this.sortProductsBySearchValue(this.SEARCH_VALUE)
         }
+    },
+    breadcrumb () {
+
     }
 }
 </script>

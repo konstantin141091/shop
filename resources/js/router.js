@@ -19,6 +19,8 @@ import AccountProfile from "./pages/account/Profile";
 import AdminMain from "./pages/admin/AdminMain";
 import AdminProduct from "./pages/admin/AdminProduct";
 import AdminCategory from "./pages/admin/AdminCategory";
+import UserAgreement from "./pages/UserAgreement";
+import ReturnPolicy from "./pages/ReturnPolicy";
 
 export default new VueRouter( {
   mode: 'history',
@@ -28,68 +30,134 @@ export default new VueRouter( {
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+        meta: {
+            breadcrumb: {
+                label: 'Главная'
+            }
+        }
     },
     {
         path: '/catalog',
         name: 'catalog',
         component: () => import('./pages/Catalog'),
+        meta: {
+            breadcrumb: {
+                label: 'Каталог',
+                parent: 'home'
+            }
+        }
     },
     {
         path: '/catalog/:id',
         name: 'product',
         component: () => import('./pages/ProductPage'),
+        meta: {
+            breadcrumb: routeParams => `route params id: ${routeParams.id}`
+        }
     },
     {
       path: '/about',
       name: 'about',
-      component: About
+      component: About,
+        meta: {
+            breadcrumb: {
+                label: 'О компании',
+                parent: 'home'
+            }
+        }
     },
-    {
-      path: '/admin',
-      name: 'admin',
-      component: Admin
-    },
+
     {
       path: '/contacts',
       name: 'contacts',
-      component: Contacts
+      component: Contacts,
+        meta: {
+            breadcrumb: {
+                label: 'Контакты',
+                parent: 'home'
+            }
+        }
     },
     {
       path: '/delivery',
       name: 'delivery',
-      component: Delivery
+      component: Delivery,
+        meta: {
+            breadcrumb: {
+                label: 'Доставка',
+                parent: 'home'
+            }
+        }
     },
     {
       path: '/payment',
       name: 'payment',
-      component: Payment
+      component: Payment,
+        meta: {
+            breadcrumb: {
+                label: 'Оплата',
+                parent: 'home'
+            }
+        }
     },
     {
       path: '/cart',
       name: 'cart',
-      component: Cart
+      component: Cart,
     },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: Register
-    },
+
     {
       path: '/checkout',
       name: 'checkout',
-      component: Checkout
+      component: Checkout,
     },
     {
       path: '/order',
       name: 'order',
         component: () => import('./pages/Order'),
     },
+    {
+      path: '/user-agreement',
+      name: 'user-agreement',
+      component: UserAgreement,
+        breadcrumb: {
+            label: 'Пользовательское соглашение',
+            parent: 'home'
+        }
+    },
+    {
+      path: '/return-policy',
+      name: 'return-policy',
+      component: ReturnPolicy,
+        meta: {
+            breadcrumb: {
+                label: 'Политика возврата',
+                parent: 'home'
+            }
+        }
+    },
+      {
+          path: '/login',
+          name: 'login',
+          component: Login,
+      },
+      {
+          path: '/register',
+          name: 'register',
+          component: Register,
+      },
+      // {
+      //     path: '/admin',
+      //     name: 'admin',
+      //     component: Admin,
+      //     meta: {
+      //         breadcrumb: {
+      //             label: 'Кабинет администратора',
+      //             parent: 'home'
+      //         }
+      //     }
+      // },
     {
       path: '/account',
       name: 'account',

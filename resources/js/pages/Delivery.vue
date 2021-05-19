@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+        <Breadcrumbs />
+
         <h1 class="page__title">Доставка</h1>
 
         <div class="page__info">

@@ -1,30 +1,42 @@
 <template>
-    <div class="wrapper-layout">
-        <Header/>
-        <div class="main-layout">
-            <keep-alive>
-                <router-view></router-view>
-            </keep-alive>
+    <div class="wrap">
+        <Loader v-if="loading"/>
+        <div class="wrapper-layout" v-else>
+            <Header/>
+            <main class="main-layout">
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
+            </main>
+            <Footer/>
         </div>
-        <Footer/>
     </div>
 </template>
 
 <script>
 import Header from "../components/HeaderComponent";
 import Footer from "../components/FooterComponent";
+import Loader from "../ui/Loader";
 
 export default {
     name: "MainLayout",
-    components: {Header, Footer},
-  mounted() {
+    components: {Loader, Header, Footer},
+    data() {
+        return {
+            loading: true,
+        }
+    },
+  async mounted() {
       // вызываем запросы к бд, чтобы сохранить данные в store
-    this.$store.dispatch('GET_PRODUCTS');
-    this.$store.dispatch('GET_CATEGORIES');
+       await this.$store.dispatch('GET_PRODUCTS');
+       await this.$store.dispatch('GET_CATEGORIES');
+       this.loading = false
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.wrap {
+    height: 100%;
+}
 </style>

@@ -8,7 +8,7 @@
                     <router-link to="/promotions" class="menu__link">Акции и скидки</router-link>
                     <router-link to="/" class="menu__link">Юридическим лицам</router-link>
                     <router-link to="/" class="menu__link">Как заказать</router-link>
-                    <router-link to="/" class="menu__link">Обмен и возврат</router-link>
+                    <router-link to="/return-policy" class="menu__link">Обмен и возврат</router-link>
                 </div>
 
                 <div class="menu__item">
@@ -22,7 +22,7 @@
                 <div class="menu__item">
                     <p class="menu__title">Информация</p>
                     <router-link to="/offer" class="menu__link">Политика конфиденциальности и оферта</router-link>
-                    <router-link to="/agreement" class="menu__link">Пользовательское соглашение</router-link>
+                    <router-link to="/user-agreement" class="menu__link">Пользовательское соглашение</router-link>
                 </div>
             </div>
         </div>
