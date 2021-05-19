@@ -1,7 +1,6 @@
 <template>
 <div class="admin">
     <h1>Admin product</h1>
-<!--    <error-message-component :message="'Ошибка'"></error-message-component>-->
     <form action="#" @submit.prevent="submit" class="login__form">
         <div class="login__group">
             <label for="excel_products" class="login__label">Загрузить excel</label>
@@ -21,14 +20,11 @@
 
 <script>
   import { mapActions } from 'vuex'
-  import ValidateMessageComponent from '../../components/ValidateMessageComponent'
-  import ErrorMessageComponent from '../../components/ErrorMessageComponent'
   import Button from "../../ui/Button";
   export default {
     name: "AdminProduct",
     components: {
       Button,
-      ValidateMessageComponent, ErrorMessageComponent
     },
     data () {
       return {

@@ -60,7 +60,11 @@ Route::group([
     'prefix' => 'admin',
     'middleware' => ['auth:sanctum', 'isAdmin']
 ], function () {
+//    products
     Route::post('/product/import', 'ProductController@import');
+
+//    category
+    Route::post('/category', 'CategoryController@store');
 });
 
 
