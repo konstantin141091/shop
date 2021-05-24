@@ -1,8 +1,9 @@
 <template>
     <div class="container checkout">
+      <div class="loader-wrapper"  v-show="loading">
+        <Loader></Loader>
+      </div>
         <h1 class="checkout__title">Оформление заказа</h1>
-        <loader v-show="loading"></loader>
-
         <div class="checkout__box">
             <form class="checkout__form" @submit.prevent="submitHandler">
                 <div class="checkout-block">
@@ -308,6 +309,16 @@ export default {
 
 <style lang="scss" scoped>
 @import "resources/sass/variables";
+
+.loader-wrapper {
+  position: fixed;
+  z-index: 1000;
+  background:rgba(0,0,0,.3);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
 
 .checkout {
     position: relative;

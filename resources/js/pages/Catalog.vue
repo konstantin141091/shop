@@ -80,14 +80,11 @@ export default {
 
     computed: {
         ...mapGetters([
-            'PRODUCTS',
             'CATEGORIES',
             'SEARCH_VALUE',
         ]),
+      ...mapGetters ('products', { productList: 'PRODUCTS' }),
 
-        productList() {
-            return this.PRODUCTS
-        },
         categoryList() {
             return this.CATEGORIES
         },

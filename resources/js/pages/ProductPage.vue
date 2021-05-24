@@ -12,8 +12,8 @@
                     <div class="product__buy">
                         <p class="product__price">{{ product.price }} руб.</p>
                         <Button
-                            :btnClass="'product__btn'"
-                            :btnText="'В корзину'"
+                            btnClass="product__btn"
+                            btnText="В корзину"
                             @click="addToCart"
                         />
                     </div>
@@ -38,28 +38,25 @@
 </template>
 
 <script>
-import Button from "../ui/Button";
-import {mapActions} from "vuex/dist/vuex.mjs";
-import {mapGetters} from "vuex/dist/vuex.mjs";
+import Button from "../ui/Button"
+import {mapActions} from "vuex/dist/vuex.mjs"
+import {mapGetters} from "vuex/dist/vuex.mjs"
 
 export default {
     data() {
         return {
-            product: null
+            // product: {}
         }
     },
     components: {Button},
-    created() {
-        console.log(this.$route.params.id)
-        const product = this.PRODUCTS.find(product => product.id === this.$route.params.id)
-        if (product) {
-            this.product = product
-        }
-    },
     computed: {
-        ...mapGetters([
-            'PRODUCTS'
-        ])
+      ...mapGetters('products', { productProxy: 'PRODUCT_ONE' }),
+        id(){
+          return +this.$route.params.id
+        },
+        product(){
+          return this.productProxy(this.id)
+        }
     },
     methods: {
         ...mapActions([
@@ -69,7 +66,10 @@ export default {
             this.ADD_TO_CART(this.product)
             console.log(this.product)
         },
-    }
+    },
+  mounted() {
+    console.log()
+  }
 }
 </script>
 

@@ -1,16 +1,11 @@
 <template>
-    <div class="container">
-        <p>Добро пожаловать на «страницу 404» нашего сайта.</p>
-        <p>К сожалению, введенный Вами адрес недоступен. Этому может быть несколько объяснений:</p>
-        <p>Страница удалена</p>
-        <p>Страница перенесена в другое место</p>
-        <p>Возможно, при вводе адреса была пропущена какая-то буква</p>
-    </div>
+    <NotFound />
 </template>
 
 <script>
+import NotFound from "../components/NotFoundComponent";
 export default {
-
+    components: {NotFound}
 }
 </script>
 

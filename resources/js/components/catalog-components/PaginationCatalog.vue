@@ -7,7 +7,7 @@
         <div class="catalog">
             <ProductCardComponent
                 v-for="item in paginatedData"
-                :key="'product' + item.id"
+                :key="item.id"
                 :imageUrl="item.img ? imageUrl + item.img : '/images/no_photo.png'"
                 :product-data="item"
                 @addToCart="addToCart(item)"
