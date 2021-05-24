@@ -21,6 +21,7 @@ import AdminProduct from "./pages/admin/AdminProduct";
 import AdminCategory from "./pages/admin/AdminCategory";
 import UserAgreement from "./pages/UserAgreement";
 import ReturnPolicy from "./pages/ReturnPolicy";
+import Order from "./pages/Order";
 
 export default new VueRouter( {
   mode: 'history',
@@ -40,7 +41,7 @@ export default new VueRouter( {
     {
         path: '/catalog',
         name: 'catalog',
-        component: () => import('./pages/Catalog'),
+        component: Catalog,
         meta: {
             breadcrumb: {
                 label: 'Каталог',
@@ -51,9 +52,12 @@ export default new VueRouter( {
     {
         path: '/catalog/:id',
         name: 'product',
-        component: () => import('./pages/ProductPage'),
+        component: ProductPage,
         meta: {
-            breadcrumb: routeParams => `route params id: ${routeParams.id}`
+            breadcrumb: {
+              label: 'Product',
+              parent: 'catalog'
+            }
         }
     },
     {
@@ -115,7 +119,7 @@ export default new VueRouter( {
     {
       path: '/order',
       name: 'order',
-        component: () => import('./pages/Order'),
+        component: Order,
     },
     {
       path: '/user-agreement',
@@ -192,3 +196,4 @@ export default new VueRouter( {
     },
   ]
 })
+
