@@ -60,7 +60,11 @@ export default {
         SET_LAST_CART: (state) => {
             state.last_cart = [];
             state.last_cart = state.cart;
-        }
+        },
+        COPY_CART: (state) => {
+            state.last_cart = [];
+            state.last_cart = JSON.parse(localStorage.getItem('cart' ) || '[]');
+        },
     },
     actions: {
         ADD_TO_CART: ({commit, state}, product) => {
@@ -88,12 +92,9 @@ export default {
         },
 
         CLEAR_CART: ({commit}) => {
+            commit('COPY_CART');
             localStorage.clear();
             commit('DELETE_ALL_CART');
-        },
-
-        FIXED_LAST_CART: ({commit}) => {
-            commit('SET_LAST_CART');
         },
 
         async API_ADD_CART ({ dispatch }, credentials) {

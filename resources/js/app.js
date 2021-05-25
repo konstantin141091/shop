@@ -10,7 +10,6 @@ import {store} from './store'
 import Main from './layout/MainLayout'
 import dateFilter from "./utils/date.filter"
 
-
 //Global styles
 import '../sass/app.scss'
 

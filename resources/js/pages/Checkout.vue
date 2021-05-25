@@ -180,7 +180,7 @@ export default {
 
   computed: {
     ...mapGetters([
-      'CART',
+      'CART', 'TOTAL_PRICE_CART'
     ]),
     ...mapGetters({
       authenticated: 'auth/AUTHENTICATED',
@@ -276,6 +276,7 @@ export default {
           comment: this.deliveryText,
           delivery_method: this.deliveryMethod,
           delivery_cost: 1000,
+          total_price: this.TOTAL_PRICE_CART,
         };
         const orderResponse = await this.$store.dispatch('API_ADD_ORDER', order);
         if (orderResponse.status === 201) {
