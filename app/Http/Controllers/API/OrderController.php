@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderMail;
 use Mockery\Exception;
 
 class OrderController extends Controller
@@ -31,6 +32,8 @@ class OrderController extends Controller
                 $order->session_id = $user_session;
                 $order->user_id = $user_id;
                 $order->save();
+                Mail::to('konstantin.sudakov@bk.ru')->send(new OrderMail());
+                Mail::to('k.kamil87-87@yandex.ru')->send(new OrderMail());
                 session()->regenerate();
                 return response()->json(['order' => $order], '201');
             }
