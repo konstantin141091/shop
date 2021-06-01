@@ -32,8 +32,8 @@ class OrderController extends Controller
                 $order->session_id = $user_session;
                 $order->user_id = $user_id;
                 $order->save();
-                Mail::to('konstantin.sudakov@bk.ru')->send(new OrderMail());
-                Mail::to('k.kamil87-87@yandex.ru')->send(new OrderMail());
+                Mail::to('konstantin.sudakov@bk.ru')->send(new OrderMail($order));
+                Mail::to('k.kamil87-87@yandex.ru')->send(new OrderMail($order));
                 session()->regenerate();
                 return response()->json(['order' => $order], '201');
             }

@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->tinyInteger('sale')->nullable()->comment('размер скидки в %');
             $table->boolean('news')->default(false)->comment('является ли новинкой');
             $table->unsignedSmallInteger('price')->comment('цена');
-            $table->string('img')->comment('путь до картинки');
+            $table->string('img')->nullable()->comment('путь до картинки');
             $table->text('description')->nullable()->comment('описание товара');
             $table->text('shelf_life')->nullable()->comment('срок годности и условия хранения');
             $table->timestamps();

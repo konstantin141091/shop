@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
@@ -14,23 +13,43 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            'name' => 'вареная',
-            'slug' => 'varenaya',
+            'name' => 'Варено-копченые колбасы',
+            'slug' => 'varenokopchenye_kolbasy',
 //            'sale' => null,
         ]);
         DB::table('categories')->insert([
-            'name' => 'полукопченая',
-            'slug' => 'polukopchenaya',
+            'name' => 'Вареные колбасы',
+            'slug' => 'varenye_kolbasy',
 //            'sale' => 10,
         ]);
         DB::table('categories')->insert([
-            'name' => 'сосиски',
-            'slug' => 'sosiski',
+            'name' => 'Ветчина',
+            'slug' => 'vetchina',
 //            'sale' => 25,
         ]);
         DB::table('categories')->insert([
-            'name' => 'ветчина',
-            'slug' => 'vetchina',
+            'name' => 'Деликатесы из мяса варено-копченые',
+            'slug' => 'delikatesy_iz_mjasa_varenokopchenye',
+//            'sale' => null,
+        ]);
+        DB::table('categories')->insert([
+            'name' => 'Полукопченые колбасы',
+            'slug' => 'polukopchenye_kolbasy',
+//            'sale' => null,
+        ]);
+        DB::table('categories')->insert([
+            'name' => 'Полуфабрикаты',
+            'slug' => 'polufabrikaty',
+//            'sale' => null,
+        ]);
+        DB::table('categories')->insert([
+            'name' => 'Продукт из мяса птицы',
+            'slug' => 'produkt_iz_mjasa_pticy',
+//            'sale' => null,
+        ]);
+        DB::table('categories')->insert([
+            'name' => 'Сардельки, сосиски',
+            'slug' => 'sardelki_sosiski',
 //            'sale' => null,
         ]);
     }
