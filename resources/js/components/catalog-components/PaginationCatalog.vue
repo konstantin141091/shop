@@ -59,7 +59,8 @@ export default {
       return Math.ceil(this.catalogData.length / this.elementsPerPage)
     },
     paginatedData() {
-      this.page = Math.min(this.pageCount, this.page)
+      if(this.page > this.pageCount) this.page = 1
+      // this.page = Math.min(this.pageCount, this.page)
       const start = (this.page - 1) * this.elementsPerPage
       const end = this.page * this.elementsPerPage
       return this.catalogData.slice(start, end)
