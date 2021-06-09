@@ -104,19 +104,6 @@ export default {
         }
       })
       this.categoryName = category.name
-      console.log(this.page)
-      this.page = 1
-      // if(this.$route.query.page) {
-      //   console.log(this.$route.query)
-      //   this.$router.push(`${this.$route.path}?page=1`).catch(err => {
-      //     if (
-      //       err.name !== 'NavigationDuplicated' &&
-      //       !err.message.includes('Avoided redundant navigation to current location')
-      //     ) {
-      //       console.log(err)
-      //     }
-      //   });
-      // }
     },
     //сортировка по селектору
     sortItem() {

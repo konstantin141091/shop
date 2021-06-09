@@ -3,14 +3,15 @@ import Vue from 'vue'
 import Vuelidate from "vuelidate/src"
 import VueSlickCarousel from 'vue-slick-carousel'
 import VueBreadcrumbs from 'vue-2-breadcrumbs'
-import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import Paginate from 'vuejs-paginate'
 import VueRouter from 'vue-router'
 import router from './router'
 import {store} from './store'
 import Main from './layout/MainLayout'
 import dateFilter from "./utils/date.filter"
 
-//Global styles
+// styles
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import '../sass/app.scss'
 
 const APP_URL = process.env.MIX_APP_URL;
@@ -23,6 +24,7 @@ Vue.use(VueRouter);
 Vue.use(Vuelidate);
 Vue.use(VueBreadcrumbs);
 Vue.component('VueSlickCarousel', VueSlickCarousel);
+Vue.component('Paginate', Paginate)
 
 store.dispatch('auth/ME').then(() => {
     new Vue({
