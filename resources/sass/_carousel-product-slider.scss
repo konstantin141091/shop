@@ -14,25 +14,16 @@
         font-size: 0;
         line-height: 0;
         z-index: 10;
-
         position: absolute;
         top: 50%;
-
         display: block;
-
-        width: 20px;
-        height: 40px;
+        width: 15px;
+        height: 30px;
         padding: 0;
         -webkit-transform: translate(0, -50%);
         -ms-transform: translate(0, -50%);
         transform: translate(0, -50%);
-
         cursor: pointer;
-
-        //color: transparent;
-        //border: none;
-        //outline: none;
-        //background: transparent;
     }
     .slick-prev:hover,
     .slick-prev:focus,
@@ -42,12 +33,12 @@
     }
 
     .slick-prev {
-        left: 50px;
+        left: 20px;
         background: url('/icons/sl-arrow_l.svg') 0 0 / 100% no-repeat;
     }
 
     .slick-next {
-        right: 50px;
+        right: 20px;
         background: url('/icons/sl-arrow_r.svg') 0 0 / 100% no-repeat;
     }
 

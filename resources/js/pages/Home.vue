@@ -10,7 +10,7 @@
 
         <BenefitListComponent/>
 
-        <PromotionsComponent/>
+<!--        <PromotionsComponent/>-->
 
         <ReviewsComponent/>
 
