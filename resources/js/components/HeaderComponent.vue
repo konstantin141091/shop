@@ -56,7 +56,8 @@
               type="text"
               class="header__search-input"
               placeholder="Поиск"
-              v-model="searchValue"
+              v-on:keydown.enter="search(searchValue)"
+              v-model.trim.lazy="searchValue"
             >
             <button
               class="header__search-btn"
@@ -111,19 +112,25 @@ export default {
   name: "HeaderComponent",
   data() {
     return ({
-      searchValue: '',
     })
   },
 
   computed: {
-    // TODO не разобрался как объединить эти два запроса к стору
     ...mapGetters([
       'CART', 'TOTAL_PRICE_CART', 'SEARCH_VALUE'
     ]),
+    searchValue: {
+      get() {
+        return this.SEARCH_VALUE
+      },
+      set(value) {
+        this.GET_SEARCH_VALUE(value)
+      }
+    },
     ...mapGetters({
       authenticated: 'auth/AUTHENTICATED',
       user: 'auth/USER',
-    })
+    }),
   },
 
   methods: {

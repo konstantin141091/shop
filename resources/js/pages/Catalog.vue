@@ -55,7 +55,7 @@ import Button from "../ui/Button";
 import ProductCardComponent from "../components/ProductCardComponent";
 import PaginationCatalog from "../components/catalog-components/PaginationCatalog";
 
-import {mapGetters} from "vuex/dist/vuex.mjs";
+import {mapGetters, mapActions, mapMutations} from "vuex/dist/vuex.mjs";
 
 export default {
   components: {PaginationCatalog, ProductCardComponent, Button, InputCheck, Select},
@@ -82,6 +82,7 @@ export default {
       'CATEGORIES',
       'SEARCH_VALUE',
     ]),
+    ...mapActions(['GET_SEARCH_VALUE']),
     ...mapGetters('products', {productList: 'PRODUCTS'}),
 
     categoryList() {
@@ -98,6 +99,7 @@ export default {
   methods: {
     sortByCategories(category) {
       this.sortedProducts = []
+      //сбросить значение в поиске по названию -> реализовать
       this.productList.map(item => {
         if (item.category_id === category.id) {
           this.sortedProducts.push(item)
@@ -120,10 +122,12 @@ export default {
     },
     //сортировка по поиску
     sortProductsBySearchValue(value) {
-      this.sortedProducts = [...this.PRODUCTS]
-      if (value) {
-        this.sortedProducts = this.sortedProducts.filter(item => item.name.toLowerCase().includes(value.toLowerCase()))
+      this.sortedProducts = [...this.productList]
+      const sortedProductsByWord = this.sortedProducts.filter(item => item.name.toLowerCase().includes(value.toLowerCase()))
+      if (sortedProductsByWord.length > 0) {
+        this.sortedProducts = [...sortedProductsByWord]
       } else {
+        // реализовать вывод сообщения
         console.log('по вашему запросу ничего не найдено')
       }
     }
