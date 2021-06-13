@@ -9,18 +9,11 @@ export default {
   },
 
   getters: {
-    PRODUCTS: state => {
-      return state.products;
-    },
-    PRODUCTS_NEW: state => {
-      return state.products.filter(product => product.news);
-    },
-    PRODUCTS_SALE: state => {
-      return state.products.filter(product => product.sale > 0);
-    },
-    PRODUCT_ONE: state => id => state.products.find(pr => pr.id == id),
+    PRODUCTS: state => state.products,
+    PRODUCTS_NEW: state => state.products.filter(product => product.news),
+    PRODUCTS_SALE: state => state.products.filter(product => product.sale > 0),
+    PRODUCT_ONE: state => id => state.products.find(pr => pr.id === id),
   },
-
   mutations: {
     SET_PRODUCTS: (state, products) => {
       state.products = products;
