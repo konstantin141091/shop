@@ -1,25 +1,20 @@
-import axios from "axios";
+import * as cartApi from "../../api/cart"
 
-window.Vue = require('vue');
+window.Vue = require('vue')
 
 export default {
     state: {
         cart: JSON.parse(localStorage.getItem('cart' ) || '[]'),
-        // cartCount: 0,
         last_cart: [],
     },
     getters: {
-        CART: state => {
-            return state.cart
-        },
+        CART: state => state.cart,
         TOTAL_PRICE_CART: state => {
             return state.cart.reduce((total, product) => {
                 return total + product.quantity * product.price
             }, 0)
         },
-        LAST_CART: state => {
-            return state.last_cart;
-        }
+        LAST_CART: state =>  state.last_cart
     },
     mutations: {
         // TOTAL_PRICE_PRODUCT: (state, index) => {
@@ -97,16 +92,20 @@ export default {
             commit('DELETE_ALL_CART');
         },
 
-        async API_ADD_CART ({ dispatch }, credentials) {
-            await axios.get('/sanctum/csrf-cookie');
-            const answer = await axios.post('/api/basket', credentials)
-              .then((response) => {
-                  return response;
-              })
-              .catch((error) => {
-                  return error.response;
-              });
-            return answer;
-        },
+      async API_ADD_CART ({dispatch}, credentials ) {
+        return await cartApi.all(credentials)
+      },
+
+        // async API_ADD_CART ({ dispatch }, credentials) {
+        //     await axios.get('/sanctum/csrf-cookie');
+        //     const answer = await axios.post('/api/basket', credentials)
+        //       .then((response) => {
+        //           return response;
+        //       })
+        //       .catch((error) => {
+        //           return error.response;
+        //       });
+        //     return answer;
+        // },
     }
 }
